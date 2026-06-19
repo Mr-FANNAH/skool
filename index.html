@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SKOOL</title>
+
+<style>
+
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
+
+/* BODY */
+body{
+    overflow-x:hidden;
+    background:#0b0b0f;
+    color:white;
+}
+
+/* FLOATING ORBS */
+.orb{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(80px);
+    opacity:0.4;
+    animation:float 10s infinite ease-in-out;
+    z-index:0;
+}
+
+.orb1{width:300px;height:300px;background:#ff3b2f;top:10%;left:10%;}
+.orb2{width:400px;height:400px;background:#ff7a18;bottom:10%;right:10%;}
+.orb3{width:200px;height:200px;background:#ff2e63;top:60%;left:50%;}
+
+@keyframes float{
+    0%,100%{transform:translateY(0px)}
+    50%{transform:translateY(-40px)}
+}
+
+/* NAVBAR */
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+    backdrop-filter: blur(20px);
+    background:rgba(0,0,0,0.3);
+    z-index:1000;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+.navbar a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    opacity:0.8;
+    transition:0.3s;
+}
+
+.navbar a:hover{
+    opacity:1;
+    color:#ff3b2f;
+}
+
+/* LOGO */
+.logo img{
+    height:45px;
+    transition:0.3s;
+}
+
+.logo img:hover{
+    transform:scale(1.05);
+}
+
+/* HERO */
+.hero{
+    position:relative;
+    width:100%;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    overflow:hidden;
+}
+
+/* SLIDER FULL SCREEN */
+.slider{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    overflow:hidden;
+}
+
+.slide{
+    position:absolute;
+    width:100%;
+    height:100%;
+    opacity:0;
+    transform:scale(1.15);
+    transition:opacity 1.5s ease, transform 6s ease;
+}
+
+.slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* ACTIVE SLIDE */
+.active{
+    opacity:1;
+    transform:scale(1);
+}
+
+/* DARK OVERLAY */
+.slider::after{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    background:rgba(0,0,0,0.45);
+}
+
+/* HERO TEXT */
+.hero-text{
+    position:relative;
+    z-index:2;
+    max-width:700px;
+}
+
+.hero-text h1{
+    font-size:70px;
+    background:linear-gradient(90deg,#ff3b2f,#ff7a18);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+/* BADGE */
+.pulse-badge{
+    display:inline-block;
+    margin-top:20px;
+    padding:10px 16px;
+    border-radius:25px;
+    background:linear-gradient(90deg,#ff3b2f,#ff7a18);
+    color:white;
+    font-weight:bold;
+    position:relative;
+    overflow:hidden;
+}
+
+/* SHINE EFFECT */
+.pulse-badge::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:rgba(255,255,255,0.3);
+    animation:shine 2s infinite;
+}
+
+@keyframes shine{
+    0%{left:-100%}
+    100%{left:100%}
+}
+
+/* SECTION */
+.section{
+    padding:100px 60px;
+    text-align:center;
+}
+
+.card-container{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.card{
+    width:280px;
+    padding:20px;
+    border-radius:15px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    backdrop-filter:blur(10px);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    border-color:#ff3b2f;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+    .hero-text h1{font-size:45px;}
+}
+
+
+
+
+
+/* profilellllllllllllllllllllllllllllllllllll  */
+.about-container{
+    display:flex;
+    align-items:center;
+    gap:40px;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-top:30px;
+}
+
+/* PROFILE IMAGE */
+.profile img{
+    width:220px;
+    height:220px;
+    object-fit:cover;
+    border-radius:50%;
+    border:3px solid #ff3b2f;
+    box-shadow:0 0 30px rgba(255,59,47,0.4);
+    transition:0.3s;
+}
+
+.profile img:hover{
+    transform:scale(1.05);
+}
+
+/* TEXT */
+.about-text{
+    max-width:600px;
+    text-align:left;
+}
+
+.about-text h3{
+    font-size:22px;
+    margin-bottom:15px;
+    color:#ff7a18;
+}
+
+.about-text p{
+    margin-bottom:12px;
+    line-height:1.7;
+    opacity:0.9;
+}
+</style>
+</head>
+
+<body>
+
+<!-- FLOATING BACKGROUND -->
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<!-- NAVBAR -->
+<div class="navbar">
+
+    <div class="logo">
+        <img src="logo1.png" alt="SKOOL Logo">
+    </div>
+
+    <div>
+        <a href="details.html">More</a>
+
+    </div>
+
+</div>
+
+<!-- HERO -->
+<div class="hero">
+
+    <!-- SLIDER -->
+    <div class="slider">
+
+        <div class="slide"><img src="image/im3.jpg"></div>
+        <div class="slide"><img src="image/im4.jpg"></div>
+        <div class="slide"><img src="image/im5.jpg"></div>
+        <div class="slide"><img src="image/im6.jpg"></div>
+        <div class="slide"><img src="image/im7.jpg"></div>
+        <div class="slide"><img src="image/im8.jpg"></div>
+        <div class="slide"><img src="image/im9.jpg"></div>
+        <div class="slide"><img src="image/im10.jpg"></div>
+        <div class="slide"><img src="image/im11.jpg"></div>
+        <div class="slide"><img src="image/im12.jpg"></div>
+        <div class="slide"><img src="image/im13.jpg"></div>
+        <div class="slide"><img src="image/im14.jpg"></div>
+        <div class="slide"><img src="image/im15.jpg"></div>
+        <div class="slide"><img src="image/im16.jpg"></div>
+        <div class="slide"><img src="image/im17.jpg"></div>
+        <div class="slide"><img src="image/im18.jpg"></div>
+        <div class="slide"><img src="image/im19.jpg"></div>
+        <div class="slide"><img src="image/im2O.jpg"></div>
+                <div class="slide"><img src="image/im21.jpg"></div>
+
+
+
+    </div>
+
+    <!-- TEXT -->
+    <div class="hero-text">
+        <h1>SKOOL</h1>
+
+        <p style="margin-top:15px;opacity:0.8;">
+            Next generation learning platform for BAC & Concours students
+        </p>
+
+        <div class="pulse-badge">🚧 Project In Progress</div>
+    </div>
+
+</div>
+
+<!-- FEATURESssssssssssssssssssssssssssssssssssssssssssssssssssssssssss -->
+<div class="section">
+
+    <h2>👤 About Me</h2>
+
+    <div class="about-container">
+
+        <!-- PROFILE IMAGE -->
+        <div class="profile">
+            <img src="1754623961396.jpg" alt="My Profile">
+        </div>
+
+        <!-- TEXT -->
+        <div class="about-text">
+
+            <h3>Hello, I am the Creator of SKOOL </h3>
+            <h4>Pr.B.FANNAH </h4>
+
+            <p>
+                I am a passionate educator and developer working on building SKOOL,
+                a modern learning platform for BAC and concours students in Morocco.
+                My goal is to transform traditional learning into a structured,
+                simple, and effective digital experience.
+            </p>
+
+            <p>
+                I am an <b>EPS professor (cycle qualificatif)</b> with strong experience in
+                education and student development. I understand the real difficulties
+                students face, and I want to help them learn faster, better, and smarter.
+            </p>
+
+            <p>
+                SKOOL is my vision to combine education and technology in one platform,
+                making learning more organized, interactive, and accessible for all students.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+let slides=document.querySelectorAll(".slide");
+let i=0;
+
+setInterval(()=>{
+    slides.forEach(s=>s.classList.remove("active"));
+    slides[i].classList.add("active");
+    i=(i+1)%slides.length;
+},3500);
+
+</script>
+
+</body>
+</html>

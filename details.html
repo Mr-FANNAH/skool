@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SKOOL - Project Details</title>
+
+<style>
+
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
+
+/* BODY */
+body{
+    background:#0b0b0f;
+    color:white;
+    padding-top:80px;
+}
+
+/* NAVBAR */
+.navbar{
+    position:fixed;
+    top:0;
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+    backdrop-filter: blur(20px);
+    background:rgba(0,0,0,0.3);
+    border-bottom:1px solid rgba(255,255,255,0.1);
+    z-index:1000;
+}
+
+.navbar a{
+    color:white;
+    text-decoration:none;
+    margin-left:15px;
+    opacity:0.8;
+    transition:0.3s;
+}
+
+.navbar a:hover{
+    opacity:1;
+    color:#ff3b2f;
+}
+
+/* LOGO */
+.logo img{
+    height:40px;
+}
+
+/* CONTAINER (FULL WIDTH FIX) */
+.container{
+    width:100%;
+    padding:40px 80px;
+}
+
+/* TITLE */
+h1{
+    font-size:48px;
+    background:linear-gradient(90deg,#ff3b2f,#ff7a18);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    margin-bottom:20px;
+}
+
+h2{
+    margin-top:60px;
+    font-size:24px;
+    color:#ff7a18;
+}
+
+/* BADGE */
+.pulse-badge{
+    display:inline-block;
+    margin-top:10px;
+    padding:10px 16px;
+    border-radius:25px;
+    background:linear-gradient(90deg,#ff3b2f,#ff7a18);
+    color:white;
+    font-weight:bold;
+    position:relative;
+    overflow:hidden;
+}
+
+/* SHINE */
+.pulse-badge::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:rgba(255,255,255,0.3);
+    animation:shine 2s infinite;
+}
+
+@keyframes shine{
+    0%{left:-100%}
+    100%{left:100%}
+}
+
+/* CARDS (FULL WIDTH FIX) */
+.card{
+    width:100%;
+    margin-top:15px;
+    padding:25px;
+    border-radius:15px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    line-height:1.7;
+    font-size:16px;
+    text-align:justify;
+}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:15px;
+    margin-top:20px;
+}
+
+/* CARD COLORS */
+.warning{
+    border-left:4px solid #ff3b2f;
+}
+
+.success{
+    border-left:4px solid #00ff88;
+}
+
+.info{
+    border-left:4px solid #ff7a18;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+    .container{
+        padding:20px;
+    }
+
+    h1{
+        font-size:32px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+
+    <div class="logo">
+        <img src="logo1.png" alt="SKOOL">
+    </div>
+
+    <div>
+        <a href="index.html">Home</a>
+        <a href="details.html">Details</a>
+        <a href="#">Roadmap</a>
+    </div>
+
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+<h1>SKOOL Project Details</h1>
+
+<div class="pulse-badge">🚧 Project In Progress</div>
+
+<h2>1. Idea</h2>
+<div class="card success">
+SKOOL is a modern learning platform designed for 1BAC, 2BAC, and concours students in Morocco. It solves the problem of unorganized learning by combining video lessons, PDF summaries, QCM quizzes, and progress tracking in one structured system. Instead of using scattered resources like YouTube, PDFs, or WhatsApp groups, students get a clear, guided learning experience. Future updates may include AI tutors, chat systems, certificates, and gamification features. The goal is to make learning faster, more organized, and more effective.
+</div>
+
+<h2>2. What the Platform Includes</h2>
+<div class="card info">
+✔ Video lessons (5–10 min)<br>
+✔ PDF summaries per chapter<br>
+✔ QCM quizzes with instant correction<br>
+✔ Progress tracking system<br>
+✔ Certificates (future)<br>
+✔ AI tutor (future)<br>
+✔ Chat system (future)<br>
+✔ Gamification system (future)
+</div>
+
+<h2>3. Market Reality</h2>
+<div class="grid">
+
+<div class="card warning">
+YouTube → free but unstructured learning
+</div>
+
+<div class="card warning">
+Udemy / Coursera → not adapted to Moroccan curriculum
+</div>
+
+<div class="card warning">
+WhatsApp / Discord → unorganized student groups
+</div>
+
+</div>
+
+<h2>4. Opportunity</h2>
+<div class="card success">
+There is a strong gap in structured, curriculum-based learning platforms for Moroccan BAC and concours students. This is a big opportunity for SKOOL.
+</div>
+
+<h2>5. Risk</h2>
+<div class="card warning">
+The project is large in scope because it includes:
+<br><br>
+• Learning platform (LMS)<br>
+• Social system<br>
+• AI tutor<br>
+• Video system<br>
+• Exam system<br>
+• Gamification engine<br><br>
+
+This is why it must start simple (MVP first).
+</div>
+
+<h2>6. Strategy</h2>
+<div class="card info">
+PHASE 1:<br>
+✔ Courses + Videos<br>
+✔ QCM system<br>
+✔ Progress tracking<br><br>
+
+PHASE 2:<br>
+✔ Certificates<br>
+✔ Gamification<br><br>
+
+PHASE 3:<br>
+✔ AI tutor<br>
+✔ Personalized learning<br><br>
+
+PHASE 4:<br>
+✔ Live classes<br>
+✔ Teacher marketplace
+</div>
+
+<h2>7. Conclusion</h2>
+<div class="card">
+SKOOL is not perfect yet, but it is a very strong startup idea if you start small, focus on BAC/concours students, and build step by step.
+</div>
+
+</div>
+
+</body>
+</html>
