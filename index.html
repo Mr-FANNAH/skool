@@ -278,6 +278,84 @@ body{
     line-height:1.7;
     opacity:0.9;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.nav-skool-loader{
+    display:flex;
+    align-items:center;
+    gap:3px;
+}
+
+.nav-skool-box{
+    width:28px;
+    height:28px;
+    background:#d94227;
+    border:1px solid #ff8a75;
+    color:white;
+    font-size:18px;
+    font-weight:900;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    box-shadow:0 0 10px rgba(217,66,39,0.7);
+    animation:navSkoolSlow 5s infinite ease-in-out;
+}
+
+.nav-skool-box:nth-child(1){animation-delay:0s;}
+.nav-skool-box:nth-child(2){animation-delay:.25s;}
+.nav-skool-box:nth-child(3){animation-delay:.5s;}
+.nav-skool-box:nth-child(4){animation-delay:.75s;}
+.nav-skool-box:nth-child(5){animation-delay:1s;}
+
+@keyframes navSkoolSlow{
+    0%{
+        opacity:0;
+        transform:translateY(18px) scale(.4) rotate(-10deg);
+    }
+
+    25%{
+        opacity:1;
+        transform:translateY(0) scale(1) rotate(0deg);
+    }
+
+    45%{
+        transform:translateY(-5px) scale(1.08);
+    }
+
+    65%{
+        transform:translateY(0) scale(1);
+    }
+
+    85%{
+        opacity:1;
+        transform:scale(1);
+    }
+
+    100%{
+        opacity:0;
+        transform:translateY(-18px) scale(.4) rotate(10deg);
+    }
+}
 </style>
 </head>
 
@@ -291,22 +369,19 @@ body{
 <!-- NAVBAR -->
 <div class="navbar">
 
-    <!-- <div class="logo">
-        <img src="logo1.png" alt="SKOOL Logo">
-        <h6>Smart <br>
-            Knowledge for <br>
-            Outstanding <br>
-            Online <br>
-            Learning</h6>
-    </div> -->
-
     <div class="logo">
-    <img src="logo1.png" alt="SKOOL Logo">
+  <div class="nav-skool-loader">
+    <div class="nav-skool-box">S</div>
+    <div class="nav-skool-box">K</div>
+    <div class="nav-skool-box">O</div>
+    <div class="nav-skool-box">O</div>
+    <div class="nav-skool-box">L</div>
+  </div>
 
-    <span class="logo-text">
-        <b>Smart Knowledge</b>
-        <small>for Outstanding Online Learning</small>
-    </span>
+  <span class="logo-text">
+    <b>Smart Knowledge</b>
+    <small>for Outstanding Online Learning</small>
+  </span>
 </div>
 
     <div>
@@ -359,47 +434,7 @@ body{
 
 </div>
 
-<!-- FEATURESssssssssssssssssssssssssssssssssssssssssssssssssssssssssss -->
-<div class="section">
 
-    <h2>👤 About Me</h2>
-
-    <div class="about-container">
-
-        <!-- PROFILE IMAGE -->
-        <div class="profile">
-            <img src="1754623961396.jpg" alt="My Profile">
-        </div>
-
-        <!-- TEXT -->
-        <div class="about-text">
-
-            <h3>Hello, I am the Creator of SKOOL </h3>
-            <h4>Pr.B.FANNAH </h4>
-
-            <p>
-                I am a passionate educator and developer working on building SKOOL,
-                a modern learning platform for BAC and concours students in Morocco.
-                My goal is to transform traditional learning into a structured,
-                simple, and effective digital experience.
-            </p>
-
-            <p>
-                I am an <b>EPS professor (cycle qualificatif)</b> with strong experience in
-                education and student development. I understand the real difficulties
-                students face, and I want to help them learn faster, better, and smarter.
-            </p>
-
-            <p>
-                SKOOL is my vision to combine education and technology in one platform,
-                making learning more organized, interactive, and accessible for all students.
-            </p>
-
-        </div>
-
-    </div>
-
-</div>
 
 <script>
 
@@ -413,6 +448,28 @@ setInterval(()=>{
 },3500);
 
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>
