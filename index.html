@@ -377,7 +377,7 @@ body{
         </div>
 
         <div>
-            <a href="details.html">Details</a>
+            <a href="details.html">More</a>
         </div>
     </div>
 
@@ -420,7 +420,7 @@ window.addEventListener("load", function(){
     setTimeout(function(){
         document.getElementById("introLoader").classList.add("hide");
         document.getElementById("pageContent").classList.add("show");
-    }, 1000);
+    }, 1300);
 });
 
 let slides = document.querySelectorAll(".slide");
@@ -430,7 +430,7 @@ setInterval(()=>{
     slides.forEach(s => s.classList.remove("active"));
     slides[i].classList.add("active");
     i = (i + 1) % slides.length;
-},30000);
+},35000);
 </script>
 
 </body>
