@@ -6,8 +6,6 @@
 <title>SKOOL - Project Details</title>
 
 <style>
-
-/* RESET */
 *{
     margin:0;
     padding:0;
@@ -15,11 +13,85 @@
     font-family:Arial;
 }
 
-/* BODY */
 body{
     background:#0b0b0f;
     color:white;
     padding-top:80px;
+}
+
+/* INTRO LOADER */
+.page-content{
+    opacity:0;
+    visibility:hidden;
+    transition:.5s;
+}
+
+.page-content.show{
+    opacity:1;
+    visibility:visible;
+}
+
+.intro-loader{
+    position:fixed;
+    inset:0;
+    background:#000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
+    transition:.5s;
+}
+
+.intro-loader.hide{
+    opacity:0;
+    visibility:hidden;
+}
+
+.intro-skool{
+    display:flex;
+    gap:12px;
+}
+
+.intro-box{
+    width:90px;
+    height:90px;
+    background:#d94227;
+    border:2px solid #ff8a75;
+    color:white;
+    font-size:60px;
+    font-weight:900;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    box-shadow:0 0 30px rgba(217,66,39,.8);
+    animation:introAnim 1s ease-in-out forwards;
+}
+
+.intro-box:nth-child(1){animation-delay:0s;}
+.intro-box:nth-child(2){animation-delay:.1s;}
+.intro-box:nth-child(3){animation-delay:.2s;}
+.intro-box:nth-child(4){animation-delay:.3s;}
+.intro-box:nth-child(5){animation-delay:.4s;}
+
+@keyframes introAnim{
+    0%{
+        opacity:0;
+        transform:translateY(80px) scale(.4);
+    }
+
+    45%{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+
+    70%{
+        transform:translateY(-10px) scale(1.05);
+    }
+
+    100%{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
 }
 
 /* NAVBAR */
@@ -51,107 +123,30 @@ body{
 }
 
 /* LOGO */
-.logo img{
-    height:40px;
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
-/* CONTAINER (FULL WIDTH FIX) */
-.container{
-    width:100%;
-    padding:40px 80px;
+.logo-text{
+    display:flex;
+    flex-direction:column;
+    line-height:1.2;
 }
 
-/* TITLE */
-h1{
-    font-size:48px;
-    background:linear-gradient(90deg,#ff3b2f,#ff7a18);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    margin-bottom:20px;
-}
-
-h2{
-    margin-top:60px;
-    font-size:24px;
-    color:#ff7a18;
-}
-
-/* BADGE */
-.pulse-badge{
-    display:inline-block;
-    margin-top:10px;
-    padding:10px 16px;
-    border-radius:25px;
-    background:linear-gradient(90deg,#ff3b2f,#ff7a18);
+.logo-text b{
+    font-size:14px;
     color:white;
-    font-weight:bold;
-    position:relative;
-    overflow:hidden;
 }
 
-/* SHINE */
-.pulse-badge::after{
-    content:"";
-    position:absolute;
-    top:0;
-    left:-100%;
-    width:100%;
-    height:100%;
-    background:rgba(255,255,255,0.3);
-    animation:shine 2s infinite;
+.logo-text small{
+    font-size:11px;
+    color:white;
+    opacity:.8;
 }
 
-@keyframes shine{
-    0%{left:-100%}
-    100%{left:100%}
-}
-
-/* CARDS (FULL WIDTH FIX) */
-.card{
-    width:100%;
-    margin-top:15px;
-    padding:25px;
-    border-radius:15px;
-    background:rgba(255,255,255,0.05);
-    border:1px solid rgba(255,255,255,0.1);
-    line-height:1.7;
-    font-size:16px;
-    text-align:justify;
-}
-
-/* GRID */
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:15px;
-    margin-top:20px;
-}
-
-/* CARD COLORS */
-.warning{
-    border-left:4px solid #ff3b2f;
-}
-
-.success{
-    border-left:4px solid #00ff88;
-}
-
-.info{
-    border-left:4px solid #ff7a18;
-}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-    .container{
-        padding:20px;
-    }
-
-    h1{
-        font-size:32px;
-    }
-}
-
-
+/* NAV LOGO ANIMATION */
 .nav-skool-loader{
     display:flex;
     align-items:center;
@@ -194,11 +189,7 @@ h2{
         transform:translateY(-5px) scale(1.08);
     }
 
-    65%{
-        transform:translateY(0) scale(1);
-    }
-
-    85%{
+    65%,85%{
         opacity:1;
         transform:scale(1);
     }
@@ -208,28 +199,149 @@ h2{
         transform:translateY(-18px) scale(.4) rotate(10deg);
     }
 }
+
+/* CONTAINER */
+.container{
+    width:100%;
+    padding:40px 80px;
+}
+
+h1{
+    font-size:48px;
+    background:linear-gradient(90deg,#ff3b2f,#ff7a18);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    margin-bottom:20px;
+}
+
+h2{
+    margin-top:60px;
+    font-size:24px;
+    color:#ff7a18;
+}
+
+.pulse-badge{
+    display:inline-block;
+    margin-top:10px;
+    padding:10px 16px;
+    border-radius:25px;
+    background:linear-gradient(90deg,#ff3b2f,#ff7a18);
+    color:white;
+    font-weight:bold;
+    position:relative;
+    overflow:hidden;
+}
+
+.pulse-badge::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:rgba(255,255,255,0.3);
+    animation:shine 2s infinite;
+}
+
+@keyframes shine{
+    0%{left:-100%}
+    100%{left:100%}
+}
+
+.card{
+    width:100%;
+    margin-top:15px;
+    padding:25px;
+    border-radius:15px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    line-height:1.7;
+    font-size:16px;
+    text-align:justify;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:15px;
+    margin-top:20px;
+}
+
+.warning{
+    border-left:4px solid #ff3b2f;
+}
+
+.success{
+    border-left:4px solid #00ff88;
+}
+
+.info{
+    border-left:4px solid #ff7a18;
+}
+
+@media(max-width:900px){
+    .container{
+        padding:20px;
+    }
+
+    h1{
+        font-size:32px;
+    }
+
+    .intro-box{
+        width:55px;
+        height:55px;
+        font-size:35px;
+    }
+
+    .intro-skool{
+        gap:6px;
+    }
+
+    .navbar{
+        padding:15px;
+    }
+
+    .logo-text small{
+        display:none;
+    }
+}
 </style>
 </head>
 
 <body>
 
+<!-- INTRO LOADER -->
+<div class="intro-loader" id="introLoader">
+    <div class="intro-skool">
+        <div class="intro-box">S</div>
+        <div class="intro-box">K</div>
+        <div class="intro-box">O</div>
+        <div class="intro-box">O</div>
+        <div class="intro-box">L</div>
+    </div>
+</div>
+
+<!-- PAGE CONTENT -->
+<div class="page-content" id="pageContent">
+
 <!-- NAVBAR -->
 <div class="navbar">
 
     <div class="logo">
-  <div class="nav-skool-loader">
-    <div class="nav-skool-box">S</div>
-    <div class="nav-skool-box">K</div>
-    <div class="nav-skool-box">O</div>
-    <div class="nav-skool-box">O</div>
-    <div class="nav-skool-box">L</div>
-  </div>
+        <div class="nav-skool-loader">
+            <div class="nav-skool-box">S</div>
+            <div class="nav-skool-box">K</div>
+            <div class="nav-skool-box">O</div>
+            <div class="nav-skool-box">O</div>
+            <div class="nav-skool-box">L</div>
+        </div>
 
-  <span class="logo-text">
-    <b>Smart Knowledge</b>
-    <small>for Outstanding Online Learning</small>
-  </span>
-</div>
+        <span class="logo-text">
+            <b>Smart Knowledge</b>
+            <small>for Outstanding Online Learning</small>
+        </span>
+    </div>
 
     <div>
         <a href="index.html">Home</a>
@@ -325,6 +437,17 @@ SKOOL is not perfect yet, but it is a very strong startup idea if you start smal
 </div>
 
 </div>
+
+</div>
+
+<script>
+window.addEventListener("load", function(){
+    setTimeout(function(){
+        document.getElementById("introLoader").classList.add("hide");
+        document.getElementById("pageContent").classList.add("show");
+    }, 1000);
+});
+</script>
 
 </body>
 </html>
