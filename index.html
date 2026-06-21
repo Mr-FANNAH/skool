@@ -6,8 +6,6 @@
 <title>SKOOL</title>
 
 <style>
-
-/* RESET */
 *{
     margin:0;
     padding:0;
@@ -15,11 +13,86 @@
     font-family:Arial;
 }
 
-/* BODY */
 body{
     overflow-x:hidden;
     background:#0b0b0f;
     color:white;
+}
+
+/* PAGE HIDDEN FIRST */
+.page-content{
+    opacity:0;
+    visibility:hidden;
+    transition:.5s;
+}
+
+.page-content.show{
+    opacity:1;
+    visibility:visible;
+}
+
+/* LOADING SCREEN */
+.intro-loader{
+    position:fixed;
+    inset:0;
+    background:#000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
+    transition:.5s;
+}
+
+.intro-loader.hide{
+    opacity:0;
+    visibility:hidden;
+}
+
+.intro-skool{
+    display:flex;
+    gap:12px;
+}
+
+.intro-box{
+    width:90px;
+    height:90px;
+    background:#d94227;
+    border:2px solid #ff8a75;
+    color:white;
+    font-size:60px;
+    font-weight:900;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    box-shadow:0 0 30px rgba(217,66,39,.8);
+    animation:introAnim 1s ease-in-out forwards;
+}
+
+.intro-box:nth-child(1){animation-delay:0s;}
+.intro-box:nth-child(2){animation-delay:.1s;}
+.intro-box:nth-child(3){animation-delay:.2s;}
+.intro-box:nth-child(4){animation-delay:.3s;}
+.intro-box:nth-child(5){animation-delay:.4s;}
+
+@keyframes introAnim{
+    0%{
+        opacity:0;
+        transform:translateY(80px) scale(.4);
+    }
+
+    45%{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+
+    70%{
+        transform:translateY(-10px) scale(1.05);
+    }
+
+    100%{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
 }
 
 /* FLOATING ORBS */
@@ -77,12 +150,6 @@ body{
     gap:12px;
 }
 
-.logo img{
-    height:45px;
-    width:auto;
-}
-
-/* TEXT STYLE */
 .logo-text{
     display:flex;
     flex-direction:column;
@@ -101,194 +168,7 @@ body{
     color:white;
 }
 
-/* HERO */
-.hero{
-    position:relative;
-    width:100%;
-    height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    overflow:hidden;
-}
-
-/* SLIDER FULL SCREEN */
-.slider{
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100vh;
-    overflow:hidden;
-}
-
-.slide{
-    position:absolute;
-    width:100%;
-    height:100%;
-    opacity:0;
-    transform:scale(1.15);
-    transition:opacity 1.5s ease, transform 6s ease;
-}
-
-.slide img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-/* ACTIVE SLIDE */
-.active{
-    opacity:1;
-    transform:scale(1);
-}
-
-/* DARK OVERLAY */
-.slider::after{
-    content:"";
-    position:absolute;
-    width:100%;
-    height:100%;
-    top:0;
-    left:0;
-    background:rgba(0,0,0,0.45);
-}
-
-/* HERO TEXT */
-.hero-text{
-    position:relative;
-    z-index:2;
-    max-width:700px;
-}
-
-.hero-text h1{
-    font-size:70px;
-    background:linear-gradient(90deg,#ff3b2f,#ff7a18);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-}
-
-/* BADGE */
-.pulse-badge{
-    display:inline-block;
-    margin-top:20px;
-    padding:10px 16px;
-    border-radius:25px;
-    background:linear-gradient(90deg,#ff3b2f,#ff7a18);
-    color:white;
-    font-weight:bold;
-    position:relative;
-    overflow:hidden;
-}
-
-/* SHINE EFFECT */
-.pulse-badge::after{
-    content:"";
-    position:absolute;
-    top:0;
-    left:-100%;
-    width:100%;
-    height:100%;
-    background:rgba(255,255,255,0.3);
-    animation:shine 2s infinite;
-}
-
-@keyframes shine{
-    0%{left:-100%}
-    100%{left:100%}
-}
-
-/* SECTION */
-.section{
-    padding:100px 60px;
-    text-align:center;
-}
-
-.card-container{
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
-}
-
-.card{
-    width:280px;
-    padding:20px;
-    border-radius:15px;
-    background:rgba(255,255,255,0.05);
-    border:1px solid rgba(255,255,255,0.1);
-    backdrop-filter:blur(10px);
-    transition:0.3s;
-}
-
-.card:hover{
-    transform:translateY(-10px);
-    border-color:#ff3b2f;
-}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-    .hero-text h1{font-size:45px;}
-}
-
-
-
-
-
-/* profilellllllllllllllllllllllllllllllllllll  */
-.about-container{
-    display:flex;
-    align-items:center;
-    gap:40px;
-    flex-wrap:wrap;
-    justify-content:center;
-    margin-top:30px;
-}
-
-/* PROFILE IMAGE */
-.profile img{
-    width:220px;
-    height:220px;
-    object-fit:cover;
-    border-radius:50%;
-    border:3px solid #ff3b2f;
-    box-shadow:0 0 30px rgba(255,59,47,0.4);
-    transition:0.3s;
-}
-
-.profile img:hover{
-    transform:scale(1.05);
-}
-
-/* TEXT */
-.about-text{
-    max-width:600px;
-    text-align:left;
-}
-
-.about-text h3{
-    font-size:22px;
-    margin-bottom:15px;
-    color:#ff7a18;
-}
-
-.about-text p{
-    margin-bottom:12px;
-    line-height:1.7;
-    opacity:0.9;
-}
-
-
-
-
-
-
-
-
-
-
-
+/* NAV LOGO ANIMATION */
 .nav-skool-loader{
     display:flex;
     align-items:center;
@@ -316,11 +196,8 @@ body{
 .nav-skool-box:nth-child(4){animation-delay:1.2s;}
 .nav-skool-box:nth-child(5){animation-delay:1.6s;}
 
-
 @keyframes navSkoolSlow{
-
-    /* Appear */
-    50%{
+    0%{
         opacity:0;
         transform:translateY(20px) scale(.5);
     }
@@ -330,23 +207,15 @@ body{
         transform:translateY(0) scale(1);
     }
 
-    /* Small bounce */
     25%{
         transform:translateY(-5px) scale(1.08);
     }
 
-    /* STOP HERE */
-    35%{
+    35%,65%{
         transform:translateY(0) scale(1);
         opacity:1;
     }
 
-    65%{
-        transform:translateY(0) scale(1);
-        opacity:1;
-    }
-
-    /* Leave */
     85%{
         opacity:1;
         transform:translateY(-5px) scale(.95);
@@ -358,122 +227,211 @@ body{
     }
 }
 
+/* HERO */
+.hero{
+    position:relative;
+    width:100%;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    overflow:hidden;
+}
 
+.slider{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    overflow:hidden;
+}
 
+.slide{
+    position:absolute;
+    width:100%;
+    height:100%;
+    opacity:0;
+    transform:scale(1.15);
+    transition:opacity 1.5s ease, transform 6s ease;
+}
+
+.slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.active{
+    opacity:1;
+    transform:scale(1);
+}
+
+.slider::after{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    background:rgba(0,0,0,0.45);
+}
+
+.hero-text{
+    position:relative;
+    z-index:2;
+    max-width:700px;
+}
+
+.hero-text h1{
+    font-size:70px;
+    background:linear-gradient(90deg,#ff3b2f,#ff7a18);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.pulse-badge{
+    display:inline-block;
+    margin-top:20px;
+    padding:10px 16px;
+    border-radius:25px;
+    background:linear-gradient(90deg,#ff3b2f,#ff7a18);
+    color:white;
+    font-weight:bold;
+    position:relative;
+    overflow:hidden;
+}
+
+.pulse-badge::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:rgba(255,255,255,0.3);
+    animation:shine 2s infinite;
+}
+
+@keyframes shine{
+    0%{left:-100%}
+    100%{left:100%}
+}
+
+.section{
+    padding:100px 60px;
+    text-align:center;
+}
+
+@media(max-width:900px){
+    .hero-text h1{font-size:45px;}
+
+    .intro-box{
+        width:55px;
+        height:55px;
+        font-size:35px;
+    }
+
+    .intro-skool{
+        gap:6px;
+    }
+}
 </style>
 </head>
 
 <body>
 
-<!-- FLOATING BACKGROUND -->
-<div class="orb orb1"></div>
-<div class="orb orb2"></div>
-<div class="orb orb3"></div>
-
-<!-- NAVBAR -->
-<div class="navbar">
-
-    <div class="logo">
-  <div class="nav-skool-loader">
-    <div class="nav-skool-box">S</div>
-    <div class="nav-skool-box">K</div>
-    <div class="nav-skool-box">O</div>
-    <div class="nav-skool-box">O</div>
-    <div class="nav-skool-box">L</div>
-  </div>
-
-  <span class="logo-text">
-    <b>Smart Knowledge</b>
-    <small>for Outstanding Online Learning</small>
-  </span>
+<!-- LOADING SCREEN -->
+<div class="intro-loader" id="introLoader">
+    <div class="intro-skool">
+        <div class="intro-box">S</div>
+        <div class="intro-box">K</div>
+        <div class="intro-box">O</div>
+        <div class="intro-box">O</div>
+        <div class="intro-box">L</div>
+    </div>
 </div>
 
-    <div>
-        <a href="details.html">More</a>
+<!-- PAGE CONTENT -->
+<div class="page-content" id="pageContent">
 
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+
+    <div class="navbar">
+        <div class="logo">
+            <div class="nav-skool-loader">
+                <div class="nav-skool-box">S</div>
+                <div class="nav-skool-box">K</div>
+                <div class="nav-skool-box">O</div>
+                <div class="nav-skool-box">O</div>
+                <div class="nav-skool-box">L</div>
+            </div>
+
+            <span class="logo-text">
+                <b>Smart Knowledge</b>
+                <small>for Outstanding Online Learning</small>
+            </span>
+        </div>
+
+        <div>
+            <a href="details.html">More</a>
+        </div>
+    </div>
+
+    <div class="hero">
+        <div class="slider">
+            <div class="slide active"><img src="image/im3.jpg"></div>
+            <div class="slide"><img src="image/im4.jpg"></div>
+            <div class="slide"><img src="image/im5.jpg"></div>
+            <div class="slide"><img src="image/im6.jpg"></div>
+            <div class="slide"><img src="image/im7.jpg"></div>
+            <div class="slide"><img src="image/im8.jpg"></div>
+            <div class="slide"><img src="image/im9.jpg"></div>
+            <div class="slide"><img src="image/im10.jpg"></div>
+            <div class="slide"><img src="image/im11.jpg"></div>
+            <div class="slide"><img src="image/im12.jpg"></div>
+            <div class="slide"><img src="image/im13.jpg"></div>
+            <div class="slide"><img src="image/im14.jpg"></div>
+            <div class="slide"><img src="image/im15.jpg"></div>
+            <div class="slide"><img src="image/im16.jpg"></div>
+            <div class="slide"><img src="image/im17.jpg"></div>
+            <div class="slide"><img src="image/im18.jpg"></div>
+            <div class="slide"><img src="image/im19.jpg"></div>
+            <div class="slide"><img src="image/im2O.jpg"></div>
+            <div class="slide"><img src="image/im21.jpg"></div>
+        </div>
+
+        <div class="hero-text">
+            <h1>SKOOL</h1>
+            <p style="margin-top:15px;opacity:0.8;">
+                Next generation learning platform for BAC & Concours students
+            </p>
+            <div class="pulse-badge">🚧 Project In Progress</div>
+        </div>
     </div>
 
 </div>
-
-<!-- HERO -->
-<div class="hero">
-
-    <!-- SLIDER -->
-    <div class="slider">
-
-        <div class="slide"><img src="image/im3.jpg"></div>
-        <div class="slide"><img src="image/im4.jpg"></div>
-        <div class="slide"><img src="image/im5.jpg"></div>
-        <div class="slide"><img src="image/im6.jpg"></div>
-        <div class="slide"><img src="image/im7.jpg"></div>
-        <div class="slide"><img src="image/im8.jpg"></div>
-        <div class="slide"><img src="image/im9.jpg"></div>
-        <div class="slide"><img src="image/im10.jpg"></div>
-        <div class="slide"><img src="image/im11.jpg"></div>
-        <div class="slide"><img src="image/im12.jpg"></div>
-        <div class="slide"><img src="image/im13.jpg"></div>
-        <div class="slide"><img src="image/im14.jpg"></div>
-        <div class="slide"><img src="image/im15.jpg"></div>
-        <div class="slide"><img src="image/im16.jpg"></div>
-        <div class="slide"><img src="image/im17.jpg"></div>
-        <div class="slide"><img src="image/im18.jpg"></div>
-        <div class="slide"><img src="image/im19.jpg"></div>
-        <div class="slide"><img src="image/im2O.jpg"></div>
-        <div class="slide"><img src="image/im21.jpg"></div>
-
-
-
-    </div>
-
-    <!-- TEXT -->
-    <div class="hero-text">
-        <h1>SKOOL</h1>
-
-        <p style="margin-top:15px;opacity:0.8;">
-            Next generation learning platform for BAC & Concours students
-        </p>
-
-        <div class="pulse-badge">🚧 Project In Progress</div>
-    </div>
-
-</div>
-
-
 
 <script>
+window.addEventListener("load", function(){
+    setTimeout(function(){
+        document.getElementById("introLoader").classList.add("hide");
+        document.getElementById("pageContent").classList.add("show");
+    }, 1300);
+});
 
-let slides=document.querySelectorAll(".slide");
-let i=0;
+let slides = document.querySelectorAll(".slide");
+let i = 0;
 
 setInterval(()=>{
-    slides.forEach(s=>s.classList.remove("active"));
+    slides.forEach(s => s.classList.remove("active"));
     slides[i].classList.add("active");
-    i=(i+1)%slides.length;
-},3500);
-
+    i = (i + 1) % slides.length;
+},35000);
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </body>
 </html>
