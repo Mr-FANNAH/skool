@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SKOOL - Project Details</title>
+<title>SKOOL</title>
 
 <style>
 *{
@@ -14,12 +14,12 @@
 }
 
 body{
+    overflow-x:hidden;
     background:#0b0b0f;
     color:white;
-    padding-top:80px;
 }
 
-/* INTRO LOADER */
+/* PAGE HIDDEN FIRST */
 .page-content{
     opacity:0;
     visibility:hidden;
@@ -31,6 +31,7 @@ body{
     visibility:visible;
 }
 
+/* LOADING SCREEN */
 .intro-loader{
     position:fixed;
     inset:0;
@@ -94,10 +95,30 @@ body{
     }
 }
 
+/* FLOATING ORBS */
+.orb{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(80px);
+    opacity:0.4;
+    animation:float 10s infinite ease-in-out;
+    z-index:0;
+}
+
+.orb1{width:300px;height:300px;background:#ff3b2f;top:10%;left:10%;}
+.orb2{width:400px;height:400px;background:#ff7a18;bottom:10%;right:10%;}
+.orb3{width:200px;height:200px;background:#ff2e63;top:60%;left:50%;}
+
+@keyframes float{
+    0%,100%{transform:translateY(0px)}
+    50%{transform:translateY(-40px)}
+}
+
 /* NAVBAR */
 .navbar{
     position:fixed;
     top:0;
+    left:0;
     width:100%;
     display:flex;
     justify-content:space-between;
@@ -105,14 +126,14 @@ body{
     padding:15px 40px;
     backdrop-filter: blur(20px);
     background:rgba(0,0,0,0.3);
-    border-bottom:1px solid rgba(255,255,255,0.1);
     z-index:1000;
+    border-bottom:1px solid rgba(255,255,255,0.1);
 }
 
 .navbar a{
     color:white;
     text-decoration:none;
-    margin-left:15px;
+    margin-left:20px;
     opacity:0.8;
     transition:0.3s;
 }
@@ -138,12 +159,13 @@ body{
 .logo-text b{
     font-size:14px;
     color:white;
+    letter-spacing:0.5px;
 }
 
 .logo-text small{
     font-size:11px;
+    opacity:0.9;
     color:white;
-    opacity:.8;
 }
 
 /* NAV LOGO ANIMATION */
@@ -165,64 +187,113 @@ body{
     justify-content:center;
     align-items:center;
     box-shadow:0 0 10px rgba(217,66,39,0.7);
-    animation:navSkoolSlow 5s infinite ease-in-out;
+    animation:navSkoolSlow 15s infinite ease-in-out;
 }
 
 .nav-skool-box:nth-child(1){animation-delay:0s;}
-.nav-skool-box:nth-child(2){animation-delay:.25s;}
-.nav-skool-box:nth-child(3){animation-delay:.5s;}
-.nav-skool-box:nth-child(4){animation-delay:.75s;}
-.nav-skool-box:nth-child(5){animation-delay:1s;}
+.nav-skool-box:nth-child(2){animation-delay:.4s;}
+.nav-skool-box:nth-child(3){animation-delay:.8s;}
+.nav-skool-box:nth-child(4){animation-delay:1.2s;}
+.nav-skool-box:nth-child(5){animation-delay:1.6s;}
 
 @keyframes navSkoolSlow{
     0%{
         opacity:0;
-        transform:translateY(18px) scale(.4) rotate(-10deg);
+        transform:translateY(20px) scale(.5);
+    }
+
+    15%{
+        opacity:1;
+        transform:translateY(0) scale(1);
     }
 
     25%{
-        opacity:1;
-        transform:translateY(0) scale(1) rotate(0deg);
-    }
-
-    45%{
         transform:translateY(-5px) scale(1.08);
     }
 
-    65%,85%{
+    35%,65%{
+        transform:translateY(0) scale(1);
         opacity:1;
-        transform:scale(1);
+    }
+
+    85%{
+        opacity:1;
+        transform:translateY(-5px) scale(.95);
     }
 
     100%{
         opacity:0;
-        transform:translateY(-18px) scale(.4) rotate(10deg);
+        transform:translateY(-20px) scale(.5);
     }
 }
 
-/* CONTAINER */
-.container{
+/* HERO */
+.hero{
+    position:relative;
     width:100%;
-    padding:40px 80px;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    overflow:hidden;
 }
 
-h1{
-    font-size:48px;
+.slider{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    overflow:hidden;
+}
+
+.slide{
+    position:absolute;
+    width:100%;
+    height:100%;
+    opacity:0;
+    transform:scale(1.15);
+    transition:opacity 1.5s ease, transform 6s ease;
+}
+
+.slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.active{
+    opacity:1;
+    transform:scale(1);
+}
+
+.slider::after{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    background:rgba(0,0,0,0.45);
+}
+
+.hero-text{
+    position:relative;
+    z-index:2;
+    max-width:700px;
+}
+
+.hero-text h1{
+    font-size:70px;
     background:linear-gradient(90deg,#ff3b2f,#ff7a18);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
-    margin-bottom:20px;
-}
-
-h2{
-    margin-top:60px;
-    font-size:24px;
-    color:#ff7a18;
 }
 
 .pulse-badge{
     display:inline-block;
-    margin-top:10px;
+    margin-top:20px;
     padding:10px 16px;
     border-radius:25px;
     background:linear-gradient(90deg,#ff3b2f,#ff7a18);
@@ -248,45 +319,13 @@ h2{
     100%{left:100%}
 }
 
-.card{
-    width:100%;
-    margin-top:15px;
-    padding:25px;
-    border-radius:15px;
-    background:rgba(255,255,255,0.05);
-    border:1px solid rgba(255,255,255,0.1);
-    line-height:1.7;
-    font-size:16px;
-    text-align:justify;
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:15px;
-    margin-top:20px;
-}
-
-.warning{
-    border-left:4px solid #ff3b2f;
-}
-
-.success{
-    border-left:4px solid #00ff88;
-}
-
-.info{
-    border-left:4px solid #ff7a18;
+.section{
+    padding:100px 60px;
+    text-align:center;
 }
 
 @media(max-width:900px){
-    .container{
-        padding:20px;
-    }
-
-    h1{
-        font-size:32px;
-    }
+    .hero-text h1{font-size:45px;}
 
     .intro-box{
         width:55px;
@@ -297,21 +336,13 @@ h2{
     .intro-skool{
         gap:6px;
     }
-
-    .navbar{
-        padding:15px;
-    }
-
-    .logo-text small{
-        display:none;
-    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- INTRO LOADER -->
+<!-- LOADING SCREEN -->
 <div class="intro-loader" id="introLoader">
     <div class="intro-skool">
         <div class="intro-box">S</div>
@@ -325,118 +356,62 @@ h2{
 <!-- PAGE CONTENT -->
 <div class="page-content" id="pageContent">
 
-<!-- NAVBAR -->
-<div class="navbar">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
 
-    <div class="logo">
-        <div class="nav-skool-loader">
-            <div class="nav-skool-box">S</div>
-            <div class="nav-skool-box">K</div>
-            <div class="nav-skool-box">O</div>
-            <div class="nav-skool-box">O</div>
-            <div class="nav-skool-box">L</div>
+    <div class="navbar">
+        <div class="logo">
+            <div class="nav-skool-loader">
+                <div class="nav-skool-box">S</div>
+                <div class="nav-skool-box">K</div>
+                <div class="nav-skool-box">O</div>
+                <div class="nav-skool-box">O</div>
+                <div class="nav-skool-box">L</div>
+            </div>
+
+            <span class="logo-text">
+                <b>Smart Knowledge</b>
+                <small>for Outstanding Online Learning</small>
+            </span>
         </div>
 
-        <span class="logo-text">
-            <b>Smart Knowledge</b>
-            <small>for Outstanding Online Learning</small>
-        </span>
+        <div>
+            <a href="details.html">More</a>
+        </div>
     </div>
 
-    <div>
-        <a href="index.html">Home</a>
-        <a href="details.html">Details</a>
-        <a href="#">Roadmap</a>
+    <div class="hero">
+        <div class="slider">
+            <div class="slide active"><img src="image/im3.jpg"></div>
+            <div class="slide"><img src="image/im4.jpg"></div>
+            <div class="slide"><img src="image/im5.jpg"></div>
+            <div class="slide"><img src="image/im6.jpg"></div>
+            <div class="slide"><img src="image/im7.jpg"></div>
+            <div class="slide"><img src="image/im8.jpg"></div>
+            <div class="slide"><img src="image/im9.jpg"></div>
+            <div class="slide"><img src="image/im10.jpg"></div>
+            <div class="slide"><img src="image/im11.jpg"></div>
+            <div class="slide"><img src="image/im12.jpg"></div>
+            <div class="slide"><img src="image/im13.jpg"></div>
+            <div class="slide"><img src="image/im14.jpg"></div>
+            <div class="slide"><img src="image/im15.jpg"></div>
+            <div class="slide"><img src="image/im16.jpg"></div>
+            <div class="slide"><img src="image/im17.jpg"></div>
+            <div class="slide"><img src="image/im18.jpg"></div>
+            <div class="slide"><img src="image/im19.jpg"></div>
+            <div class="slide"><img src="image/im2O.jpg"></div>
+            <div class="slide"><img src="image/im21.jpg"></div>
+        </div>
+
+        <div class="hero-text">
+            <h1>SKOOL</h1>
+            <p style="margin-top:15px;opacity:0.8;">
+                Next generation learning platform for BAC & Concours students
+            </p>
+            <div class="pulse-badge">🚧 Project In Progress</div>
+        </div>
     </div>
-
-</div>
-
-<!-- CONTENT -->
-<div class="container">
-
-<h1>SKOOL Project Details</h1>
-
-<div class="pulse-badge">🚧 Project In Progress</div>
-
-<h2>1. Idea</h2>
-<div class="card success">
-SKOOL is a modern learning platform designed for 1BAC, 2BAC, and concours students in Morocco. It solves the problem of unorganized learning by combining video lessons, PDF summaries, QCM quizzes, and progress tracking in one structured system. Instead of using scattered resources like YouTube, PDFs, or WhatsApp groups, students get a clear, guided learning experience. Future updates may include AI tutors, chat systems, certificates, and gamification features. The goal is to make learning faster, more organized, and more effective.
-</div>
-
-<h2>2. What the Platform Includes</h2>
-<div class="card info">
-✔ Video lessons (5–10 min)<br>
-✔ PDF summaries per chapter<br>
-✔ QCM quizzes with instant correction<br>
-✔ Progress tracking system<br>
-✔ Certificates (future)<br>
-✔ AI tutor (future)<br>
-✔ Chat system (future)<br>
-✔ Gamification system (future)
-</div>
-
-<h2>3. Market Reality</h2>
-<div class="grid">
-
-<div class="card warning">
-YouTube → free but unstructured learning
-</div>
-
-<div class="card warning">
-Udemy / Coursera → not adapted to Moroccan curriculum
-</div>
-
-<div class="card warning">
-WhatsApp / Discord → unorganized student groups
-</div>
-
-</div>
-
-<h2>4. Opportunity</h2>
-<div class="card success">
-There is a strong gap in structured, curriculum-based learning platforms for Moroccan BAC and concours students. This is a big opportunity for SKOOL.
-</div>
-
-<h2>5. Risk</h2>
-<div class="card warning">
-The project is large in scope because it includes:
-<br><br>
-• Learning platform (LMS)<br>
-• Social system<br>
-• AI tutor<br>
-• Video system<br>
-• Exam system<br>
-• Gamification engine<br><br>
-
-This is why it must start simple (MVP first).
-</div>
-
-<h2>6. Strategy</h2>
-<div class="card info">
-PHASE 1:<br>
-✔ Courses + Videos<br>
-✔ QCM system<br>
-✔ Progress tracking<br><br>
-
-PHASE 2:<br>
-✔ Certificates<br>
-✔ Gamification<br><br>
-
-PHASE 3:<br>
-✔ AI tutor<br>
-✔ Personalized learning<br><br>
-
-PHASE 4:<br>
-✔ Live classes<br>
-✔ Teacher marketplace
-</div>
-
-<h2>7. Conclusion</h2>
-<div class="card">
-SKOOL is not perfect yet, but it is a very strong startup idea if you start small, focus on BAC/concours students, and build step by step.
-</div>
-
-</div>
 
 </div>
 
@@ -445,8 +420,17 @@ window.addEventListener("load", function(){
     setTimeout(function(){
         document.getElementById("introLoader").classList.add("hide");
         document.getElementById("pageContent").classList.add("show");
-    }, 800);
+    }, 1000);
 });
+
+let slides = document.querySelectorAll(".slide");
+let i = 0;
+
+setInterval(()=>{
+    slides.forEach(s => s.classList.remove("active"));
+    slides[i].classList.add("active");
+    i = (i + 1) % slides.length;
+},30000);
 </script>
 
 </body>
