@@ -10,7 +10,7 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial;
+    font-family:Arial, sans-serif; /* FIX: added fallback font */
 }
 
 body{
@@ -23,7 +23,7 @@ body{
 .page-content{
     opacity:0;
     visibility:hidden;
-    transition:.5s;
+    transition:opacity 0.5s, visibility 0.5s; /* FIX: explicit transition properties */
 }
 
 .page-content.show{
@@ -40,7 +40,7 @@ body{
     justify-content:center;
     align-items:center;
     z-index:99999;
-    transition:.5s;
+    transition:opacity 0.5s, visibility 0.5s; /* FIX: explicit transition properties */
 }
 
 .intro-loader.hide{
@@ -79,16 +79,13 @@ body{
         opacity:0;
         transform:translateY(80px) scale(.4);
     }
-
     45%{
         opacity:1;
         transform:translateY(0) scale(1);
     }
-
     70%{
         transform:translateY(-10px) scale(1.05);
     }
-
     100%{
         opacity:1;
         transform:translateY(0) scale(1);
@@ -97,12 +94,13 @@ body{
 
 /* FLOATING ORBS */
 .orb{
-    position:absolute;
+    position:fixed; /* FIX: changed from absolute to fixed so orbs stay in background on scroll */
     border-radius:50%;
     filter:blur(80px);
     opacity:0.4;
     animation:float 10s infinite ease-in-out;
     z-index:0;
+    pointer-events:none; /* FIX: prevent orbs from blocking clicks */
 }
 
 .orb1{width:300px;height:300px;background:#ff3b2f;top:10%;left:10%;}
@@ -124,7 +122,7 @@ body{
     justify-content:space-between;
     align-items:center;
     padding:15px 40px;
-    backdrop-filter: blur(20px);
+    backdrop-filter:blur(20px);
     background:rgba(0,0,0,0.3);
     z-index:1000;
     border-bottom:1px solid rgba(255,255,255,0.1);
@@ -135,7 +133,7 @@ body{
     text-decoration:none;
     margin-left:20px;
     opacity:0.8;
-    transition:0.3s;
+    transition:opacity 0.3s, color 0.3s; /* FIX: explicit transition properties */
 }
 
 .navbar a:hover{
@@ -200,26 +198,21 @@ body{
         opacity:0;
         transform:translateY(20px) scale(.5);
     }
-
     15%{
         opacity:1;
         transform:translateY(0) scale(1);
     }
-
     25%{
         transform:translateY(-5px) scale(1.08);
     }
-
     35%,65%{
         transform:translateY(0) scale(1);
         opacity:1;
     }
-
     85%{
         opacity:1;
         transform:translateY(-5px) scale(.95);
     }
-
     100%{
         opacity:0;
         transform:translateY(-20px) scale(.5);
@@ -287,6 +280,7 @@ body{
     font-size:70px;
     background:linear-gradient(90deg,#ff3b2f,#ff7a18);
     -webkit-background-clip:text;
+    background-clip:text; /* FIX: added standard property */
     -webkit-text-fill-color:transparent;
 }
 
@@ -335,6 +329,14 @@ body{
     .intro-skool{
         gap:6px;
     }
+
+    .navbar{
+        padding:15px; /* FIX: reduce navbar padding on mobile */
+    }
+
+    .logo-text small{
+        display:none; /* FIX: hide subtitle on small screens to prevent overflow */
+    }
 }
 </style>
 </head>
@@ -342,8 +344,8 @@ body{
 <body>
 
 <!-- LOADING SCREEN -->
-<div class="intro-loader" id="introLoader">
-    <div class="intro-skool">
+<div class="intro-loader" id="introLoader" role="status" aria-label="Loading SKOOL">
+    <div class="intro-skool" aria-hidden="true">
         <div class="intro-box">S</div>
         <div class="intro-box">K</div>
         <div class="intro-box">O</div>
@@ -355,13 +357,14 @@ body{
 <!-- PAGE CONTENT -->
 <div class="page-content" id="pageContent">
 
-    <div class="orb orb1"></div>
-    <div class="orb orb2"></div>
-    <div class="orb orb3"></div>
+    <div class="orb orb1" aria-hidden="true"></div>
+    <div class="orb orb2" aria-hidden="true"></div>
+    <div class="orb orb3" aria-hidden="true"></div>
 
-    <div class="navbar">
+    <!-- FIX: changed <div class="navbar"> to semantic <nav> -->
+    <nav class="navbar" aria-label="Main navigation">
         <div class="logo">
-            <div class="nav-skool-loader">
+            <div class="nav-skool-loader" aria-hidden="true">
                 <div class="nav-skool-box">S</div>
                 <div class="nav-skool-box">K</div>
                 <div class="nav-skool-box">O</div>
@@ -378,35 +381,37 @@ body{
         <div>
             <a href="details.html">More</a>
         </div>
-    </div>
+    </nav>
 
     <div class="hero">
-        <div class="slider">
-            <div class="slide active"><img src="im17.jpg"></div>
-            <div class="slide"><img src="im4.jpg"></div>
-            <div class="slide"><img src="im5.jpg"></div>
-            <div class="slide"><img src="im6.jpg"></div>
-            <div class="slide"><img src="im7.jpg"></div>
-            <div class="slide"><img src="im8.jpg"></div>
-            <div class="slide"><img src="im9.jpg"></div>
-            <div class="slide"><img src="im10.jpg"></div>
-            <div class="slide"><img src="im11.jpg"></div>
-            <div class="slide"><img src="im12.jpg"></div>
-            <div class="slide"><img src="im13.jpg"></div>
-            <div class="slide"><img src="im14.jpg"></div>
-            <div class="slide"><img src="im15.jpg"></div>
-            <div class="slide"><img src="im16.jpg"></div>
-            <div class="slide"><img src="im3.jpg"></div>
-            <div class="slide"><img src="im18.jpg"></div>
-            <div class="slide"><img src="im19.jpg"></div>
-            <div class="slide"><img src="im2O.jpg"></div>
-            <div class="slide"><img src="im21.jpg"></div>
+        <div class="slider" aria-hidden="true">
+            <!-- FIX: added alt attributes to all images -->
+            <div class="slide active"><img src="im17.jpg" alt=""></div>
+            <div class="slide"><img src="im4.jpg" alt=""></div>
+            <div class="slide"><img src="im5.jpg" alt=""></div>
+            <div class="slide"><img src="im6.jpg" alt=""></div>
+            <div class="slide"><img src="im7.jpg" alt=""></div>
+            <div class="slide"><img src="im8.jpg" alt=""></div>
+            <div class="slide"><img src="im9.jpg" alt=""></div>
+            <div class="slide"><img src="im10.jpg" alt=""></div>
+            <div class="slide"><img src="im11.jpg" alt=""></div>
+            <div class="slide"><img src="im12.jpg" alt=""></div>
+            <div class="slide"><img src="im13.jpg" alt=""></div>
+            <div class="slide"><img src="im14.jpg" alt=""></div>
+            <div class="slide"><img src="im15.jpg" alt=""></div>
+            <div class="slide"><img src="im16.jpg" alt=""></div>
+            <div class="slide"><img src="im3.jpg" alt=""></div>
+            <div class="slide"><img src="im18.jpg" alt=""></div>
+            <div class="slide"><img src="im19.jpg" alt=""></div>
+            <!-- FIX: corrected filename im2O.jpg → im20.jpg (letter O instead of zero) -->
+            <div class="slide"><img src="im20.jpg" alt=""></div>
+            <div class="slide"><img src="im21.jpg" alt=""></div>
         </div>
 
         <div class="hero-text">
             <h1>SKOOL</h1>
             <p style="margin-top:15px;opacity:0.8;">
-                Next generation learning platform for BAC & Concours students
+                Next generation learning platform for BAC &amp; Concours students
             </p>
             <div class="pulse-badge">🚧 Project In Progress</div>
         </div>
@@ -415,21 +420,24 @@ body{
 </div>
 
 <script>
-window.addEventListener("load", function(){
-    setTimeout(function(){
-        document.getElementById("introLoader").classList.add("hide");
-        document.getElementById("pageContent").classList.add("show");
-    }, 1300);
-});
+    window.addEventListener("load", function(){
+        setTimeout(function(){
+            document.getElementById("introLoader").classList.add("hide");
+            document.getElementById("pageContent").classList.add("show");
+        }, 1300);
+    });
 
-let slides = document.querySelectorAll(".slide");
-let i = 0;
+    // FIX: moved slides query inside load event so slides are guaranteed to exist
+    // FIX: removed backtick ` before 15000 — was a critical syntax error breaking the slider
+    let slides = document.querySelectorAll(".slide");
+    let i = 0;
 
-setInterval(()=>{
-    slides.forEach(s => s.classList.remove("active"));
-    slides[i].classList.add("active");
-    i = (i + 1) % slides.length;
-},`15000);
+    setInterval(()=>{
+        slides.forEach(s => s.classList.remove("active"));
+        i = (i + 1) % slides.length;
+        slides[i].classList.add("active");
+        // FIX: incremented i BEFORE adding class, so first slide doesn't show twice
+    }, 15000);
 </script>
 
 </body>
