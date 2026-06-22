@@ -1,451 +1,696 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SKOOL - Project Details</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SKOOL - Project Details</title>
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial;
-}
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial;
+      }
 
-body{
-    background:#0b0b0f;
-    color:white;
-    padding-top:80px;
-}
+      body {
+        background: #0b0b0f;
+        color: white;
+        padding-top: 80px;
+      }
 
-/* INTRO LOADER */
-.page-content{
-    opacity:0;
-    visibility:hidden;
-    transition:.5s;
-}
+      /* INTRO LOADER */
+      .page-content {
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.5s;
+      }
 
-.page-content.show{
-    opacity:1;
-    visibility:visible;
-}
+      .page-content.show {
+        opacity: 1;
+        visibility: visible;
+      }
 
-.intro-loader{
-    position:fixed;
-    inset:0;
-    background:#000;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    z-index:99999;
-    transition:.5s;
-}
+      .intro-loader {
+        position: fixed;
+        inset: 0;
+        background: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 99999;
+        transition: 0.5s;
+      }
 
-.intro-loader.hide{
-    opacity:0;
-    visibility:hidden;
-}
+      .intro-loader.hide {
+        opacity: 0;
+        visibility: hidden;
+      }
 
-.intro-skool{
-    display:flex;
-    gap:12px;
-}
+      .intro-skool {
+        display: flex;
+        gap: 12px;
+      }
 
-.intro-box{
-    width:90px;
-    height:90px;
-    background:#d94227;
-    border:2px solid #ff8a75;
-    color:white;
-    font-size:60px;
-    font-weight:900;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    box-shadow:0 0 30px rgba(217,66,39,.8);
-    animation:introAnim 1s ease-in-out forwards;
-}
+      .intro-box {
+        width: 90px;
+        height: 90px;
+        background: #d94227;
+        border: 2px solid #ff8a75;
+        color: white;
+        font-size: 60px;
+        font-weight: 900;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0 30px rgba(217, 66, 39, 0.8);
+        animation: introAnim 1s ease-in-out forwards;
+      }
 
-.intro-box:nth-child(1){animation-delay:0s;}
-.intro-box:nth-child(2){animation-delay:.1s;}
-.intro-box:nth-child(3){animation-delay:.2s;}
-.intro-box:nth-child(4){animation-delay:.3s;}
-.intro-box:nth-child(5){animation-delay:.4s;}
+      .intro-box:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .intro-box:nth-child(2) {
+        animation-delay: 0.1s;
+      }
+      .intro-box:nth-child(3) {
+        animation-delay: 0.2s;
+      }
+      .intro-box:nth-child(4) {
+        animation-delay: 0.3s;
+      }
+      .intro-box:nth-child(5) {
+        animation-delay: 0.4s;
+      }
 
-@keyframes introAnim{
-    0%{
-        opacity:0;
-        transform:translateY(80px) scale(.4);
-    }
+      @keyframes introAnim {
+        0% {
+          opacity: 0;
+          transform: translateY(80px) scale(0.4);
+        }
 
-    45%{
-        opacity:1;
-        transform:translateY(0) scale(1);
-    }
+        45% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
 
-    70%{
-        transform:translateY(-10px) scale(1.05);
-    }
+        70% {
+          transform: translateY(-10px) scale(1.05);
+        }
 
-    100%{
-        opacity:1;
-        transform:translateY(0) scale(1);
-    }
-}
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
 
-/* NAVBAR */
-.navbar{
-    position:fixed;
-    top:0;
-    width:100%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 40px;
-    backdrop-filter: blur(20px);
-    background:rgba(0,0,0,0.3);
-    border-bottom:1px solid rgba(255,255,255,0.1);
-    z-index:1000;
-}
+      /* NAVBAR */
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 40px;
+        backdrop-filter: blur(20px);
+        background: rgba(0, 0, 0, 0.3);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 1000;
+      }
 
-.navbar a{
-    color:white;
-    text-decoration:none;
-    margin-left:15px;
-    opacity:0.8;
-    transition:0.3s;
-}
+      .navbar a {
+        color: white;
+        text-decoration: none;
+        margin-left: 15px;
+        opacity: 0.8;
+        transition: 0.3s;
+      }
 
-.navbar a:hover{
-    opacity:1;
-    color:#ff3b2f;
-}
+      .navbar a:hover {
+        opacity: 1;
+        color: #ff3b2f;
+      }
 
-/* LOGO */
-.logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
+      /* LOGO */
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
 
-.logo-text{
-    display:flex;
-    flex-direction:column;
-    line-height:1.2;
-}
+      .logo-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+      }
 
-.logo-text b{
-    font-size:14px;
-    color:white;
-}
+      .logo-text b {
+        font-size: 14px;
+        color: white;
+      }
 
-.logo-text small{
-    font-size:11px;
-    color:white;
-    opacity:.8;
-}
+      .logo-text small {
+        font-size: 11px;
+        color: white;
+        opacity: 0.8;
+      }
 
-/* NAV LOGO ANIMATION */
-.nav-skool-loader{
-    display:flex;
-    align-items:center;
-    gap:3px;
-}
+      /* NAV LOGO ANIMATION */
+      .nav-skool-loader {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+      }
 
-.nav-skool-box{
-    width:28px;
-    height:28px;
-    background:#d94227;
-    border:1px solid #ff8a75;
-    color:white;
-    font-size:18px;
-    font-weight:900;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    box-shadow:0 0 10px rgba(217,66,39,0.7);
-    animation:navSkoolSlow 5s infinite ease-in-out;
-}
+      .nav-skool-box {
+        width: 28px;
+        height: 28px;
+        background: #d94227;
+        border: 1px solid #ff8a75;
+        color: white;
+        font-size: 18px;
+        font-weight: 900;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0 10px rgba(217, 66, 39, 0.7);
+        animation: navSkoolSlow 5s infinite ease-in-out;
+      }
 
-.nav-skool-box:nth-child(1){animation-delay:0s;}
-.nav-skool-box:nth-child(2){animation-delay:.25s;}
-.nav-skool-box:nth-child(3){animation-delay:.5s;}
-.nav-skool-box:nth-child(4){animation-delay:.75s;}
-.nav-skool-box:nth-child(5){animation-delay:1s;}
+      .nav-skool-box:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .nav-skool-box:nth-child(2) {
+        animation-delay: 0.25s;
+      }
+      .nav-skool-box:nth-child(3) {
+        animation-delay: 0.5s;
+      }
+      .nav-skool-box:nth-child(4) {
+        animation-delay: 0.75s;
+      }
+      .nav-skool-box:nth-child(5) {
+        animation-delay: 1s;
+      }
 
-@keyframes navSkoolSlow{
-    0%{
-        opacity:0;
-        transform:translateY(18px) scale(.4) rotate(-10deg);
-    }
+      @keyframes navSkoolSlow {
+        0% {
+          opacity: 0;
+          transform: translateY(18px) scale(0.4) rotate(-10deg);
+        }
 
-    25%{
-        opacity:1;
-        transform:translateY(0) scale(1) rotate(0deg);
-    }
+        25% {
+          opacity: 1;
+          transform: translateY(0) scale(1) rotate(0deg);
+        }
 
-    45%{
-        transform:translateY(-5px) scale(1.08);
-    }
+        45% {
+          transform: translateY(-5px) scale(1.08);
+        }
 
-    65%,85%{
-        opacity:1;
-        transform:scale(1);
-    }
+        65%,
+        85% {
+          opacity: 1;
+          transform: scale(1);
+        }
 
-    100%{
-        opacity:0;
-        transform:translateY(-18px) scale(.4) rotate(10deg);
-    }
-}
+        100% {
+          opacity: 0;
+          transform: translateY(-18px) scale(0.4) rotate(10deg);
+        }
+      }
 
-/* CONTAINER */
-.container{
-    width:100%;
-    padding:40px 80px;
-}
+      /* CONTAINER */
+      .container {
+        width: 100%;
+        padding: 40px 80px;
+      }
 
-h1{
-    font-size:48px;
-    background:linear-gradient(90deg,#ff3b2f,#ff7a18);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    margin-bottom:20px;
-}
+      h1 {
+        font-size: 48px;
+        background: linear-gradient(90deg, #ff3b2f, #ff7a18);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 20px;
+      }
 
-h2{
-    margin-top:60px;
-    font-size:24px;
-    color:#ff7a18;
-}
+      h2 {
+        margin-top: 60px;
+        font-size: 24px;
+        color: #ff7a18;
+      }
 
-.pulse-badge{
-    display:inline-block;
-    margin-top:10px;
-    padding:10px 16px;
-    border-radius:25px;
-    background:linear-gradient(90deg,#ff3b2f,#ff7a18);
-    color:white;
-    font-weight:bold;
-    position:relative;
-    overflow:hidden;
-}
+      .pulse-badge {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 10px 16px;
+        border-radius: 25px;
+        background: linear-gradient(90deg, #ff3b2f, #ff7a18);
+        color: white;
+        font-weight: bold;
+        position: relative;
+        overflow: hidden;
+      }
 
-.pulse-badge::after{
-    content:"";
-    position:absolute;
-    top:0;
-    left:-100%;
-    width:100%;
-    height:100%;
-    background:rgba(255,255,255,0.3);
-    animation:shine 2s infinite;
-}
+      .pulse-badge::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.3);
+        animation: shine 2s infinite;
+      }
 
-@keyframes shine{
-    0%{left:-100%}
-    100%{left:100%}
-}
+      @keyframes shine {
+        0% {
+          left: -100%;
+        }
+        100% {
+          left: 100%;
+        }
+      }
 
-.card{
-    width:100%;
-    margin-top:15px;
-    padding:25px;
-    border-radius:15px;
-    background:rgba(255,255,255,0.05);
-    border:1px solid rgba(255,255,255,0.1);
-    line-height:1.7;
-    font-size:16px;
-    text-align:justify;
-}
+      .card {
+        width: 100%;
+        margin-top: 15px;
+        padding: 25px;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        line-height: 1.7;
+        font-size: 16px;
+        text-align: justify;
+      }
 
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:15px;
-    margin-top:20px;
-}
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+      }
 
-.warning{
-    border-left:4px solid #ff3b2f;
-}
+      .warning {
+        border-left: 4px solid #ff3b2f;
+      }
 
-.success{
-    border-left:4px solid #00ff88;
-}
+      .success {
+        border-left: 4px solid #00ff88;
+      }
 
-.info{
-    border-left:4px solid #ff7a18;
-}
+      .info {
+        border-left: 4px solid #ff7a18;
+      }
 
-@media(max-width:900px){
-    .container{
-        padding:20px;
-    }
+      @media (max-width: 900px) {
+        .container {
+          padding: 20px;
+        }
 
-    h1{
-        font-size:32px;
-    }
+        h1 {
+          font-size: 32px;
+        }
 
-    .intro-box{
-        width:55px;
-        height:55px;
-        font-size:35px;
-    }
+        .intro-box {
+          width: 55px;
+          height: 55px;
+          font-size: 35px;
+        }
 
-    .intro-skool{
-        gap:6px;
-    }
+        .intro-skool {
+          gap: 6px;
+        }
 
-    .navbar{
-        padding:15px;
-    }
+        .navbar {
+          padding: 15px;
+        }
 
-    .logo-text small{
-        display:none;
-    }
-}
-</style>
-</head>
+        .logo-text small {
+          display: none;
+        }
+      }
+    </style>
+  </head>
 
-<body>
-
-<!-- INTRO LOADER -->
-<div class="intro-loader" id="introLoader">
-    <div class="intro-skool">
+  <body>
+    <!-- INTRO LOADER -->
+    <div class="intro-loader" id="introLoader">
+      <div class="intro-skool">
         <div class="intro-box">S</div>
         <div class="intro-box">K</div>
         <div class="intro-box">O</div>
         <div class="intro-box">O</div>
         <div class="intro-box">L</div>
+      </div>
     </div>
-</div>
 
-<!-- PAGE CONTENT -->
-<div class="page-content" id="pageContent">
-
-<!-- NAVBAR -->
-<div class="navbar">
-
-    <div class="logo">
-        <div class="nav-skool-loader">
+    <!-- PAGE CONTENT -->
+    <div class="page-content" id="pageContent">
+      <!-- NAVBAR -->
+      <div class="navbar">
+        <div class="logo">
+          <div class="nav-skool-loader">
             <div class="nav-skool-box">S</div>
             <div class="nav-skool-box">K</div>
             <div class="nav-skool-box">O</div>
             <div class="nav-skool-box">O</div>
             <div class="nav-skool-box">L</div>
-        </div>
+          </div>
 
-        <span class="logo-text">
+          <span class="logo-text">
             <b>Smart Knowledge</b>
             <small>for Outstanding Online Learning</small>
-        </span>
-    </div>
+          </span>
+        </div>
 
-    <div>
-        <a href="index.html">Home</a>
-    </div>
+        <div>
+          <a href="index.html">Home</a>
+        </div>
+      </div>
 
-</div>
-
-<!-- CONTENT -->
-<div class="container">
+      <!-- CONTENT -->
+      
+       <div class="container">
 
 <h1>SKOOL Project Details</h1>
 
-<div class="pulse-badge">🚧 Project In Progress</div>
+<div class="pulse-badge">🚧 Project In Progress - Modern Learning Platform 2027</div>
+<h2>Idea</h2>
 
-<h2>1. Idea</h2>
-<div class="card success">
-SKOOL is a modern learning platform designed for 1BAC, 2BAC, and concours students in Morocco. It solves the problem of unorganized learning by combining video lessons, PDF summaries, QCM quizzes, and progress tracking in one structured system. Instead of using scattered resources like YouTube, PDFs, or WhatsApp groups, students get a clear, guided learning experience. Future updates may include AI tutors, chat systems, certificates, and gamification features. The goal is to make learning faster, more organized, and more effective.
-</div>
-
-<h2>2. What the Platform Includes</h2>
-<div class="card info">
-✔ Video lessons (5–10 min)<br>
-✔ PDF summaries per chapter<br>
-✔ QCM quizzes with instant correction<br>
-✔ Progress tracking system<br>
-✔ Certificates (future)<br>
-✔ AI tutor (future)<br>
-✔ Chat system (future)<br>
-✔ Gamification system (future)
-</div>
-
-<h2>3. Market Reality</h2>
-<div class="grid">
-
-<div class="card warning">
-YouTube → free but unstructured learning
-</div>
-
-<div class="card warning">
-Udemy / Coursera → not adapted to Moroccan curriculum
-</div>
-
-<div class="card warning">
-WhatsApp / Discord → unorganized student groups
-</div>
-
-</div>
-
-<h2>4. Opportunity</h2>
-<div class="card success">
-There is a strong gap in structured, curriculum-based learning platforms for Moroccan BAC and concours students. This is a big opportunity for SKOOL.
-</div>
-
-<h2>5. Risk</h2>
-<div class="card warning">
-The project is large in scope because it includes:
-<br><br>
-• Learning platform (LMS)<br>
-• Social system<br>
-• AI tutor<br>
-• Video system<br>
-• Exam system<br>
-• Gamification engine<br><br>
-
-This is why it must start simple (MVP first).
-</div>
-
-<h2>6. Strategy</h2>
-<div class="card info">
-PHASE 1:<br>
-✔ Courses + Videos<br>
-✔ QCM system<br>
-✔ Progress tracking<br><br>
-
-PHASE 2:<br>
-✔ Certificates<br>
-✔ Gamification<br><br>
-
-PHASE 3:<br>
-✔ AI tutor<br>
-✔ Personalized learning<br><br>
-
-PHASE 4:<br>
-✔ Live classes<br>
-✔ Teacher marketplace
-</div>
-
-<h2>7. Conclusion</h2>
 <div class="card">
-SKOOL is not perfect yet, but it is a very strong startup idea if you start small, focus on BAC/concours students, and build step by step.
+
+SKOOL is an all-in-one educational ecosystem that combines modern education, artificial intelligence, language learning, and teacher collaboration into a single platform.
+
+</div>
+<h2>Objective</h2>
+
+<div class="card success">
+
+SKOOL is a modern online learning platform designed to transform education in Morocco by providing high-quality digital learning experiences.
+
+The objective is to make learning accessible, interactive, and personalized for every student through modern technologies, smart tools, and collaboration with teachers.
+
+The platform aims to improve students' academic performance while preparing them for the future digital world.
+
+</div>
+
+
+<h2>Target Population</h2>
+
+<div class="card info">
+
+SKOOL is designed for:
+
+✔ Middle school students
+
+✔ 1BAC students
+
+✔ 2BAC students
+
+✔ Concours preparation students
+
+✔ University beginners
+
+✔ French learners
+
+✔ English learners
+
+✔ Teachers and educational institutions
+
+</div>
+
+
+<h2>Modern Technologies Used</h2>
+
+<div class="card success">
+
+The platform will use modern technologies such as:
+
+✔ Artificial Intelligence (AI)
+
+✔ Responsive Web Technologies
+
+✔ Mobile Applications
+
+✔ Cloud Computing
+
+✔ Learning Analytics
+
+✔ Smart Recommendation Systems
+
+✔ Gamification
+
+✔ Secure Databases
+
+✔ Real-time Communication Systems
+
+✔ Interactive Dashboards
+
+</div>
+
+
+<h2>Motivation</h2>
+
+<div class="card warning">
+
+Many students struggle because educational resources are scattered across YouTube, PDFs, social media, and messaging applications.
+
+SKOOL centralizes everything into one modern platform and makes learning simpler, more efficient, and more engaging.
+
+The platform motivates students through interactive content, progress tracking, and personalized learning paths.
+
+</div>
+
+
+<h2>Quality of Education</h2>
+
+<div class="card success">
+
+SKOOL focuses on delivering high-quality education through:
+
+✔ Structured courses
+
+✔ Updated content
+
+✔ Short educational videos
+
+✔ Practical exercises
+
+✔ Smart quizzes
+
+✔ Performance analytics
+
+✔ Personalized recommendations
+
+✔ Official certificates
+
+</div>
+
+
+<h2>Collaboration with Teachers</h2>
+
+<div class="card info">
+
+Teachers play an essential role in the platform.
+
+They can:
+
+✔ Upload courses
+
+✔ Create quizzes
+
+✔ Monitor student progress
+
+✔ Organize live sessions
+
+✔ Communicate with students
+
+✔ Share educational resources
+
+✔ Evaluate learners
+
+</div>
+
+
+<h2>Learning French & English</h2>
+
+<div class="card success">
+
+SKOOL includes dedicated language learning modules.
+
+French Learning:
+
+✔ Grammar
+
+✔ Vocabulary
+
+✔ Listening
+
+✔ Writing
+
+✔ Speaking exercises
+
+French certifications preparation.
+
+English Learning:
+
+✔ Grammar
+
+✔ Vocabulary
+
+✔ Pronunciation
+
+✔ Listening
+
+✔ Conversation practice
+
+✔ International exam preparation.
+
+</div>
+
+
+
+
+
+<h2>What the Platform Includes</h2>
+
+<div class="card info">
+
+✔ Video lessons
+
+✔ PDF summaries
+
+✔ Smart QCM quizzes
+
+✔ Score tracking
+
+✔ Progress dashboard
+
+✔ Certificates
+
+✔ Group chats between students
+
+✔ AI tutor
+
+✔ Live classes
+
+✔ Homework management
+
+✔ Teacher dashboard
+
+✔ Notifications system
+
+✔ Gamification rewards
+
+✔ Personalized learning paths
+
+</div>
+
+
+<h2>Market Reality</h2>
+
+<div class="card warning">
+
+Students currently use multiple disconnected platforms.
+
+There is a lack of a complete educational ecosystem adapted to Moroccan students and modern learning methods.
+
+Digital education demand continues to grow every year.
+
+</div>
+
+
+<h2>Opportunity</h2>
+
+<div class="card success">
+
+SKOOL has a strong opportunity to become a reference educational platform in Morocco and potentially expand internationally.
+
+The combination of AI, language learning, and teacher collaboration creates a unique value proposition.
+
+</div>
+
+
+<h2>Strategy</h2>
+
+<div class="card info">
+
+PHASE 1
+
+✔ Core courses
+
+✔ Videos
+
+✔ PDFs
+
+✔ Smart QCM
+
+✔ Score tracking
+
+
+PHASE 2
+
+✔ Certificates
+
+✔ Student community
+
+✔ Gamification
+
+
+PHASE 3
+
+✔ AI Tutor
+
+✔ Personalized learning
+
+
+PHASE 4
+
+✔ Live classes
+
+✔ Teacher marketplace
+
+✔ Mobile applications
+
+
+PHASE 5
+
+✔ International expansion
+
+✔ Advanced AI assistant
+
+✔ Multilingual education
+
+</div>
+
+
+<h2>Conclusion (Modern Platform 2027)</h2>
+
+<div class="card success">
+
+SKOOL is a vision for the future of education.
+
+It is not simply an online learning platform but a complete educational ecosystem that combines technology, artificial intelligence, language learning, and teacher collaboration.
+
+The ambition is to build one of the most innovative educational platforms by 2027 and provide accessible, high-quality education for everyone.
+
+🚀 Learn Smarter. Grow Faster. Build Your Future.
+
 </div>
 
 </div>
+    
+    </div>
 
-</div>
-
-<script>
-window.addEventListener("load", function(){
-    setTimeout(function(){
-        document.getElementById("introLoader").classList.add("hide");
-        document.getElementById("pageContent").classList.add("show");
-    }, 1000);
-});
-</script>
-
-</body>
+    <script>
+      window.addEventListener("load", function () {
+        setTimeout(function () {
+          document.getElementById("introLoader").classList.add("hide");
+          document.getElementById("pageContent").classList.add("show");
+        }, 1000);
+      });
+    </script>
+  </body>
 </html>
