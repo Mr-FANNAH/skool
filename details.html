@@ -10,7 +10,7 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: Arial;
+        font-family: Arial, sans-serif; /* FIX: added fallback font */
       }
 
       body {
@@ -23,7 +23,7 @@
       .page-content {
         opacity: 0;
         visibility: hidden;
-        transition: 0.5s;
+        transition: opacity 0.5s, visibility 0.5s; /* FIX: explicit properties instead of shorthand "0.5s" */
       }
 
       .page-content.show {
@@ -39,7 +39,7 @@
         justify-content: center;
         align-items: center;
         z-index: 99999;
-        transition: 0.5s;
+        transition: opacity 0.5s, visibility 0.5s; /* FIX: explicit properties */
       }
 
       .intro-loader.hide {
@@ -67,41 +67,17 @@
         animation: introAnim 1s ease-in-out forwards;
       }
 
-      .intro-box:nth-child(1) {
-        animation-delay: 0s;
-      }
-      .intro-box:nth-child(2) {
-        animation-delay: 0.1s;
-      }
-      .intro-box:nth-child(3) {
-        animation-delay: 0.2s;
-      }
-      .intro-box:nth-child(4) {
-        animation-delay: 0.3s;
-      }
-      .intro-box:nth-child(5) {
-        animation-delay: 0.4s;
-      }
+      .intro-box:nth-child(1) { animation-delay: 0s; }
+      .intro-box:nth-child(2) { animation-delay: 0.1s; }
+      .intro-box:nth-child(3) { animation-delay: 0.2s; }
+      .intro-box:nth-child(4) { animation-delay: 0.3s; }
+      .intro-box:nth-child(5) { animation-delay: 0.4s; }
 
       @keyframes introAnim {
-        0% {
-          opacity: 0;
-          transform: translateY(80px) scale(0.4);
-        }
-
-        45% {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-        }
-
-        70% {
-          transform: translateY(-10px) scale(1.05);
-        }
-
-        100% {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-        }
+        0%   { opacity: 0; transform: translateY(80px) scale(0.4); }
+        45%  { opacity: 1; transform: translateY(0) scale(1); }
+        70%  { transform: translateY(-10px) scale(1.05); }
+        100% { opacity: 1; transform: translateY(0) scale(1); }
       }
 
       /* NAVBAR */
@@ -124,7 +100,7 @@
         text-decoration: none;
         margin-left: 15px;
         opacity: 0.8;
-        transition: 0.3s;
+        transition: opacity 0.3s, color 0.3s; /* FIX: explicit properties */
       }
 
       .navbar a:hover {
@@ -137,6 +113,7 @@
         display: flex;
         align-items: center;
         gap: 12px;
+        text-decoration: none; /* FIX: remove underline if used as link */
       }
 
       .logo-text {
@@ -178,47 +155,18 @@
         animation: navSkoolSlow 5s infinite ease-in-out;
       }
 
-      .nav-skool-box:nth-child(1) {
-        animation-delay: 0s;
-      }
-      .nav-skool-box:nth-child(2) {
-        animation-delay: 0.25s;
-      }
-      .nav-skool-box:nth-child(3) {
-        animation-delay: 0.5s;
-      }
-      .nav-skool-box:nth-child(4) {
-        animation-delay: 0.75s;
-      }
-      .nav-skool-box:nth-child(5) {
-        animation-delay: 1s;
-      }
+      .nav-skool-box:nth-child(1) { animation-delay: 0s; }
+      .nav-skool-box:nth-child(2) { animation-delay: 0.25s; }
+      .nav-skool-box:nth-child(3) { animation-delay: 0.5s; }
+      .nav-skool-box:nth-child(4) { animation-delay: 0.75s; }
+      .nav-skool-box:nth-child(5) { animation-delay: 1s; }
 
       @keyframes navSkoolSlow {
-        0% {
-          opacity: 0;
-          transform: translateY(18px) scale(0.4) rotate(-10deg);
-        }
-
-        25% {
-          opacity: 1;
-          transform: translateY(0) scale(1) rotate(0deg);
-        }
-
-        45% {
-          transform: translateY(-5px) scale(1.08);
-        }
-
-        65%,
-        85% {
-          opacity: 1;
-          transform: scale(1);
-        }
-
-        100% {
-          opacity: 0;
-          transform: translateY(-18px) scale(0.4) rotate(10deg);
-        }
+        0%       { opacity: 0; transform: translateY(18px) scale(0.4) rotate(-10deg); }
+        25%      { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
+        45%      { transform: translateY(-5px) scale(1.08); }
+        65%, 85% { opacity: 1; transform: scale(1); }
+        100%     { opacity: 0; transform: translateY(-18px) scale(0.4) rotate(10deg); }
       }
 
       /* CONTAINER */
@@ -231,6 +179,7 @@
         font-size: 48px;
         background: linear-gradient(90deg, #ff3b2f, #ff7a18);
         -webkit-background-clip: text;
+        background-clip: text; /* FIX: added standard property alongside vendor-prefixed */
         -webkit-text-fill-color: transparent;
         margin-bottom: 20px;
       }
@@ -265,12 +214,8 @@
       }
 
       @keyframes shine {
-        0% {
-          left: -100%;
-        }
-        100% {
-          left: 100%;
-        }
+        0%   { left: -100%; }
+        100% { left: 100%; }
       }
 
       .card {
@@ -285,6 +230,7 @@
         text-align: justify;
       }
 
+      /* FIX: .grid was defined in CSS but never used in HTML — kept for future use */
       .grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -292,17 +238,9 @@
         margin-top: 20px;
       }
 
-      .warning {
-        border-left: 4px solid #ff3b2f;
-      }
-
-      .success {
-        border-left: 4px solid #00ff88;
-      }
-
-      .info {
-        border-left: 4px solid #ff7a18;
-      }
+      .warning { border-left: 4px solid #ff3b2f; }
+      .success { border-left: 4px solid #00ff88; }
+      .info    { border-left: 4px solid #ff7a18; }
 
       @media (max-width: 900px) {
         .container {
@@ -336,8 +274,8 @@
 
   <body>
     <!-- INTRO LOADER -->
-    <div class="intro-loader" id="introLoader">
-      <div class="intro-skool">
+    <div class="intro-loader" id="introLoader" role="status" aria-label="Loading SKOOL">
+      <div class="intro-skool" aria-hidden="true">
         <div class="intro-box">S</div>
         <div class="intro-box">K</div>
         <div class="intro-box">O</div>
@@ -348,340 +286,214 @@
 
     <!-- PAGE CONTENT -->
     <div class="page-content" id="pageContent">
-      <!-- NAVBAR -->
-      <div class="navbar">
-        <div class="logo">
-          <div class="nav-skool-loader">
+
+      <!-- FIX: changed <div class="navbar"> to semantic <nav> element -->
+      <nav class="navbar" aria-label="Main navigation">
+        <!-- FIX: wrapped logo in <a> so it's a proper clickable link -->
+        <a href="index.html" class="logo" aria-label="SKOOL Home">
+          <div class="nav-skool-loader" aria-hidden="true">
             <div class="nav-skool-box">S</div>
             <div class="nav-skool-box">K</div>
             <div class="nav-skool-box">O</div>
             <div class="nav-skool-box">O</div>
             <div class="nav-skool-box">L</div>
           </div>
-
           <span class="logo-text">
             <b>Smart Knowledge</b>
             <small>for Outstanding Online Learning</small>
           </span>
-        </div>
+        </a>
 
         <div>
           <a href="index.html">Home</a>
         </div>
-      </div>
+      </nav>
 
       <!-- CONTENT -->
-      
-       <div class="container">
-
-<h1>SKOOL Project Details</h1>
-
-<div class="pulse-badge">🚧 Project In Progress - Modern Learning Platform 2027</div>
-<h2>Idea</h2>
-
-<div class="card">
-
-SKOOL is an all-in-one educational ecosystem that combines modern education, artificial intelligence, language learning, and teacher collaboration into a single platform.
-
-</div>
-<h2>Objective</h2>
-
-<div class="card success">
-
-SKOOL is a modern online learning platform designed to transform education in Morocco by providing high-quality digital learning experiences.
-
-The objective is to make learning accessible, interactive, and personalized for every student through modern technologies, smart tools, and collaboration with teachers.
-
-The platform aims to improve students' academic performance while preparing them for the future digital world.
-
-</div>
-
-
-<h2>Target Population</h2>
-
-<div class="card info">
-
-SKOOL is designed for:
-
-✔ Middle school students
-
-✔ 1BAC students
-
-✔ 2BAC students
-
-✔ Concours preparation students
-
-✔ University beginners
-
-✔ French learners
-
-✔ English learners
-
-✔ Teachers and educational institutions
-
-</div>
-
-
-<h2>Modern Technologies Used</h2>
-
-<div class="card success">
-
-The platform will use modern technologies such as:
-
-✔ Artificial Intelligence (AI)
-
-✔ Responsive Web Technologies
-
-✔ Mobile Applications
-
-✔ Cloud Computing
-
-✔ Learning Analytics
-
-✔ Smart Recommendation Systems
-
-✔ Gamification
-
-✔ Secure Databases
-
-✔ Real-time Communication Systems
-
-✔ Interactive Dashboards
-
-</div>
-
-
-<h2>Motivation</h2>
-
-<div class="card warning">
-
-Many students struggle because educational resources are scattered across YouTube, PDFs, social media, and messaging applications.
-
-SKOOL centralizes everything into one modern platform and makes learning simpler, more efficient, and more engaging.
-
-The platform motivates students through interactive content, progress tracking, and personalized learning paths.
-
-</div>
-
-
-<h2>Quality of Education</h2>
-
-<div class="card success">
-
-SKOOL focuses on delivering high-quality education through:
-
-✔ Structured courses
-
-✔ Updated content
-
-✔ Short educational videos
-
-✔ Practical exercises
-
-✔ Smart quizzes
-
-✔ Performance analytics
-
-✔ Personalized recommendations
-
-✔ Official certificates
-
-</div>
-
-
-<h2>Collaboration with Teachers</h2>
-
-<div class="card info">
-
-Teachers play an essential role in the platform.
-
-They can:
-
-✔ Upload courses
-
-✔ Create quizzes
-
-✔ Monitor student progress
-
-✔ Organize live sessions
-
-✔ Communicate with students
-
-✔ Share educational resources
-
-✔ Evaluate learners
-
-</div>
-
-
-<h2>Learning French & English</h2>
-
-<div class="card success">
-
-SKOOL includes dedicated language learning modules.
-
-French Learning:
-
-✔ Grammar
-
-✔ Vocabulary
-
-✔ Listening
-
-✔ Writing
-
-✔ Speaking exercises
-
-French certifications preparation.
-
-English Learning:
-
-✔ Grammar
-
-✔ Vocabulary
-
-✔ Pronunciation
-
-✔ Listening
-
-✔ Conversation practice
-
-✔ International exam preparation.
-
-</div>
-
-
-
-
-
-<h2>What the Platform Includes</h2>
-
-<div class="card info">
-
-✔ Video lessons
-
-✔ PDF summaries
-
-✔ Smart QCM quizzes
-
-✔ Score tracking
-
-✔ Progress dashboard
-
-✔ Certificates
-
-✔ Group chats between students
-
-✔ AI tutor
-
-✔ Live classes
-
-✔ Homework management
-
-✔ Teacher dashboard
-
-✔ Notifications system
-
-✔ Gamification rewards
-
-✔ Personalized learning paths
-
-</div>
-
-
-<h2>Market Reality</h2>
-
-<div class="card warning">
-
-Students currently use multiple disconnected platforms.
-
-There is a lack of a complete educational ecosystem adapted to Moroccan students and modern learning methods.
-
-Digital education demand continues to grow every year.
-
-</div>
-
-
-<h2>Opportunity</h2>
-
-<div class="card success">
-
-SKOOL has a strong opportunity to become a reference educational platform in Morocco and potentially expand internationally.
-
-The combination of AI, language learning, and teacher collaboration creates a unique value proposition.
-
-</div>
-
-
-<h2>Strategy</h2>
-
-<div class="card info">
-
-PHASE 1
-
-✔ Core courses
-
-✔ Videos
-
-✔ PDFs
-
-✔ Smart QCM
-
-✔ Score tracking
-
-
-PHASE 2
-
-✔ Certificates
-
-✔ Student community
-
-✔ Gamification
-
-
-PHASE 3
-
-✔ AI Tutor
-
-✔ Personalized learning
-
-
-PHASE 4
-
-✔ Live classes
-
-✔ Teacher marketplace
-
-✔ Mobile applications
-
-
-PHASE 5
-
-✔ International expansion
-
-✔ Advanced AI assistant
-
-✔ Multilingual education
-
-</div>
-
-
-<h2>Conclusion (Modern Platform 2027)</h2>
-
-<div class="card success">
-
-SKOOL is a vision for the future of education.
-
-It is not simply an online learning platform but a complete educational ecosystem that combines technology, artificial intelligence, language learning, and teacher collaboration.
-
-The ambition is to build one of the most innovative educational platforms by 2027 and provide accessible, high-quality education for everyone.
-
-Learn Smarter. Grow Faster. Build Your Future.
-
-</div>
-
-</div>
-    
+      <div class="container">
+
+        <h1>SKOOL Project Details</h1>
+
+        <div class="pulse-badge">🚧 Project In Progress - Modern Learning Platform 2027</div>
+
+        <h2>Idea</h2>
+        <div class="card">
+          SKOOL is an all-in-one educational ecosystem that combines modern education, artificial intelligence, language learning, and teacher collaboration into a single platform.
+        </div>
+
+        <h2>Objective</h2>
+        <div class="card success">
+          SKOOL is a modern online learning platform designed to transform education in Morocco by providing high-quality digital learning experiences.
+          <br><br>
+          The objective is to make learning accessible, interactive, and personalized for every student through modern technologies, smart tools, and collaboration with teachers.
+          <br><br>
+          The platform aims to improve students' academic performance while preparing them for the future digital world.
+        </div>
+
+        <h2>Target Population</h2>
+        <div class="card info">
+          SKOOL is designed for:
+          <br><br>
+          ✔ Middle school students<br>
+          ✔ 1BAC students<br>
+          ✔ 2BAC students<br>
+          ✔ Concours preparation students<br>
+          ✔ University beginners<br>
+          ✔ French learners<br>
+          ✔ English learners<br>
+          ✔ Teachers and educational institutions
+        </div>
+
+        <h2>Modern Technologies Used</h2>
+        <div class="card success">
+          The platform will use modern technologies such as:
+          <br><br>
+          ✔ Artificial Intelligence (AI)<br>
+          ✔ Responsive Web Technologies<br>
+          ✔ Mobile Applications<br>
+          ✔ Cloud Computing<br>
+          ✔ Learning Analytics<br>
+          ✔ Smart Recommendation Systems<br>
+          ✔ Gamification<br>
+          ✔ Secure Databases<br>
+          ✔ Real-time Communication Systems<br>
+          ✔ Interactive Dashboards
+        </div>
+
+        <h2>Motivation</h2>
+        <div class="card warning">
+          Many students struggle because educational resources are scattered across YouTube, PDFs, social media, and messaging applications.
+          <br><br>
+          SKOOL centralizes everything into one modern platform and makes learning simpler, more efficient, and more engaging.
+          <br><br>
+          The platform motivates students through interactive content, progress tracking, and personalized learning paths.
+        </div>
+
+        <h2>Quality of Education</h2>
+        <div class="card success">
+          SKOOL focuses on delivering high-quality education through:
+          <br><br>
+          ✔ Structured courses<br>
+          ✔ Updated content<br>
+          ✔ Short educational videos<br>
+          ✔ Practical exercises<br>
+          ✔ Smart quizzes<br>
+          ✔ Performance analytics<br>
+          ✔ Personalized recommendations<br>
+          ✔ Official certificates
+        </div>
+
+        <h2>Collaboration with Teachers</h2>
+        <div class="card info">
+          Teachers play an essential role in the platform.
+          <br><br>
+          They can:
+          <br><br>
+          ✔ Upload courses<br>
+          ✔ Create quizzes<br>
+          ✔ Monitor student progress<br>
+          ✔ Organize live sessions<br>
+          ✔ Communicate with students<br>
+          ✔ Share educational resources<br>
+          ✔ Evaluate learners
+        </div>
+
+        <h2>Learning French &amp; English</h2>
+        <div class="card success">
+          SKOOL includes dedicated language learning modules.
+          <br><br>
+          <strong>French Learning:</strong><br>
+          ✔ Grammar<br>
+          ✔ Vocabulary<br>
+          ✔ Listening<br>
+          ✔ Writing<br>
+          ✔ Speaking exercises<br>
+          ✔ French certifications preparation.
+          <br><br>
+          <strong>English Learning:</strong><br>
+          ✔ Grammar<br>
+          ✔ Vocabulary<br>
+          ✔ Pronunciation<br>
+          ✔ Listening<br>
+          ✔ Conversation practice<br>
+          ✔ International exam preparation.
+        </div>
+
+        <h2>What the Platform Includes</h2>
+        <div class="card info">
+          ✔ Video lessons<br>
+          ✔ PDF summaries<br>
+          ✔ Smart QCM quizzes<br>
+          ✔ Score tracking<br>
+          ✔ Progress dashboard<br>
+          ✔ Certificates<br>
+          ✔ Group chats between students<br>
+          ✔ AI tutor<br>
+          ✔ Live classes<br>
+          ✔ Homework management<br>
+          ✔ Teacher dashboard<br>
+          ✔ Notifications system<br>
+          ✔ Gamification rewards<br>
+          ✔ Personalized learning paths
+        </div>
+
+        <h2>Market Reality</h2>
+        <div class="card warning">
+          Students currently use multiple disconnected platforms.
+          <br><br>
+          There is a lack of a complete educational ecosystem adapted to Moroccan students and modern learning methods.
+          <br><br>
+          Digital education demand continues to grow every year.
+        </div>
+
+        <h2>Opportunity</h2>
+        <div class="card success">
+          SKOOL has a strong opportunity to become a reference educational platform in Morocco and potentially expand internationally.
+          <br><br>
+          The combination of AI, language learning, and teacher collaboration creates a unique value proposition.
+        </div>
+
+        <h2>Strategy</h2>
+        <div class="card info">
+          <strong>PHASE 1</strong><br>
+          ✔ Core courses<br>
+          ✔ Videos<br>
+          ✔ PDFs<br>
+          ✔ Smart QCM<br>
+          ✔ Score tracking
+          <br><br>
+          <strong>PHASE 2</strong><br>
+          ✔ Certificates<br>
+          ✔ Student community<br>
+          ✔ Gamification
+          <br><br>
+          <strong>PHASE 3</strong><br>
+          ✔ AI Tutor<br>
+          ✔ Personalized learning
+          <br><br>
+          <strong>PHASE 4</strong><br>
+          ✔ Live classes<br>
+          ✔ Teacher marketplace<br>
+          ✔ Mobile applications
+          <br><br>
+          <strong>PHASE 5</strong><br>
+          ✔ International expansion<br>
+          ✔ Advanced AI assistant<br>
+          ✔ Multilingual education
+        </div>
+
+        <h2>Conclusion (Modern Platform 2027)</h2>
+        <div class="card success">
+          SKOOL is a vision for the future of education.
+          <br><br>
+          It is not simply an online learning platform but a complete educational ecosystem that combines technology, artificial intelligence, language learning, and teacher collaboration.
+          <br><br>
+          The ambition is to build one of the most innovative educational platforms by 2027 and provide accessible, high-quality education for everyone.
+          <br><br>
+          <strong>Learn Smarter. Grow Faster. Build Your Future.</strong>
+        </div>
+
+      </div>
     </div>
 
     <script>
