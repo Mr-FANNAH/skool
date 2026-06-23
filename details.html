@@ -1,506 +1,703 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SKOOL - Project Details</title>
-
+    <title>SKOOL - Détails du Projet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: Arial, sans-serif; /* FIX: added fallback font */
+      :root {
+        --red:     #d94227;
+        --orange:  #ff7a18;
+        --red-glow: rgba(217, 66, 39, 0.35);
+        --bg:      #07070a;
+        --surface: #0f0f14;
+        --border:  rgba(255,255,255,0.07);
+        --text:    #e8e8f0;
+        --muted:   rgba(232,232,240,0.5);
       }
+
+      *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+      html { scroll-behavior: smooth; }
 
       body {
-        background: #0b0b0f;
-        color: white;
-        padding-top: 80px;
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Inter', sans-serif;
+        font-size: 15px;
+        line-height: 1.75;
+        padding-top: 72px;
+        overflow-x: hidden;
       }
 
-      /* INTRO LOADER */
-      .page-content {
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.5s, visibility 0.5s; /* FIX: explicit properties instead of shorthand "0.5s" */
-      }
-
-      .page-content.show {
-        opacity: 1;
-        visibility: visible;
-      }
-
-      .intro-loader {
-        position: fixed;
-        inset: 0;
+      /* ─── LOADER ─── */
+      #loader {
+        position: fixed; inset: 0;
         background: #000;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 99999;
-        transition: opacity 0.5s, visibility 0.5s; /* FIX: explicit properties */
+        display: flex; align-items: center; justify-content: center;
+        z-index: 9999;
+        transition: opacity .6s ease, visibility .6s ease;
       }
+      #loader.hide { opacity: 0; visibility: hidden; }
 
-      .intro-loader.hide {
+      .loader-tiles {
+        display: flex; gap: 10px;
+      }
+      .loader-tile {
+        width: 76px; height: 76px;
+        background: var(--red);
+        border: 1.5px solid rgba(255,138,117,.5);
+        color: #fff;
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 52px; font-weight: 700;
+        display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 0 28px var(--red-glow);
         opacity: 0;
-        visibility: hidden;
+        animation: tileIn .8s ease forwards;
+      }
+      .loader-tile:nth-child(1){ animation-delay: .05s; }
+      .loader-tile:nth-child(2){ animation-delay: .15s; }
+      .loader-tile:nth-child(3){ animation-delay: .25s; }
+      .loader-tile:nth-child(4){ animation-delay: .35s; }
+      .loader-tile:nth-child(5){ animation-delay: .45s; }
+
+      @keyframes tileIn {
+        0%   { opacity:0; transform: translateY(60px) scale(.5); }
+        55%  { opacity:1; transform: translateY(0) scale(1.04); }
+        75%  { transform: translateY(-6px); }
+        100% { opacity:1; transform: translateY(0) scale(1); }
       }
 
-      .intro-skool {
-        display: flex;
-        gap: 12px;
-      }
+      /* ─── PAGE CONTENT ─── */
+      #page { opacity:0; visibility:hidden; transition: opacity .5s, visibility .5s; }
+      #page.show { opacity:1; visibility:visible; }
 
-      .intro-box {
-        width: 90px;
-        height: 90px;
-        background: #d94227;
-        border: 2px solid #ff8a75;
-        color: white;
-        font-size: 60px;
-        font-weight: 900;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        box-shadow: 0 0 30px rgba(217, 66, 39, 0.8);
-        animation: introAnim 1s ease-in-out forwards;
-      }
-
-      .intro-box:nth-child(1) { animation-delay: 0s; }
-      .intro-box:nth-child(2) { animation-delay: 0.1s; }
-      .intro-box:nth-child(3) { animation-delay: 0.2s; }
-      .intro-box:nth-child(4) { animation-delay: 0.3s; }
-      .intro-box:nth-child(5) { animation-delay: 0.4s; }
-
-      @keyframes introAnim {
-        0%   { opacity: 0; transform: translateY(80px) scale(0.4); }
-        45%  { opacity: 1; transform: translateY(0) scale(1); }
-        70%  { transform: translateY(-10px) scale(1.05); }
-        100% { opacity: 1; transform: translateY(0) scale(1); }
-      }
-
-      /* NAVBAR */
-      .navbar {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 40px;
-        backdrop-filter: blur(20px);
-        background: rgba(0, 0, 0, 0.3);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      /* ─── NAVBAR ─── */
+      nav.topbar {
+        position: fixed; top: 0; left: 0; right: 0; height: 72px;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0 48px;
+        background: rgba(7,7,10,.8);
+        backdrop-filter: blur(18px);
+        border-bottom: 1px solid var(--border);
         z-index: 1000;
       }
 
-      .navbar a {
-        color: white;
+      .logo-wrap {
+        display: flex; align-items: center; gap: 10px;
         text-decoration: none;
-        margin-left: 15px;
-        opacity: 0.8;
-        transition: opacity 0.3s, color 0.3s; /* FIX: explicit properties */
+      }
+      .logo-tiles { display: flex; gap: 3px; }
+      .logo-tile {
+        width: 26px; height: 26px;
+        background: var(--red);
+        border: 1px solid rgba(255,138,117,.45);
+        color: #fff;
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 16px; font-weight: 700;
+        display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 0 8px var(--red-glow);
+        animation: navPulse 5s infinite ease-in-out;
+      }
+      .logo-tile:nth-child(1){ animation-delay: 0s; }
+      .logo-tile:nth-child(2){ animation-delay: .2s; }
+      .logo-tile:nth-child(3){ animation-delay: .4s; }
+      .logo-tile:nth-child(4){ animation-delay: .6s; }
+      .logo-tile:nth-child(5){ animation-delay: .8s; }
+
+      @keyframes navPulse {
+        0%,100% { opacity:.4; transform: translateY(2px) scale(.9); }
+        20%,60% { opacity:1;  transform: translateY(0) scale(1); }
+        40%      { transform: translateY(-3px) scale(1.06); }
       }
 
-      .navbar a:hover {
-        opacity: 1;
-        color: #ff3b2f;
+      .logo-label { display: flex; flex-direction: column; line-height: 1.3; }
+      .logo-label b { font-size: 13px; font-weight: 600; color: #fff; }
+      .logo-label small { font-size: 10.5px; color: var(--muted); }
+
+      .nav-links { display: flex; gap: 6px; }
+      .nav-links a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 13.5px;
+        padding: 7px 14px;
+        border-radius: 8px;
+        transition: color .25s, background .25s;
       }
+      .nav-links a:hover { color: #fff; background: rgba(255,255,255,.06); }
 
-      /* LOGO */
-      .logo {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        text-decoration: none; /* FIX: remove underline if used as link */
-      }
-
-      .logo-text {
-        display: flex;
-        flex-direction: column;
-        line-height: 1.2;
-      }
-
-      .logo-text b {
-        font-size: 14px;
-        color: white;
-      }
-
-      .logo-text small {
-        font-size: 11px;
-        color: white;
-        opacity: 0.8;
-      }
-
-      /* NAV LOGO ANIMATION */
-      .nav-skool-loader {
-        display: flex;
-        align-items: center;
-        gap: 3px;
-      }
-
-      .nav-skool-box {
-        width: 28px;
-        height: 28px;
-        background: #d94227;
-        border: 1px solid #ff8a75;
-        color: white;
-        font-size: 18px;
-        font-weight: 900;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        box-shadow: 0 0 10px rgba(217, 66, 39, 0.7);
-        animation: navSkoolSlow 5s infinite ease-in-out;
-      }
-
-      .nav-skool-box:nth-child(1) { animation-delay: 0s; }
-      .nav-skool-box:nth-child(2) { animation-delay: 0.25s; }
-      .nav-skool-box:nth-child(3) { animation-delay: 0.5s; }
-      .nav-skool-box:nth-child(4) { animation-delay: 0.75s; }
-      .nav-skool-box:nth-child(5) { animation-delay: 1s; }
-
-      @keyframes navSkoolSlow {
-        0%       { opacity: 0; transform: translateY(18px) scale(0.4) rotate(-10deg); }
-        25%      { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
-        45%      { transform: translateY(-5px) scale(1.08); }
-        65%, 85% { opacity: 1; transform: scale(1); }
-        100%     { opacity: 0; transform: translateY(-18px) scale(0.4) rotate(10deg); }
-      }
-
-      /* CONTAINER */
-      .container {
-        width: 100%;
-        padding: 40px 80px;
-      }
-
-      h1 {
-        font-size: 48px;
-        background: linear-gradient(90deg, #ff3b2f, #ff7a18);
-        -webkit-background-clip: text;
-        background-clip: text; /* FIX: added standard property alongside vendor-prefixed */
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 20px;
-      }
-
-      h2 {
-        margin-top: 60px;
-        font-size: 24px;
-        color: #ff7a18;
-      }
-
-      .pulse-badge {
-        display: inline-block;
-        margin-top: 10px;
-        padding: 10px 16px;
-        border-radius: 25px;
-        background: linear-gradient(90deg, #ff3b2f, #ff7a18);
-        color: white;
-        font-weight: bold;
+      /* ─── HERO ─── */
+      .hero {
+        padding: 100px 80px 60px;
         position: relative;
         overflow: hidden;
       }
-
-      .pulse-badge::after {
-        content: "";
+      .hero::before {
+        content: '';
         position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: rgba(255, 255, 255, 0.3);
-        animation: shine 2s infinite;
+        top: -120px; left: -120px;
+        width: 520px; height: 520px;
+        background: radial-gradient(circle, rgba(217,66,39,.18) 0%, transparent 70%);
+        pointer-events: none;
       }
 
-      @keyframes shine {
-        0%   { left: -100%; }
-        100% { left: 100%; }
+      .hero-eyebrow {
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 5px 14px;
+        border: 1px solid rgba(217,66,39,.4);
+        border-radius: 20px;
+        font-size: 12px;
+        color: var(--orange);
+        letter-spacing: .05em;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+      }
+      .hero-eyebrow span { width:7px; height:7px; border-radius:50%; background:var(--red); animation: blink 1.5s infinite; }
+      @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:.2;} }
+
+      .hero h1 {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: clamp(36px, 5vw, 64px);
+        font-weight: 700;
+        line-height: 1.1;
+        background: linear-gradient(100deg, #fff 30%, var(--orange));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 20px;
+        max-width: 760px;
+      }
+
+      .hero-sub {
+        font-size: 16px;
+        color: var(--muted);
+        max-width: 560px;
+        margin-bottom: 36px;
+      }
+
+      .badge-row { display: flex; gap: 10px; flex-wrap: wrap; }
+      .badge {
+        display: inline-flex; align-items: center; gap: 6px;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 13px; font-weight: 600;
+        background: linear-gradient(90deg, var(--red), var(--orange));
+        color: #fff;
+        position: relative; overflow: hidden;
+      }
+      .badge::after {
+        content:'';
+        position:absolute; top:0; left:-100%; width:100%; height:100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,.25), transparent);
+        animation: shine 2.5s infinite;
+      }
+      @keyframes shine { 100%{ left:200%; } }
+
+      .badge-outline {
+        background: transparent;
+        border: 1px solid rgba(217,66,39,.5);
+        color: var(--orange);
+      }
+      .badge-outline::after { display:none; }
+
+      /* ─── MAIN GRID ─── */
+      .main {
+        padding: 20px 80px 100px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+
+      .section-full { grid-column: 1 / -1; }
+
+      .section-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 12px;
+        display: flex; align-items: center; gap: 8px;
+      }
+      .section-label::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: var(--border);
       }
 
       .card {
-        width: 100%;
-        margin-top: 15px;
-        padding: 25px;
-        border-radius: 15px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        line-height: 1.7;
-        font-size: 16px;
-        text-align: justify;
+        padding: 28px 30px;
+        border-radius: 16px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        position: relative;
+        overflow: hidden;
+        transition: border-color .3s, transform .3s;
+      }
+      .card:hover {
+        border-color: rgba(217,66,39,.35);
+        transform: translateY(-3px);
+      }
+      .card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--red), var(--orange));
+        opacity: 0;
+        transition: opacity .3s;
+      }
+      .card:hover::before { opacity: 1; }
+
+      .card-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 18px; font-weight: 600;
+        color: #fff;
+        margin-bottom: 14px;
       }
 
-      /* FIX: .grid was defined in CSS but never used in HTML — kept for future use */
-      .grid {
+      .card p { color: var(--muted); font-size: 14.5px; }
+
+      /* check list */
+      .checklist { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+      .checklist li {
+        display: flex; align-items: flex-start; gap: 10px;
+        color: var(--muted); font-size: 14px;
+      }
+      .checklist li::before {
+        content: '✓';
+        flex-shrink: 0;
+        width: 20px; height: 20px;
+        background: rgba(217,66,39,.15);
+        border: 1px solid rgba(217,66,39,.35);
+        border-radius: 6px;
+        color: var(--red);
+        font-size: 12px; font-weight: 700;
+        display: flex; align-items: center; justify-content: center;
+        margin-top: 1px;
+      }
+
+      /* two-col checklist */
+      .checklist-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 15px;
-        margin-top: 20px;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px 20px;
       }
 
-      .warning { border-left: 4px solid #ff3b2f; }
-      .success { border-left: 4px solid #00ff88; }
-      .info    { border-left: 4px solid #ff7a18; }
+      /* phase timeline */
+      .phases { display: flex; flex-direction: column; gap: 0; }
+      .phase {
+        display: flex; gap: 20px;
+        padding: 18px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .phase:last-child { border-bottom: none; }
+      .phase-num {
+        flex-shrink: 0;
+        width: 36px; height: 36px;
+        border-radius: 50%;
+        background: rgba(217,66,39,.12);
+        border: 1.5px solid rgba(217,66,39,.4);
+        color: var(--red);
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 13px; font-weight: 700;
+        display: flex; align-items: center; justify-content: center;
+        margin-top: 2px;
+      }
+      .phase-body {}
+      .phase-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 14px; font-weight: 600;
+        color: #fff;
+        margin-bottom: 6px;
+      }
+      .phase-items {
+        display: flex; flex-wrap: wrap; gap: 6px;
+      }
+      .tag {
+        padding: 3px 10px;
+        border-radius: 8px;
+        background: rgba(255,255,255,.05);
+        border: 1px solid var(--border);
+        font-size: 12px;
+        color: var(--muted);
+      }
 
-      @media (max-width: 900px) {
-        .container {
-          padding: 20px;
-        }
+      /* lang modules */
+      .lang-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+      .lang-block {}
+      .lang-title {
+        font-size: 13px; font-weight: 600;
+        color: var(--orange);
+        margin-bottom: 10px;
+        display: flex; align-items: center; gap: 6px;
+      }
 
-        h1 {
-          font-size: 32px;
-        }
+      /* stat row */
+      .stat-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: var(--border);
+        border-radius: 14px;
+        overflow: hidden;
+        margin-top: 24px;
+        grid-column: 1 / -1;
+      }
+      .stat {
+        background: var(--surface);
+        padding: 28px 24px;
+        text-align: center;
+      }
+      .stat-num {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 36px; font-weight: 700;
+        background: linear-gradient(90deg, var(--red), var(--orange));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        line-height: 1;
+        margin-bottom: 6px;
+      }
+      .stat-label { font-size: 12.5px; color: var(--muted); }
 
-        .intro-box {
-          width: 55px;
-          height: 55px;
-          font-size: 35px;
-        }
+      /* conclusion */
+      .conclusion {
+        grid-column: 1 / -1;
+        padding: 48px;
+        border-radius: 20px;
+        background: linear-gradient(135deg, rgba(217,66,39,.12), rgba(255,122,24,.06));
+        border: 1px solid rgba(217,66,39,.25);
+        text-align: center;
+      }
+      .conclusion h2 {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 28px; font-weight: 700;
+        color: #fff; margin-bottom: 16px;
+      }
+      .conclusion p { color: var(--muted); max-width: 680px; margin: 0 auto 24px; font-size: 15px; }
+      .conclusion .tagline {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 20px; font-weight: 600;
+        background: linear-gradient(90deg, var(--red), var(--orange));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
 
-        .intro-skool {
-          gap: 6px;
-        }
-
-        .navbar {
-          padding: 15px;
-        }
-
-        .logo-text small {
-          display: none;
-        }
+      /* ─── RESPONSIVE ─── */
+      @media (max-width: 860px) {
+        .hero { padding: 60px 24px 40px; }
+        .main  { padding: 16px 24px 80px; grid-template-columns: 1fr; }
+        .section-full, .stat-row { grid-column: 1; }
+        .stat-row { grid-template-columns: 1fr; }
+        nav.topbar { padding: 0 20px; }
+        .logo-label small { display: none; }
+        .lang-grid, .checklist-grid { grid-template-columns: 1fr; }
+        .conclusion { padding: 32px 20px; }
       }
     </style>
   </head>
-
   <body>
-    <!-- INTRO LOADER -->
-    <div class="intro-loader" id="introLoader" role="status" aria-label="Loading SKOOL">
-      <div class="intro-skool" aria-hidden="true">
-        <div class="intro-box">S</div>
-        <div class="intro-box">K</div>
-        <div class="intro-box">O</div>
-        <div class="intro-box">O</div>
-        <div class="intro-box">L</div>
+
+    <!-- LOADER -->
+    <div id="loader" role="status" aria-label="Chargement de SKOOL">
+      <div class="loader-tiles" aria-hidden="true">
+        <div class="loader-tile">S</div>
+        <div class="loader-tile">K</div>
+        <div class="loader-tile">O</div>
+        <div class="loader-tile">O</div>
+        <div class="loader-tile">L</div>
       </div>
     </div>
 
-    <!-- PAGE CONTENT -->
-    <div class="page-content" id="pageContent">
+    <!-- PAGE -->
+    <div id="page">
 
-      <!-- FIX: changed <div class="navbar"> to semantic <nav> element -->
-      <nav class="navbar" aria-label="Main navigation">
-        <!-- FIX: wrapped logo in <a> so it's a proper clickable link -->
-        <a href="index.html" class="logo" aria-label="SKOOL Home">
-          <div class="nav-skool-loader" aria-hidden="true">
-            <div class="nav-skool-box">S</div>
-            <div class="nav-skool-box">K</div>
-            <div class="nav-skool-box">O</div>
-            <div class="nav-skool-box">O</div>
-            <div class="nav-skool-box">L</div>
+      <nav class="topbar" aria-label="Navigation principale">
+        <a href="index.html" class="logo-wrap" aria-label="Accueil SKOOL">
+          <div class="logo-tiles" aria-hidden="true">
+            <div class="logo-tile">S</div>
+            <div class="logo-tile">K</div>
+            <div class="logo-tile">O</div>
+            <div class="logo-tile">O</div>
+            <div class="logo-tile">L</div>
           </div>
-          <span class="logo-text">
+          <span class="logo-label">
             <b>Smart Knowledge</b>
             <small>for Outstanding Online Learning</small>
           </span>
         </a>
-
-        <div>
-          <a href="index.html">Home</a>
+        <div class="nav-links">
+          <a href="index.html">Accueil</a>
         </div>
       </nav>
 
-      <!-- CONTENT -->
-      <div class="container">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-eyebrow">
+          <span></span> Projet en cours — Plateforme 2027
+        </div>
+        <h1>Détails du Projet SKOOL</h1>
+        <p class="hero-sub">Un écosystème éducatif tout-en-un combinant IA, apprentissage des langues et collaboration enseignants — conçu pour transformer l'éducation au Maroc.</p>
+        <div class="badge-row">
+          <span class="badge">🚀 En développement actif</span>
+          <span class="badge badge-outline">📍 Maroc</span>
+        </div>
+      </section>
 
-        <h1>SKOOL Project Details</h1>
+      <!-- STATS -->
+      <div class="main" style="padding-top:0; padding-bottom:0;">
+        <div class="stat-row">
+          <div class="stat">
+            <div class="stat-num">5</div>
+            <div class="stat-label">Phases de déploiement</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">7+</div>
+            <div class="stat-label">Publics cibles</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">2027</div>
+            <div class="stat-label">Lancement complet prévu</div>
+          </div>
+        </div>
+      </div>
 
-        <div class="pulse-badge">🚧 Project In Progress - Modern Learning Platform 2027</div>
+      <!-- CARDS GRID -->
+      <div class="main">
 
-        <h2>Idea</h2>
+        <!-- Idée -->
         <div class="card">
-          SKOOL is an all-in-one educational ecosystem that combines modern education, artificial intelligence, language learning, and teacher collaboration into a single platform.
+          <div class="section-label">Idée</div>
+          <div class="card-title">Une plateforme unifiée</div>
+          <p>SKOOL est un écosystème éducatif tout-en-un qui combine l'éducation moderne, l'intelligence artificielle, l'apprentissage des langues et la collaboration entre enseignants dans une seule plateforme.</p>
         </div>
 
-        <h2>Objective</h2>
-        <div class="card success">
-          SKOOL is a modern online learning platform designed to transform education in Morocco by providing high-quality digital learning experiences.
-          <br><br>
-          The objective is to make learning accessible, interactive, and personalized for every student through modern technologies, smart tools, and collaboration with teachers.
-          <br><br>
-          The platform aims to improve students' academic performance while preparing them for the future digital world.
+        <!-- Opportunité -->
+        <div class="card">
+          <div class="section-label">Opportunité</div>
+          <div class="card-title">Un marché en pleine croissance</div>
+          <p>SKOOL a une forte opportunité de devenir la plateforme éducative de référence au Maroc et de s'étendre à l'international. La combinaison IA + langues + enseignants crée une proposition de valeur unique.</p>
         </div>
 
-        <h2>Target Population</h2>
-        <div class="card info">
-          SKOOL is designed for:
-          <br><br>
-          ✔ Middle school students<br>
-          ✔ 1BAC students<br>
-          ✔ 2BAC students<br>
-          ✔ Concours preparation students<br>
-          ✔ French learners<br>
-          ✔ English learners<br>
-          ✔ Teachers and educational institutions
+        <!-- Objectif -->
+        <div class="card section-full">
+          <div class="section-label">Objectif</div>
+          <div class="card-title">Transformer l'éducation numérique</div>
+          <p>SKOOL est conçu pour rendre l'apprentissage accessible, interactif et personnalisé pour chaque étudiant grâce aux technologies modernes, aux outils intelligents et à la collaboration avec les enseignants.<br><br>La plateforme vise à améliorer les performances académiques tout en préparant les étudiants au futur monde numérique.</p>
         </div>
 
-        <h2>Modern Technologies Used</h2>
-        <div class="card success">
-          The platform will use modern technologies such as:
-          <br><br>
-          ✔ Artificial Intelligence (AI)<br>
-          ✔ Responsive Web Technologies<br>
-          ✔ Mobile Applications<br>
-          ✔ Cloud Computing<br>
-          ✔ Learning Analytics<br>
-          ✔ Smart Recommendation Systems<br>
-          ✔ Gamification<br>
-          ✔ Secure Databases<br>
-          ✔ Real-time Communication Systems<br>
-          ✔ Interactive Dashboards
+        <!-- Population cible -->
+        <div class="card">
+          <div class="section-label">Population cible</div>
+          <div class="card-title">Pour qui ?</div>
+          <ul class="checklist">
+            <li>Élèves du collège</li>
+            <li>Élèves de 1ère BAC</li>
+            <li>Élèves de 2ème BAC</li>
+            <li>Préparation aux concours</li>
+            <li>Apprenants de français</li>
+            <li>Apprenants d'anglais</li>
+            <li>Enseignants et établissements</li>
+          </ul>
         </div>
 
-        <h2>Motivation</h2>
-        <div class="card warning">
-          Many students struggle because educational resources are scattered across YouTube, PDFs, social media, and messaging applications.
-          <br><br>
-          SKOOL centralizes everything into one modern platform and makes learning simpler, more efficient, and more engaging.
-          <br><br>
-          The platform motivates students through interactive content, progress tracking, and personalized learning paths.
+        <!-- Technologies -->
+        <div class="card">
+          <div class="section-label">Technologies modernes</div>
+          <div class="card-title">Stack technologique</div>
+          <ul class="checklist">
+            <li>Intelligence Artificielle (IA)</li>
+            <li>Technologies Web Responsive</li>
+            <li>Applications mobiles</li>
+            <li>Cloud Computing</li>
+            <li>Analytique de l'apprentissage</li>
+            <li>Systèmes de recommandation intelligents</li>
+            <li>Gamification</li>
+            <li>Communication en temps réel</li>
+          </ul>
         </div>
 
-        <h2>Quality of Education</h2>
-        <div class="card success">
-          SKOOL focuses on delivering high-quality education through:
-          <br><br>
-          ✔ Structured courses<br>
-          ✔ Updated content<br>
-          ✔ Short educational videos<br>
-          ✔ Practical exercises<br>
-          ✔ Smart quizzes<br>
-          ✔ Performance analytics<br>
-          ✔ Personalized recommendations<br>
-          ✔ Official certificates
+        <!-- Motivation -->
+        <div class="card">
+          <div class="section-label">Motivation</div>
+          <div class="card-title">Pourquoi SKOOL ?</div>
+          <p>De nombreux étudiants rencontrent des difficultés car les ressources éducatives sont dispersées entre YouTube, PDF, réseaux sociaux et messageries. SKOOL centralise tout dans une seule plateforme moderne, plus simple, plus efficace et plus engageante.</p>
         </div>
 
-        <h2>Collaboration with Teachers</h2>
-        <div class="card info">
-          Teachers play an essential role in the platform.
-          <br><br>
-          They can:
-          <br><br>
-          ✔ Upload courses<br>
-          ✔ Create quizzes<br>
-          ✔ Monitor student progress<br>
-          ✔ Organize live sessions<br>
-          ✔ Communicate with students<br>
-          ✔ Share educational resources<br>
-          ✔ Evaluate learners
+        <!-- Réalité du marché -->
+        <div class="card">
+          <div class="section-label">Réalité du marché</div>
+          <div class="card-title">Le problème actuel</div>
+          <p>Les étudiants utilisent plusieurs plateformes déconnectées. Il manque un écosystème éducatif complet adapté aux étudiants marocains. La demande en éducation numérique continue de croître chaque année.</p>
         </div>
 
-        <h2>Learning French &amp; English</h2>
-        <div class="card success">
-          SKOOL includes dedicated language learning modules.
-          <br><br>
-          <strong>French Learning:</strong><br>
-          ✔ Grammar<br>
-          ✔ Vocabulary<br>
-          ✔ Listening<br>
-          ✔ Writing<br>
-          ✔ Speaking exercises<br>
-          ✔ French certifications preparation.
-          <br><br>
-          <strong>English Learning:</strong><br>
-          ✔ Grammar<br>
-          ✔ Vocabulary<br>
-          ✔ Pronunciation<br>
-          ✔ Listening<br>
-          ✔ Conversation practice<br>
-          ✔ International exam preparation.
+        <!-- Ce que la plateforme inclut -->
+        <div class="card section-full">
+          <div class="section-label">Ce que la plateforme inclut</div>
+          <div class="card-title">Fonctionnalités complètes</div>
+          <ul class="checklist checklist-grid">
+            <li>Leçons vidéo</li>
+            <li>Résumés PDF</li>
+            <li>Quiz QCM intelligents</li>
+            <li>Suivi des scores</li>
+            <li>Tableau de bord des progrès</li>
+            <li>Certificats officiels</li>
+            <li>Chats de groupe étudiants</li>
+            <li>Tuteur IA</li>
+            <li>Cours en direct</li>
+            <li>Gestion des devoirs</li>
+            <li>Tableau de bord enseignant</li>
+            <li>Système de notifications</li>
+            <li>Récompenses de gamification</li>
+            <li>Parcours d'apprentissage personnalisés</li>
+          </ul>
         </div>
 
-        <h2>What the Platform Includes</h2>
-        <div class="card info">
-          ✔ Video lessons<br>
-          ✔ PDF summaries<br>
-          ✔ Smart QCM quizzes<br>
-          ✔ Score tracking<br>
-          ✔ Progress dashboard<br>
-          ✔ Certificates<br>
-          ✔ Group chats between students<br>
-          ✔ AI tutor<br>
-          ✔ Live classes<br>
-          ✔ Homework management<br>
-          ✔ Teacher dashboard<br>
-          ✔ Notifications system<br>
-          ✔ Gamification rewards<br>
-          ✔ Personalized learning paths
+        <!-- Qualité de l'éducation -->
+        <div class="card">
+          <div class="section-label">Qualité de l'éducation</div>
+          <div class="card-title">Standards élevés</div>
+          <ul class="checklist">
+            <li>Cours structurés</li>
+            <li>Contenus régulièrement mis à jour</li>
+            <li>Vidéos éducatives courtes</li>
+            <li>Exercices pratiques</li>
+            <li>Quiz intelligents adaptatifs</li>
+            <li>Analyses de performance</li>
+            <li>Recommandations personnalisées</li>
+            <li>Certificats officiels</li>
+          </ul>
         </div>
 
-        <h2>Market Reality</h2>
-        <div class="card warning">
-          Students currently use multiple disconnected platforms.
-          <br><br>
-          There is a lack of a complete educational ecosystem adapted to Moroccan students and modern learning methods.
-          <br><br>
-          Digital education demand continues to grow every year.
+        <!-- Collaboration enseignants -->
+        <div class="card">
+          <div class="section-label">Collaboration enseignants</div>
+          <div class="card-title">Rôle clé des enseignants</div>
+          <ul class="checklist">
+            <li>Télécharger des cours</li>
+            <li>Créer des quiz</li>
+            <li>Suivre les progrès des étudiants</li>
+            <li>Organiser des sessions en direct</li>
+            <li>Communiquer avec les étudiants</li>
+            <li>Partager des ressources éducatives</li>
+            <li>Évaluer les apprenants</li>
+          </ul>
         </div>
 
-        <h2>Opportunity</h2>
-        <div class="card success">
-          SKOOL has a strong opportunity to become a reference educational platform in Morocco and potentially expand internationally.
-          <br><br>
-          The combination of AI, language learning, and teacher collaboration creates a unique value proposition.
+        <!-- Langues -->
+        <div class="card section-full">
+          <div class="section-label">Apprentissage des langues</div>
+          <div class="card-title">Modules dédiés français &amp; anglais</div>
+          <div class="lang-grid">
+            <div class="lang-block">
+              <div class="lang-title">🇫🇷 Français</div>
+              <ul class="checklist">
+                <li>Grammaire</li>
+                <li>Vocabulaire</li>
+                <li>Compréhension orale</li>
+                <li>Expression écrite</li>
+                <li>Expression orale</li>
+                <li>Préparation aux certifications françaises</li>
+              </ul>
+            </div>
+            <div class="lang-block">
+              <div class="lang-title">🇬🇧 Anglais</div>
+              <ul class="checklist">
+                <li>Grammaire</li>
+                <li>Vocabulaire</li>
+                <li>Prononciation</li>
+                <li>Compréhension orale</li>
+                <li>Pratique de la conversation</li>
+                <li>Préparation aux examens internationaux</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
-        <h2>Strategy</h2>
-        <div class="card info">
-          <strong>PHASE 1</strong><br>
-          ✔ Core courses<br>
-          ✔ Videos<br>
-          ✔ PDFs<br>
-          ✔ Smart QCM<br>
-          ✔ Score tracking
-          <br><br>
-          <strong>PHASE 2</strong><br>
-          ✔ Certificates<br>
-          ✔ Student community<br>
-          ✔ Gamification
-          <br><br>
-          <strong>PHASE 3</strong><br>
-          ✔ AI Tutor<br>
-          ✔ Personalized learning
-          <br><br>
-          <strong>PHASE 4</strong><br>
-          ✔ Live classes<br>
-          ✔ Teacher marketplace<br>
-          ✔ Mobile applications
-          <br><br>
-          <strong>PHASE 5</strong><br>
-          ✔ International expansion<br>
-          ✔ Advanced AI assistant<br>
-          ✔ Multilingual education
+        <!-- Stratégie / Phases -->
+        <div class="card section-full">
+          <div class="section-label">Stratégie</div>
+          <div class="card-title">Plan de déploiement en 5 phases</div>
+          <div class="phases">
+            <div class="phase">
+              <div class="phase-num">1</div>
+              <div class="phase-body">
+                <div class="phase-title">Fondations</div>
+                <div class="phase-items">
+                  <span class="tag">Cours principaux</span>
+                  <span class="tag">Vidéos</span>
+                  <span class="tag">PDFs</span>
+                  <span class="tag">QCM intelligents</span>
+                  <span class="tag">Suivi des scores</span>
+                </div>
+              </div>
+            </div>
+            <div class="phase">
+              <div class="phase-num">2</div>
+              <div class="phase-body">
+                <div class="phase-title">Communauté</div>
+                <div class="phase-items">
+                  <span class="tag">Certificats</span>
+                  <span class="tag">Communauté étudiante</span>
+                  <span class="tag">Gamification</span>
+                </div>
+              </div>
+            </div>
+            <div class="phase">
+              <div class="phase-num">3</div>
+              <div class="phase-body">
+                <div class="phase-title">Intelligence Artificielle</div>
+                <div class="phase-items">
+                  <span class="tag">Tuteur IA</span>
+                  <span class="tag">Apprentissage personnalisé</span>
+                </div>
+              </div>
+            </div>
+            <div class="phase">
+              <div class="phase-num">4</div>
+              <div class="phase-body">
+                <div class="phase-title">Live &amp; Mobile</div>
+                <div class="phase-items">
+                  <span class="tag">Cours en direct</span>
+                  <span class="tag">Marketplace enseignants</span>
+                  <span class="tag">Applications mobiles</span>
+                </div>
+              </div>
+            </div>
+            <div class="phase">
+              <div class="phase-num">5</div>
+              <div class="phase-body">
+                <div class="phase-title">Expansion internationale</div>
+                <div class="phase-items">
+                  <span class="tag">Expansion internationale</span>
+                  <span class="tag">Assistant IA avancé</span>
+                  <span class="tag">Éducation multilingue</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <h2>Conclusion (Modern Platform 2027)</h2>
-        <div class="card success">
-          SKOOL is a vision for the future of education.
-          <br><br>
-          It is not simply an online learning platform but a complete educational ecosystem that combines technology, artificial intelligence, language learning, and teacher collaboration.
-          <br><br>
-          The ambition is to build one of the most innovative educational platforms by 2027 and provide accessible, high-quality education for everyone.
-          <br><br>
-          <strong>Learn Smarter. Grow Faster. Build Your Future.</strong>
+        <!-- Conclusion -->
+        <div class="conclusion">
+          <h2>Plateforme moderne 2027</h2>
+          <p>SKOOL n'est pas simplement une plateforme d'apprentissage en ligne — c'est un écosystème éducatif complet qui combine technologie, intelligence artificielle, apprentissage des langues et collaboration avec les enseignants. L'ambition est de construire l'une des plateformes éducatives les plus innovantes d'ici 2027.</p>
+          <div class="tagline">Apprenez plus intelligemment. Progressez plus vite. Construisez votre avenir.</div>
         </div>
 
       </div>
     </div>
 
     <script>
-      window.addEventListener("load", function () {
+      window.addEventListener('load', function () {
         setTimeout(function () {
-          document.getElementById("introLoader").classList.add("hide");
-          document.getElementById("pageContent").classList.add("show");
-        }, 1000);
+          document.getElementById('loader').classList.add('hide');
+          document.getElementById('page').classList.add('show');
+        }, 1200);
       });
     </script>
   </body>
