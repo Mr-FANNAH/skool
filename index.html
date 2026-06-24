@@ -149,6 +149,8 @@
         display: flex;
         gap: 3px;
       }
+
+      /* ─── LOGO TILE — no CSS animation, JS handles everything ─── */
       .logo-tile {
         width: 27px;
         height: 27px;
@@ -162,38 +164,6 @@
         align-items: center;
         justify-content: center;
         box-shadow: 0 0 9px var(--red-glow);
-        animation: navPulse 5s infinite ease-in-out;
-      }
-      .logo-tile:nth-child(1) {
-        animation-delay: 0s;
-      }
-      .logo-tile:nth-child(2) {
-        animation-delay: 0.2s;
-      }
-      .logo-tile:nth-child(3) {
-        animation-delay: 0.4s;
-      }
-      .logo-tile:nth-child(4) {
-        animation-delay: 0.6s;
-      }
-      .logo-tile:nth-child(5) {
-        animation-delay: 0.8s;
-      }
-
-      @keyframes navPulse {
-        0%,
-        100% {
-          opacity: 0.35;
-          transform: translateY(2px) scale(0.88);
-        }
-        20%,
-        60% {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-        }
-        40% {
-          transform: translateY(-4px) scale(1.07);
-        }
       }
 
       .logo-label {
@@ -455,26 +425,7 @@
         }
       }
 
-      /* ─── RESPONSIVE ─── */
-      @media (max-width: 860px) {
-        nav.topbar {
-          padding: 0 18px;
-        }
-        .logo-label small {
-          display: none;
-        }
-        .loader-tile {
-          width: 54px;
-          height: 54px;
-          font-size: 36px;
-        }
-        .loader-tiles {
-          gap: 6px;
-        }
-      }
-
-      /* ollllllllllllllllllllll */
-
+      /* ─── HERO SKOOL LETTERS ─── */
       .skool-h1 {
         display: flex;
         gap: 10px;
@@ -487,8 +438,8 @@
       .s-letter {
         width: 50px;
         height: 88px;
-        color: #d94227 !important; /* ← force white text */
-        -webkit-text-fill-color: #d94227; /* ← fix if gradient h1 overrides it */
+        color: #d94227 !important;
+        -webkit-text-fill-color: #d94227;
         font-family: Arial, sans-serif;
         font-size: 58px;
         font-weight: 700;
@@ -499,7 +450,6 @@
         transform-style: preserve-3d;
         line-height: 1;
       }
-
       .s-letter:nth-child(1) {
         animation-delay: 0s;
       }
@@ -526,6 +476,24 @@
           transform: rotateY(360deg);
         }
       }
+
+      /* ─── RESPONSIVE ─── */
+      @media (max-width: 860px) {
+        nav.topbar {
+          padding: 0 18px;
+        }
+        .logo-label small {
+          display: none;
+        }
+        .loader-tile {
+          width: 54px;
+          height: 54px;
+          font-size: 36px;
+        }
+        .loader-tiles {
+          gap: 6px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -546,17 +514,18 @@
       <nav class="topbar" aria-label="Navigation principale">
         <a href="index.html" class="logo-wrap" aria-label="Accueil SKOOL">
           <div class="logo-tiles" aria-hidden="true">
-            <div class="logo-tile">S</div>
-            <div class="logo-tile">K</div>
-            <div class="logo-tile">O</div>
-            <div class="logo-tile">O</div>
-            <div class="logo-tile">L</div>
+            <div class="logo-tile" id="t0">S</div>
+            <div class="logo-tile" id="t1">K</div>
+            <div class="logo-tile" id="t2">O</div>
+            <div class="logo-tile" id="t3">O</div>
+            <div class="logo-tile" id="t4">L</div>
           </div>
           <span class="logo-label">
             <b>Smart Knowledge</b>
             <small>for Outstanding Online Learning</small>
           </span>
         </a>
+        <div class="nav-links"></div>
       </nav>
 
       <!-- HERO -->
@@ -586,7 +555,7 @@
 
         <!-- Copy -->
         <div class="hero-copy">
-          <div class="hero-eyebrow"><span></span> Projets en cours de développement — 2027</div>
+          <div class="hero-eyebrow"><span></span> Projet en cours — 2027</div>
           <h1 class="skool-h1" aria-label="SKOOL">
             <span class="s-letter">S</span>
             <span class="s-letter">K</span>
@@ -610,24 +579,116 @@
         </div>
       </section>
     </div>
+    <!-- /page -->
 
     <script>
-      // Loader
+      // ─── LOADER ───────────────────────────────────────────────────
       window.addEventListener("load", function () {
         setTimeout(function () {
           document.getElementById("loader").classList.add("hide");
           document.getElementById("page").classList.add("show");
-        }, 1000);
+        }, 1300);
       });
 
-      // Slideshow
+      // ─── SLIDESHOW ────────────────────────────────────────────────
       const slides = document.querySelectorAll(".slide");
       let current = 0;
       setInterval(function () {
         slides[current].classList.remove("active");
         current = (current + 1) % slides.length;
         slides[current].classList.add("active");
-      }, 20000);
+      }, 5000);
+
+      // ─── LOGO ANIMATION CHAIN ─────────────────────────────────────
+      // 5 animations play one by one, each separated by a 3 s pause.
+      // Sequence loops forever: wave → flip Y → pulse → shake → burn → wave → …
+      (function () {
+        const tiles = ["t0", "t1", "t2", "t3", "t4"].map(function (id) {
+          return document.getElementById(id);
+        });
+
+        var ANIM_DURATION = 3000; // ms: how long each animation plays
+        var PAUSE = 4000; // ms: pause between animations
+
+        // Dedicated <style> element we swap out for each animation
+        var styleEl = document.createElement("style");
+        document.head.appendChild(styleEl);
+
+        // Reset every tile to its base state
+        function clearAll() {
+          tiles.forEach(function (t) {
+            t.style.animation = "none";
+            t.style.transform = "";
+            t.style.background = "";
+            t.style.boxShadow = "";
+            t.style.animationDelay = "";
+          });
+        }
+
+        // The 5 animations
+        var animations = [
+          // 1. WAVE — tiles bob up and down in a ripple
+          {
+            css: "@keyframes logo-wave { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }",
+            apply: function (t, i) {
+              t.style.animation = "logo-wave 0.6s ease-in-out infinite";
+              t.style.animationDelay = i * 0.5 + "s";
+            },
+          },
+
+          // 3. PULSE SCALE — tiles grow and shrink one by one
+          {
+            css: "@keyframes logo-pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.38)} }",
+            apply: function (t, i) {
+              t.style.animation = "logo-pulse 0.5s ease-in-out infinite";
+              t.style.animationDelay = i * 0.3 + "s";
+            },
+          },
+
+          // 4. SHAKE — rapid left-right shake with a slight tilt
+
+          // 5. COLOR BURN — tiles flare to a brighter red with a glow
+          {
+            css: "@keyframes logo-burn { 0%,100%{background:#d94227;box-shadow:0 0 9px rgba(217,66,39,0.4);transform:scale(1)} 50%{background:#ff6a40;box-shadow:0 0 24px rgba(255,106,64,0.85);transform:scale(1.14)} }",
+            apply: function (t, i) {
+              t.style.animation = "logo-burn 0.7s ease-in-out infinite";
+              t.style.animationDelay = i * 0.2 + "s";
+            },
+          },
+        ];
+
+        var step = 0;
+
+        function runNext() {
+          clearAll();
+
+          var anim = animations[step % animations.length];
+          step++;
+
+          // Inject keyframes
+          styleEl.textContent = anim.css;
+
+          // Force reflow so "animation: none" from clearAll actually commits
+          // before we re-apply the new animation
+          tiles.forEach(function (t) {
+            return t.offsetWidth;
+          });
+
+          // Apply animation to each tile
+          tiles.forEach(function (t, i) {
+            anim.apply(t, i);
+          });
+
+          // After ANIM_DURATION ms: stop, pause, then play the next one
+          setTimeout(function () {
+            clearAll();
+            setTimeout(runNext, PAUSE);
+          }, ANIM_DURATION);
+        }
+
+        // Kick off after the loader finishes (matches the 1300 ms loader delay)
+        setTimeout(runNext, 1400);
+      })();
     </script>
   </body>
 </html>
