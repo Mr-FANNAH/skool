@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skool — Learning Ecosystem</title>
+
+  <!-- Google Fonts: Poppins for headings/body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Icon font (Font Awesome) for nav/feature/star icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="lang-card.css">
+</head>
+<body>
+
+  <!-- ============================= -->
+  <!-- LOADER / AUDIO ENTRY GATE      -->
+  <!-- The SKOOL tiles bounce in while skool.mp3 plays. The page      -->
+  <!-- underneath (#page) stays hidden until the audio finishes.      -->
+  <!-- If the browser blocks autoplay, "Cliquez pour entrer" appears  -->
+  <!-- so a single click satisfies the browser + starts the audio.    -->
+  <!-- ============================= -->
+  <div id="loader" role="status" aria-label="Loading SKOOL">
+    <div class="loader-tiles" aria-hidden="true">
+      <span class="loader-tile">S</span>
+      <span class="loader-tile">K</span>
+      <span class="loader-tile">O</span>
+      <span class="loader-tile">O</span>
+      <span class="loader-tile">L</span>
+    </div>
+    <button id="enterBtn" class="enter-btn" type="button">Cliquez pour entrer</button>
+  </div>
+
+  <!-- Welcome audio: plays once per session, page unlocks when it ends -->
+  <audio id="welcomeAudio" src="skool.mp3" preload="auto"></audio>
+
+  <!-- Page content is wrapped so it can be faded in once the loader hides -->
+  <div id="page">
+
+  <!-- ============================= -->
+  <!-- HEADER / NAVIGATION COMPONENT -->
+  <!-- ============================= -->
+  <header class="site-header">
+    <div class="container header-inner">
+
+      <!-- Logo component: each letter sits in its own colored tile -->
+      <a href="index.html" class="logo" aria-label="Skool home">
+       <img style="height: 45px;" src="logo1.png" alt="">
+      </a>
+
+      <!-- Primary navigation -->
+      <nav class="main-nav" aria-label="Primary">
+        <ul>
+          <li><a href="#" class="nav-link active"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="#courses" class="nav-link"><i class="fa-solid fa-graduation-cap"></i> Formations</a></li>
+          <li><a href="#" class="nav-link"><i class="fa-solid fa-users"></i> Community</a></li>
+          <li><a href="#" class="nav-link"><i class="fa-solid fa-circle-info"></i> About</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right-side actions: notifications + profile avatar -->
+      <div class="header-actions">
+        <button class="icon-btn notification-btn" aria-label="Notifications">
+          <i class="fa-regular fa-bell"></i>
+          <span class="badge">3</span>
+        </button>
+        <a href="#" class="avatar" aria-label="My profile">
+          <img src="avatar.jpg" alt="User profile avatar">
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============================= -->
+    <!-- HERO SECTION COMPONENT        -->
+    <!-- ============================= -->
+    <section class="hero">
+      <div class="container hero-inner">
+
+        <!-- Hero copy + CTAs -->
+        <div class="hero-text">
+          <h1>
+            Welcome to<br>
+            <span class="highlight">SKOOL</span>
+          </h1>
+          <p class="hero-description">
+            An intelligent learning ecosystem that combines
+            <span class="accent-text">AI, structured courses, language learning,
+            exam preparation, and teacher collaboration</span>
+            to help every learner reach their full potential.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="profile.html" class="btn btn-primary">
+              <i class="fa-solid fa-user"></i> My profile
+            </a>
+            <a href="#courses" class="btn btn-outline">
+              <i class="fa-solid fa-play"></i> Explore courses
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero visual: classroom photo + floating info cards -->
+        <div class="hero-visual">
+          <div class="hero-decoration" aria-hidden="true"></div>
+
+          <span class="floating-tag tag-ai">
+            <i class="fa-solid fa-bolt"></i> Powered by AI
+          </span>
+
+          <img src="./hero-classroom.jpg" alt="Teacher presenting an AI-powered lesson on a smart screen to students" class="hero-image">
+
+          <div class="floating-card card-together">
+            <i class="fa-solid fa-user-group"></i>
+            <div>
+              <strong>Learn Together</strong>
+              <span>Grow together with thousands of learners</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================= -->
+    <!-- STATS BAR COMPONENT           -->
+    <!-- ============================= -->
+    <section class="stats">
+      <div class="container stats-box">
+
+        <div class="stat-item">
+          <div class="stat-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+          <div class="stat-content">
+            <strong>9+</strong>
+            <span class="stat-title">Teachers</span>
+            <p>Expert educators guiding your journey</p>
+          </div>
+        </div>
+
+        <div class="stat-divider" aria-hidden="true"></div>
+
+        <div class="stat-item">
+          <div class="stat-icon"><i class="fa-solid fa-code"></i></div>
+          <div class="stat-content">
+            <strong>3+</strong>
+            <span class="stat-title">Our Team Dev</span>
+            <p>Passionate developers building the future</p>
+          </div>
+        </div>
+
+        <div class="stat-divider" aria-hidden="true"></div>
+
+        <div class="stat-item">
+          <div class="stat-icon"><i class="fa-solid fa-book-open"></i></div>
+          <div class="stat-content">
+            <strong>3+</strong>
+            <span class="stat-title">Formations</span>
+            <p>High-quality courses for every learner</p>
+          </div>
+        </div>
+
+        <div class="stat-divider" aria-hidden="true"></div>
+
+        <div class="stat-item">
+          <div class="stat-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div class="stat-content">
+            <strong>99+</strong>
+            <span class="stat-title">Students</span>
+            <p>Active learners achieving their goals</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================= -->
+    <!-- COURSES GRID COMPONENT        -->
+    <!-- ============================= -->
+    <section class="courses" id="courses">
+      <div class="container">
+        <div class="courses-grid">
+
+          <!-- Course Card: EPS -->
+          <article class="course-card">
+            <div class="course-image">
+              <img src="course-eps.jpg" alt="Physical education equipment, a football on a pitch">
+              <span class="badge-tag badge-new"><i class="fa-solid fa-star"></i> Nouveau</span>
+              <span class="badge-level">2BAC</span>
+            </div>
+            <div class="course-body">
+              <h3>Préparer le concours EPS (CRMEF)</h3>
+              <p class="course-desc">Programme complet selon le nouveau curriculum</p>
+              <ul class="course-features">
+                <li><i class="fa-solid fa-book"></i> Cours complets</li>
+                <li><i class="fa-solid fa-dumbbell"></i> Exercices &amp; Quiz</li>
+                <li><i class="fa-solid fa-file-lines"></i> Fiches &amp; Résumés</li>
+              </ul>
+              <div class="course-meta">
+                <span class="rating"><i class="fa-solid fa-star"></i> 4.7 &bull; 1,245 étudiants</span>
+              </div>
+              <div class="course-footer">
+                <a href="eps.html" class="btn-course btn-course--red">Cours</a>
+                <span class="price price--red">100DHs/mois</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Course Card: Physique et Chimie -->
+          <article class="course-card">
+            <div class="course-image">
+              <img src="course-physique.jpg" alt="Chemistry lab flasks with colored liquids and a molecule model">
+              <span class="badge-tag badge-popular"><i class="fa-solid fa-fire"></i> Populaire</span>
+              <span class="badge-level">2BAC</span>
+            </div>
+            <div class="course-body">
+              <h3>Physique et Chimie 2ème BAC Sciences Physiques.</h3>
+              <p class="course-desc">Cours détaillés, exercices et examens nationaux</p>
+              <ul class="course-features">
+                <li><i class="fa-solid fa-book"></i> Cours détaillés</li>
+                <li><i class="fa-solid fa-pen"></i> Exercices corrigés</li>
+                <li><i class="fa-solid fa-file-lines"></i> Examens nationaux</li>
+              </ul>
+              <div class="course-meta">
+                <span class="rating"><i class="fa-solid fa-star"></i> 4.8 &bull; 2,153 étudiants</span>
+              </div>
+              <div class="course-footer">
+                <a href="#" class="btn-course btn-course--blue">Cours</a>
+                <span class="price price--blue">50Dhs/mois</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Course Card: SVT -->
+          <article class="course-card">
+            <div class="course-image">
+              <img src="course-svt.jpg" alt="Microscope on a leaf-covered surface for life sciences">
+              <span class="badge-tag badge-recommended"><i class="fa-solid fa-circle-check"></i> Recommandé</span>
+              <span class="badge-level">2BAC</span>
+            </div>
+            <div class="course-body">
+              <h3>Sciences de la Vie et de la Terre (SVT) - 2ème Bac</h3>
+              <p class="course-desc">Sciences de la Vie et de la Terre</p>
+              <ul class="course-features">
+                <li><i class="fa-solid fa-book"></i> Cours complets</li>
+                <li><i class="fa-solid fa-diagram-project"></i> Schémas &amp; Résumés</li>
+                <li><i class="fa-solid fa-list-check"></i> Exercices &amp; Quiz</li>
+              </ul>
+              <div class="course-meta">
+                <span class="rating"><i class="fa-solid fa-star"></i> 4.6 &bull; 1,876 étudiants</span>
+              </div>
+              <div class="course-footer">
+                <a href="#" class="btn-course btn-course--green">Cours</a>
+                <span class="price price--green">50Dhs/mois</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Course Card: Maths -->
+          <article class="course-card">
+            <div class="course-image">
+              <img src="course-maths.jpg" alt="Mathematical equations and a calculator on a dark background">
+              <span class="badge-tag badge-bestseller"><i class="fa-solid fa-crown"></i> Best-seller</span>
+              <span class="badge-level">2BAC</span>
+            </div>
+            <div class="course-body">
+              <h3>Mathématiques 2ème BAC Sciences Physiques.</h3>
+              <p class="course-desc">Cours complet avec exercices et solutions</p>
+              <ul class="course-features">
+                <li><i class="fa-solid fa-book"></i> Cours détaillés</li>
+                <li><i class="fa-solid fa-pen"></i> Exercices corrigés</li>
+                <li><i class="fa-solid fa-file-lines"></i> Examens &amp; Annales</li>
+              </ul>
+              <div class="course-meta">
+                <span class="rating"><i class="fa-solid fa-star"></i> 4.8 &bull; 2,932 étudiants</span>
+              </div>
+              <div class="course-footer">
+                <a href="#" class="btn-course btn-course--purple">Cours</a>
+                <span class="price price--purple">50Dhs/mois</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+    
+
+    <h1 class="demo-heading">Language course card — component</h1>
+
+    <div class="lang-card-grid">
+
+      <!-- ============================================= -->
+      <!-- COMPONENT INSTANCE 1 — English (blue theme)    -->
+      <!-- ============================================= -->
+      <article class="lang-card lang-card--en">
+
+        <!-- Banner: gradient background + line-art scenery + book mockup -->
+        <div class="lang-card__banner">
+
+          <!-- Decorative line-art skyline (Ferris wheel + Big Ben) -->
+          <svg class="lang-card__scenery" viewBox="0 0 520 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <!-- clouds -->
+            <path d="M60 40q-10-14 6-18q4-12 18-8q10-10 20 0q14-2 12 12q10 4 4 14z" fill="none" stroke="#ffffff" stroke-opacity="0.18" stroke-width="1.5"/>
+            <path d="M400 70q-8-11 5-14q3-10 15-6q8-8 16 0q11-2 10 10q8 3 3 11z" fill="none" stroke="#ffffff" stroke-opacity="0.14" stroke-width="1.5"/>
+            <!-- ferris wheel -->
+            <g stroke="#ffffff" stroke-opacity="0.22" stroke-width="1.6" fill="none">
+              <circle cx="230" cy="150" r="62"/>
+              <circle cx="230" cy="150" r="6" fill="#ffffff" fill-opacity="0.22" stroke="none"/>
+              <line x1="230" y1="88" x2="230" y2="212"/>
+              <line x1="168" y1="150" x2="292" y2="150"/>
+              <line x1="186" y1="106" x2="274" y2="194"/>
+              <line x1="186" y1="194" x2="274" y2="106"/>
+              <line x1="230" y1="212" x2="205" y2="248"/>
+              <line x1="230" y1="212" x2="255" y2="248"/>
+              <circle cx="230" cy="88" r="4"/><circle cx="230" cy="212" r="4"/>
+              <circle cx="168" cy="150" r="4"/><circle cx="292" cy="150" r="4"/>
+              <circle cx="186" cy="106" r="4"/><circle cx="274" cy="194" r="4"/>
+              <circle cx="186" cy="194" r="4"/><circle cx="274" cy="106" r="4"/>
+            </g>
+            <!-- big ben tower -->
+            <g stroke="#ffffff" stroke-opacity="0.24" stroke-width="1.6" fill="none">
+              <rect x="392" y="88" width="34" height="140"/>
+              <polygon points="392,88 409,58 426,88"/>
+              <line x1="409" y1="58" x2="409" y2="40"/>
+              <circle cx="409" cy="112" r="11"/>
+              <line x1="409" y1="106" x2="409" y2="112"/>
+              <line x1="409" y1="112" x2="414" y2="115"/>
+              <line x1="384" y1="228" x2="434" y2="228"/>
+              <line x1="398" y1="140" x2="398" y2="220"/>
+              <line x1="420" y1="140" x2="420" y2="220"/>
+            </g>
+          </svg>
+
+          <!-- Popularity badge -->
+          <span class="lang-card__badge"><i class="fa-solid fa-star"></i> Populaire</span>
+
+          <div class="lang-card__banner-grid">
+            <div class="lang-card__copy">
+              <h2 class="lang-card__title">English</h2>
+              <p class="lang-card__tagline">Master Your Future</p>
+              <p class="lang-card__desc">
+                Développez vos compétences en anglais et ouvrez les portes du monde.
+              </p>
+              <span class="lang-card__level">
+                <i class="fa-solid fa-chart-simple"></i>
+                <span>Tous niveaux<small>Débutant à avancé</small></span>
+              </span>
+            </div>
+
+            <!-- Mascot mockup: flag-on-pole + navy book + headphones + chat bubble -->
+            <div class="lang-card__mock" aria-hidden="true">
+              <svg class="mock-flagpole" viewBox="0 0 60 90">
+                <line x1="6" y1="4" x2="6" y2="88" stroke="#dfe3ea" stroke-width="2.5"/>
+                <g>
+                  <rect x="8" y="4" width="46" height="28" fill="#0a247d"/>
+                  <path d="M8 4 L54 32 M54 4 L8 32" stroke="#ffffff" stroke-width="4"/>
+                  <path d="M8 4 L54 32 M54 4 L8 32" stroke="#c8102e" stroke-width="1.6"/>
+                  <path d="M31 4 V32 M8 18 H54" stroke="#ffffff" stroke-width="7"/>
+                  <path d="M31 4 V32 M8 18 H54" stroke="#c8102e" stroke-width="3"/>
+                </g>
+              </svg>
+
+              <div class="mock-book">
+                <span class="mock-book__label">ENGLISH</span>
+              </div>
+
+              <svg class="mock-headphones" viewBox="0 0 90 60">
+                <path d="M8 40 C8 8 82 8 82 40" fill="none" stroke="#1b2b55" stroke-width="7" stroke-linecap="round"/>
+                <rect x="2" y="34" width="16" height="22" rx="7" fill="#1b2b55"/>
+                <rect x="72" y="34" width="16" height="22" rx="7" fill="#1b2b55"/>
+              </svg>
+
+              <div class="mock-bubble">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Body: features, stats, actions -->
+        <div class="lang-card__body">
+
+          <ul class="lang-card__features">
+            <li>
+              <span class="feature-icon"><i class="fa-solid fa-book-open"></i></span>
+              <span><strong>Cours complets</strong><small>Leçons détaillées</small></span>
+            </li>
+            <li>
+              <span class="feature-icon"><i class="fa-solid fa-pen"></i></span>
+              <span><strong>Exercices &amp; Quiz</strong><small>Pratique interactive</small></span>
+            </li>
+            <li>
+              <span class="feature-icon"><i class="fa-solid fa-headphones"></i></span>
+              <span><strong>Écoute &amp; Parle</strong><small>Améliorez votre oral</small></span>
+            </li>
+            <li>
+              <span class="feature-icon"><i class="fa-solid fa-file-lines"></i></span>
+              <span><strong>Examens</strong><small>Tests &amp; évaluations</small></span>
+            </li>
+          </ul>
+
+          <div class="lang-card__stats">
+            <span><i class="fa-solid fa-star"></i> <strong>4.8</strong><small>Note moyenne</small></span>
+            <span><i class="fa-solid fa-user-group"></i> <strong>2,145</strong><small>Étudiants</small></span>
+            <span><i class="fa-regular fa-clock"></i> <strong>28 h</strong><small>Contenu total</small></span>
+            <span><i class="fa-solid fa-chart-simple"></i> <strong>120+</strong><small>Leçons</small></span>
+          </div>
+
+          <div class="lang-card__footer">
+            <button type="button" class="btn-info-outline">
+              <i class="fa-regular fa-circle-info"></i> Voir le programme
+            </button>
+            <button type="button" class="btn-cta">
+              Commencer maintenant <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ============================================= -->
+      <!-- COMPONENT INSTANCE 2 — Français (red theme)    -->
+      <!-- ============================================= -->
+      <article class="lang-card lang-card--fr">
+
+        <div class="lang-card__banner">
+
+          <!-- Decorative line-art skyline (Eiffel tower) -->
+          <svg class="lang-card__scenery" viewBox="0 0 520 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <path d="M70 45q-9-13 5-16q4-11 17-7q9-9 18 0q13-2 11 11q9 3 4 13z" fill="none" stroke="#ffffff" stroke-opacity="0.16" stroke-width="1.5"/>
+            <path d="M170 90q-8-11 5-14q3-10 15-6q8-8 16 0q11-2 10 10q8 3 3 11z" fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="1.5"/>
+            <g stroke="#ffffff" stroke-opacity="0.24" stroke-width="1.6" fill="none" stroke-linejoin="round">
+              <path d="M400 40 L370 232 M400 40 L430 232"/>
+              <path d="M382 130 L418 130"/>
+              <path d="M374 168 L426 168"/>
+              <path d="M366 206 L434 206"/>
+              <path d="M400 40 L382 130 M400 40 L418 130"/>
+              <path d="M394 232 L406 232 L406 244 L394 244 Z"/>
+              <line x1="400" y1="12" x2="400" y2="40"/>
+            </g>
+          </svg>
+
+          <span class="lang-card__badge"><i class="fa-solid fa-star"></i> Populaire</span>
+
+          <div class="lang-card__banner-grid">
+            <div class="lang-card__copy">
+              <h2 class="lang-card__title">Français</h2>
+              <p class="lang-card__tagline">Parlez avec confiance</p>
+              <p class="lang-card__desc">
+                Apprenez le français et exprimez-vous avec aisance.
+              </p>
+              <span class="lang-card__level">
+                <i class="fa-solid fa-chart-simple"></i>
+                <span>Tous niveaux<small>Débutant à avancé</small></span>
+              </span>
+            </div>
+
+            <!-- Mascot mockup: tricolor book + beret + speech bubble -->
+            <div class="lang-card__mock" aria-hidden="true">
+              <div class="mock-book mock-book--tricolor">
+                <span class="mock-book__label">FRANÇAIS</span>
+              </div>
+
+              <svg class="mock-beret" viewBox="0 0 70 46">
+                <ellipse cx="35" cy="30" rx="32" ry="14" fill="#c8102e"/>
+                <ellipse cx="35" cy="24" rx="26" ry="12" fill="#c8102e"/>
+                <rect x="31" y="4" width="5" height="8" rx="2" fill="#8f0c22"/>
+              </svg>
+
+              <div class="mock-bubble mock-bubble--text">Bonjour&nbsp;!</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lang-card__body">
+
+          <ul class="lang-card__features">
+            <li>
+              <span class="feature-icon"><i class="fa-solid fa-book-open"></i></span>
+              <span><strong>Cours complets</strong><small>Leçons détaillées</small></span>
+            </li>
+            <li>
+              <span class="feature-icon"><i class="fa-solid fa-pen"></i></span>
+              <span><strong>Exercices &amp; Quiz</strong><small>Pratique interactive</small></span>
+            </li>
+            <li>
+              <span class="feature-icon"><i class="fa-solid fa-headphones"></i></span>
+              <span><strong>Écoute &amp; Parle</strong><small>Améliorez votre oral</small></span>
+            </li>
+            <li>
+              <span class="feature-icon"><i class="fa-solid fa-file-lines"></i></span>
+              <span><strong>Examens</strong><small>Tests &amp; évaluations</small></span>
+            </li>
+          </ul>
+
+          <div class="lang-card__stats">
+            <span><i class="fa-solid fa-star"></i> <strong>4.7</strong><small>Note moyenne</small></span>
+            <span><i class="fa-solid fa-user-group"></i> <strong>1,892</strong><small>Étudiants</small></span>
+            <span><i class="fa-regular fa-clock"></i> <strong>26 h</strong><small>Contenu total</small></span>
+            <span><i class="fa-solid fa-chart-simple"></i> <strong>110+</strong><small>Leçons</small></span>
+          </div>
+
+          <div class="lang-card__footer">
+            <button type="button" class="btn-info-outline">
+              <i class="fa-regular fa-circle-info"></i> Voir le programme
+            </button>
+            <button type="button" class="btn-cta">
+              Commencer maintenant <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+
+
+ <!-- =============================================
+     OUR SERVICES SECTION COMPONENT
+     Zig-zag layout: icon badge alternates sides,
+     each service has a description + feature list.
+     ============================================= -->
+<section class="services">
+
+
+  <div class="services__head">
+    <h2>Our Services</h2>
+    <p>Five powerful ways SKOOL helps every learner and teacher succeed.</p>
+  </div>
+
+  <!-- 1. Smart Online Courses -->
+  <div class="service-row">
+    <div class="service-icon"><i class="fa-solid fa-laptop"></i></div>
+    <div class="service-copy">
+      <h3>Smart Online Courses</h3>
+      <p>Learn through structured, interactive courses designed by experienced educators. Access video lessons, downloadable resources, and practical exercises anytime, anywhere.</p>
+      <span class="features-label">Features</span>
+      <ul>
+        <li>HD Video Lessons</li>
+        <li>PDF Summaries</li>
+        <li>Interactive Exercises</li>
+        <li>Learning Path</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 2. AI Learning Assistant -->
+  <div class="service-row">
+    <div class="service-icon"><i class="fa-solid fa-brain"></i></div>
+    <div class="service-copy">
+      <h3>AI Learning Assistant</h3>
+      <p>Get instant explanations, personalized study support, lesson summaries, and answers to your questions with an intelligent AI tutor available 24/7.</p>
+      <span class="features-label">Features</span>
+      <ul>
+        <li>AI Tutor</li>
+        <li>Instant Answers</li>
+        <li>Lesson Summaries</li>
+        <li>Personalized Guidance</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 3. Exam & Quiz Preparation -->
+  <div class="service-row">
+    <div class="service-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+    <div class="service-copy">
+      <h3>Exam &amp; Quiz Preparation</h3>
+      <p>Practice with realistic quizzes and mock exams. Receive instant feedback, detailed explanations, and track your improvement over time.</p>
+      <span class="features-label">Features</span>
+      <ul>
+        <li>Smart Quizzes</li>
+        <li>Mock Exams</li>
+        <li>Score Analysis</li>
+        <li>Performance Reports</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 4. Language Learning -->
+  <div class="service-row">
+    <div class="service-icon"><i class="fa-solid fa-language"></i></div>
+    <div class="service-copy">
+      <h3>Language Learning</h3>
+      <p>Develop your language skills through interactive lessons, pronunciation practice, grammar exercises, vocabulary building, and conversation activities.</p>
+      <span class="features-label">Features</span>
+      <ul>
+        <li>Grammar</li>
+        <li>Vocabulary</li>
+        <li>Speaking Practice</li>
+        <li>Listening Activities</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 5. Teacher Collaboration -->
+  <div class="service-row">
+    <div class="service-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+    <div class="service-copy">
+      <h3>Teacher Collaboration</h3>
+      <p>Teachers can create courses, upload educational resources, organize live sessions, assign homework, monitor student progress, and communicate effectively with learners.</p>
+      <span class="features-label">Features</span>
+      <ul>
+        <li>Course Management</li>
+        <li>Live Classes</li>
+        <li>Student Analytics</li>
+        <li>Assignments</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </main>
+
+  </div>
+  <!-- /page -->
+
+  <script src="script.js"></script>
+    <script src="lang-card.js"></script>
+</body>
+</html>
