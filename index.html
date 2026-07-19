@@ -858,7 +858,7 @@
 
         function startAudio() {
           enterBtn.disabled = true;
-          enterBtn.textContent = "🔊 Lecture en cours…";
+          enterBtn.textContent = "";
           audio.play().catch(function () {
             // Still can't play for some reason — don't trap the visitor.
             markPlayed();
