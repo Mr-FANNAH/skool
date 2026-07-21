@@ -1,0 +1,1186 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skool — Learning Ecosystem</title>
+
+    <!-- Google Fonts: Poppins for headings/body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icon font (Font Awesome) for nav/feature/star icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="lang-card.css" />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="services.css" />
+   <link rel="stylesheet" href="servicesservices.css" />
+</head>
+  </head>
+  <body>
+    <!-- ============================= -->
+    <!-- LOADER / AUDIO ENTRY GATE      -->
+    <!-- The SKOOL tiles bounce in while skool.mp3 plays. The page      -->
+    <!-- underneath (#page) stays hidden until the audio finishes.      -->
+    <!-- If the browser blocks autoplay, "Cliquez pour entrer" appears  -->
+    <!-- so a single click satisfies the browser + starts the audio.    -->
+    <!-- ============================= -->
+    <div id="loader" role="status" aria-label="Loading SKOOL">
+      <div class="loader-tiles" aria-hidden="true">
+        <span class="loader-tile">S</span>
+        <span class="loader-tile">K</span>
+        <span class="loader-tile">O</span>
+        <span class="loader-tile">O</span>
+        <span class="loader-tile">L</span>
+      </div>
+      <button id="enterBtn" class="enter-btn" type="button">
+        Cliquez pour entrer
+      </button>
+    </div>
+
+    <!-- Welcome audio: plays once per session, page unlocks when it ends -->
+    <audio id="welcomeAudio" src="skool.mp3" preload="auto"></audio>
+
+    <!-- Page content is wrapped so it can be faded in once the loader hides -->
+    <div id="page">
+      <!-- ============================= -->
+      <!-- HEADER / NAVIGATION COMPONENT -->
+      <!-- ============================= -->
+      <header class="site-header">
+        <div class="container header-inner">
+          <!-- Logo component: each letter sits in its own colored tile -->
+          <a href="index.html" class="logo" aria-label="Skool home">
+            <img style="height: 45px" src="logo1.png" alt="" />
+          </a>
+
+          <!-- Primary navigation -->
+          <nav class="main-nav" aria-label="Primary">
+            <ul>
+              <li>
+                <a href="#" class="nav-link active"
+                  ><i class="fa-solid fa-house"></i> Home</a
+                >
+              </li>
+              <li>
+                <a href="#courses" class="nav-link"
+                  ><i class="fa-solid fa-graduation-cap"></i> Formations</a
+                >
+              </li>
+              <li>
+                <a href="#" class="nav-link"
+                  ><i class="fa-solid fa-users"></i> Community</a
+                >
+              </li>
+              <li>
+                <a href="#" class="nav-link"
+                  ><i class="fa-solid fa-circle-info"></i> About</a
+                >
+              </li>
+            </ul>
+          </nav>
+
+          <!-- Right-side actions: notifications + profile avatar -->
+          <div class="header-actions">
+            <button
+              class="icon-btn notification-btn"
+              aria-label="Notifications"
+            >
+              <i class="fa-regular fa-bell"></i>
+              <span class="badge">3</span>
+            </button>
+            <a href="#" class="avatar" aria-label="My profile">
+              <img src="avatar.jpg" alt="User profile avatar" />
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <!-- ============================= -->
+        <!-- HERO SECTION COMPONENT        -->
+        <!-- ============================= -->
+        <section class="hero">
+          <div class="container hero-inner">
+            <!-- Hero copy + CTAs -->
+            <div class="hero-text">
+              <h1>
+                Welcome to<br />
+                <span class="highlight">SKOOL</span>
+              </h1>
+              <p class="hero-description">
+                An intelligent learning ecosystem that combines
+                <span class="accent-text"
+                  >AI, structured courses, language learning, exam preparation,
+                  and teacher collaboration</span
+                >
+                to help every learner reach their full potential.
+              </p>
+
+              <div class="hero-buttons">
+                <a href="profile.html" class="btn btn-primary">
+                  <i class="fa-solid fa-user"></i> My profile
+                </a>
+                <a href="#courses" class="btn btn-outline">
+                  <i class="fa-solid fa-play"></i> Explore courses
+                </a>
+              </div>
+            </div>
+
+            <!-- Hero visual: classroom photo + floating info cards -->
+            <div class="hero-visual">
+              <div class="hero-decoration" aria-hidden="true"></div>
+
+              <span class="floating-tag tag-ai">
+                <i class="fa-solid fa-bolt"></i> Powered by AI
+              </span>
+
+              <img
+                src="./hero-classroom.jpg"
+                alt="Teacher presenting an AI-powered lesson on a smart screen to students"
+                class="hero-image"
+              />
+
+              <div class="floating-card card-together">
+                <i class="fa-solid fa-user-group"></i>
+                <div>
+                  <strong>Learn Together</strong>
+                  <span>Grow together with thousands of learners</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================= -->
+        <!-- STATS BAR COMPONENT           -->
+        <!-- ============================= -->
+        <section class="stats">
+          <div class="container stats-box">
+            <div class="stat-item">
+              <div class="stat-icon">
+                <i class="fa-solid fa-chalkboard-user"></i>
+              </div>
+              <div class="stat-content">
+                <strong>9+</strong>
+                <span class="stat-title">Teachers</span>
+                <p>Expert educators guiding your journey</p>
+              </div>
+            </div>
+
+            <div class="stat-divider" aria-hidden="true"></div>
+
+            <div class="stat-item">
+              <div class="stat-icon"><i class="fa-solid fa-code"></i></div>
+              <div class="stat-content">
+                <strong>3+</strong>
+                <span class="stat-title">Our Team Dev</span>
+                <p>Passionate developers building the future</p>
+              </div>
+            </div>
+
+            <div class="stat-divider" aria-hidden="true"></div>
+
+            <div class="stat-item">
+              <div class="stat-icon"><i class="fa-solid fa-book-open"></i></div>
+              <div class="stat-content">
+                <strong>3+</strong>
+                <span class="stat-title">Formations</span>
+                <p>High-quality courses for every learner</p>
+              </div>
+            </div>
+
+            <div class="stat-divider" aria-hidden="true"></div>
+
+            <div class="stat-item">
+              <div class="stat-icon">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </div>
+              <div class="stat-content">
+                <strong>99+</strong>
+                <span class="stat-title">Students</span>
+                <p>Active learners achieving their goals</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================= -->
+        <!-- COURSES GRID COMPONENT        -->
+        <!-- ============================= -->
+        <section class="courses" id="courses">
+          <div class="container">
+            <div class="courses-grid">
+              <!-- Course Card: EPS -->
+              <article class="course-card">
+                <div class="course-image">
+                  <img
+                    src="course-eps.jpg"
+                    alt="Physical education equipment, a football on a pitch"
+                  />
+                  <span class="badge-tag badge-new"
+                    ><i class="fa-solid fa-star"></i> Nouveau</span
+                  >
+                  <span class="badge-level">2BAC</span>
+                </div>
+                <div class="course-body">
+                  <h3>Préparer le concours EPS (CRMEF)</h3>
+                  <p class="course-desc">
+                    Programme complet selon le nouveau curriculum
+                  </p>
+                  <ul class="course-features">
+                    <li><i class="fa-solid fa-book"></i> Cours complets</li>
+                    <li>
+                      <i class="fa-solid fa-dumbbell"></i> Exercices &amp; Quiz
+                    </li>
+                    <li>
+                      <i class="fa-solid fa-file-lines"></i> Fiches &amp;
+                      Résumés
+                    </li>
+                  </ul>
+                  <div class="course-meta">
+                    <span class="rating"
+                      ><i class="fa-solid fa-star"></i> 4.7 &bull; 1,245
+                      étudiants</span
+                    >
+                  </div>
+                  <div class="course-footer">
+                    <a href="eps.html" class="btn-course btn-course--red"
+                      >Cours</a
+                    >
+                    <span class="price price--red">Start</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Course Card: Physique et Chimie -->
+              <article class="course-card">
+                <div class="course-image">
+                  <img
+                    src="course-physique.jpg"
+                    alt="Chemistry lab flasks with colored liquids and a molecule model"
+                  />
+                  <span class="badge-tag badge-popular"
+                    ><i class="fa-solid fa-fire"></i> Populaire</span
+                  >
+                  <span class="badge-level">2BAC</span>
+                </div>
+                <div class="course-body">
+                  <h3>Physique et Chimie 2ème BAC Sciences Physiques.</h3>
+                  <p class="course-desc">
+                    Cours détaillés, exercices et examens nationaux
+                  </p>
+                  <ul class="course-features">
+                    <li><i class="fa-solid fa-book"></i> Cours détaillés</li>
+                    <li><i class="fa-solid fa-pen"></i> Exercices corrigés</li>
+                    <li>
+                      <i class="fa-solid fa-file-lines"></i> Examens nationaux
+                    </li>
+                  </ul>
+                  <div class="course-meta">
+                    <span class="rating"
+                      ><i class="fa-solid fa-star"></i> 4.8 &bull; 2,153
+                      étudiants</span
+                    >
+                  </div>
+                  <div class="course-footer">
+                    <a href="resume.html" class="btn-course btn-course--blue">
+                      Cours
+                    </a>
+
+                    <a href="resume.html" class="price price--blue"> Start </a>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Course Card: SVT -->
+              <article class="course-card">
+                <div class="course-image">
+                  <img
+                    src="course-svt.jpg"
+                    alt="Microscope on a leaf-covered surface for life sciences"
+                  />
+                  <span class="badge-tag badge-recommended"
+                    ><i class="fa-solid fa-circle-check"></i> Recommandé</span
+                  >
+                  <span class="badge-level">2BAC</span>
+                </div>
+                <div class="course-body">
+                  <h3>Sciences de la Vie et de la Terre (SVT) - 2ème Bac</h3>
+                  <p class="course-desc">Sciences de la Vie et de la Terre</p>
+                  <ul class="course-features">
+                    <li><i class="fa-solid fa-book"></i> Cours complets</li>
+                    <li>
+                      <i class="fa-solid fa-diagram-project"></i> Schémas &amp;
+                      Résumés
+                    </li>
+                    <li>
+                      <i class="fa-solid fa-list-check"></i> Exercices &amp;
+                      Quiz
+                    </li>
+                  </ul>
+                  <div class="course-meta">
+                    <span class="rating"
+                      ><i class="fa-solid fa-star"></i> 4.6 &bull; 1,876
+                      étudiants</span
+                    >
+                  </div>
+                  <div class="course-footer">
+                    <a href="#" class="btn-course btn-course--green">Cours</a>
+                    <span class="price price--green">Start</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Course Card: Maths -->
+              <article class="course-card">
+                <div class="course-image">
+                  <img
+                    src="course-maths.jpg"
+                    alt="Mathematical equations and a calculator on a dark background"
+                  />
+                  <span class="badge-tag badge-bestseller"
+                    ><i class="fa-solid fa-crown"></i> Best-seller</span
+                  >
+                  <span class="badge-level">2BAC</span>
+                </div>
+                <div class="course-body">
+                  <h3>Mathématiques 2ème BAC Sciences Physiques.</h3>
+                  <p class="course-desc">
+                    Cours complet avec exercices et solutions
+                  </p>
+                  <ul class="course-features">
+                    <li><i class="fa-solid fa-book"></i> Cours détaillés</li>
+                    <li><i class="fa-solid fa-pen"></i> Exercices corrigés</li>
+                    <li>
+                      <i class="fa-solid fa-file-lines"></i> Examens &amp;
+                      Annales
+                    </li>
+                  </ul>
+                  <div class="course-meta">
+                    <span class="rating"
+                      ><i class="fa-solid fa-star"></i> 4.8 &bull; 2,932
+                      étudiants</span
+                    >
+                  </div>
+                  <div class="course-footer">
+                    <a
+                      href="./resume.html"
+                      class="btn-course btn-course--purple"
+                      >Cours</a
+                    >
+                    <span class="price price--purple">Start</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <h1 class="demo-heading">Language course card — component</h1>
+
+        <div class="lang-card-grid">
+          <!-- ============================================= -->
+          <!-- COMPONENT INSTANCE 1 — English (blue theme)    -->
+          <!-- ============================================= -->
+          <article class="lang-card lang-card--en">
+            <!-- Banner: gradient background + line-art scenery + book mockup -->
+            <div class="lang-card__banner">
+              <!-- Decorative line-art skyline (Ferris wheel + Big Ben) -->
+              <svg
+                class="lang-card__scenery"
+                viewBox="0 0 520 260"
+                preserveAspectRatio="xMidYMid slice"
+                aria-hidden="true"
+              >
+                <!-- clouds -->
+                <path
+                  d="M60 40q-10-14 6-18q4-12 18-8q10-10 20 0q14-2 12 12q10 4 4 14z"
+                  fill="none"
+                  stroke="#ffffff"
+                  stroke-opacity="0.18"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M400 70q-8-11 5-14q3-10 15-6q8-8 16 0q11-2 10 10q8 3 3 11z"
+                  fill="none"
+                  stroke="#ffffff"
+                  stroke-opacity="0.14"
+                  stroke-width="1.5"
+                />
+                <!-- ferris wheel -->
+                <g
+                  stroke="#ffffff"
+                  stroke-opacity="0.22"
+                  stroke-width="1.6"
+                  fill="none"
+                >
+                  <circle cx="230" cy="150" r="62" />
+                  <circle
+                    cx="230"
+                    cy="150"
+                    r="6"
+                    fill="#ffffff"
+                    fill-opacity="0.22"
+                    stroke="none"
+                  />
+                  <line x1="230" y1="88" x2="230" y2="212" />
+                  <line x1="168" y1="150" x2="292" y2="150" />
+                  <line x1="186" y1="106" x2="274" y2="194" />
+                  <line x1="186" y1="194" x2="274" y2="106" />
+                  <line x1="230" y1="212" x2="205" y2="248" />
+                  <line x1="230" y1="212" x2="255" y2="248" />
+                  <circle cx="230" cy="88" r="4" />
+                  <circle cx="230" cy="212" r="4" />
+                  <circle cx="168" cy="150" r="4" />
+                  <circle cx="292" cy="150" r="4" />
+                  <circle cx="186" cy="106" r="4" />
+                  <circle cx="274" cy="194" r="4" />
+                  <circle cx="186" cy="194" r="4" />
+                  <circle cx="274" cy="106" r="4" />
+                </g>
+                <!-- big ben tower -->
+                <g
+                  stroke="#ffffff"
+                  stroke-opacity="0.24"
+                  stroke-width="1.6"
+                  fill="none"
+                >
+                  <rect x="392" y="88" width="34" height="140" />
+                  <polygon points="392,88 409,58 426,88" />
+                  <line x1="409" y1="58" x2="409" y2="40" />
+                  <circle cx="409" cy="112" r="11" />
+                  <line x1="409" y1="106" x2="409" y2="112" />
+                  <line x1="409" y1="112" x2="414" y2="115" />
+                  <line x1="384" y1="228" x2="434" y2="228" />
+                  <line x1="398" y1="140" x2="398" y2="220" />
+                  <line x1="420" y1="140" x2="420" y2="220" />
+                </g>
+              </svg>
+
+              <!-- Popularity badge -->
+              <span class="lang-card__badge"
+                ><i class="fa-solid fa-star"></i> Populaire</span
+              >
+
+              <div class="lang-card__banner-grid">
+                <div class="lang-card__copy">
+                  <h2 class="lang-card__title">English</h2>
+                  <p class="lang-card__tagline">Master Your Future</p>
+                  <p class="lang-card__desc">
+                    Développez vos compétences en anglais et ouvrez les portes
+                    du monde.
+                  </p>
+                  <span class="lang-card__level">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <span>Tous niveaux<small>Débutant à avancé</small></span>
+                  </span>
+                </div>
+
+                <!-- Mascot mockup: flag-on-pole + navy book + headphones + chat bubble -->
+                <div class="lang-card__mock" aria-hidden="true">
+                  <svg class="mock-flagpole" viewBox="0 0 60 90">
+                    <line
+                      x1="6"
+                      y1="4"
+                      x2="6"
+                      y2="88"
+                      stroke="#dfe3ea"
+                      stroke-width="2.5"
+                    />
+                    <g>
+                      <rect x="8" y="4" width="46" height="28" fill="#0a247d" />
+                      <path
+                        d="M8 4 L54 32 M54 4 L8 32"
+                        stroke="#ffffff"
+                        stroke-width="4"
+                      />
+                      <path
+                        d="M8 4 L54 32 M54 4 L8 32"
+                        stroke="#c8102e"
+                        stroke-width="1.6"
+                      />
+                      <path
+                        d="M31 4 V32 M8 18 H54"
+                        stroke="#ffffff"
+                        stroke-width="7"
+                      />
+                      <path
+                        d="M31 4 V32 M8 18 H54"
+                        stroke="#c8102e"
+                        stroke-width="3"
+                      />
+                    </g>
+                  </svg>
+
+                  <div class="mock-book">
+                    <span class="mock-book__label">ENGLISH</span>
+                  </div>
+
+                  <svg class="mock-headphones" viewBox="0 0 90 60">
+                    <path
+                      d="M8 40 C8 8 82 8 82 40"
+                      fill="none"
+                      stroke="#1b2b55"
+                      stroke-width="7"
+                      stroke-linecap="round"
+                    />
+                    <rect
+                      x="2"
+                      y="34"
+                      width="16"
+                      height="22"
+                      rx="7"
+                      fill="#1b2b55"
+                    />
+                    <rect
+                      x="72"
+                      y="34"
+                      width="16"
+                      height="22"
+                      rx="7"
+                      fill="#1b2b55"
+                    />
+                  </svg>
+
+                  <div class="mock-bubble">
+                    <span></span><span></span><span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Body: features, stats, actions -->
+            <div class="lang-card__body">
+              <ul class="lang-card__features">
+                <li>
+                  <span class="feature-icon"
+                    ><i class="fa-solid fa-book-open"></i
+                  ></span>
+                  <span
+                    ><strong>Cours complets</strong
+                    ><small>Leçons détaillées</small></span
+                  >
+                </li>
+                <li>
+                  <span class="feature-icon"
+                    ><i class="fa-solid fa-pen"></i
+                  ></span>
+                  <span
+                    ><strong>Exercices &amp; Quiz</strong
+                    ><small>Pratique interactive</small></span
+                  >
+                </li>
+                <li>
+                  <span class="feature-icon"
+                    ><i class="fa-solid fa-headphones"></i
+                  ></span>
+                  <span
+                    ><strong>Écoute &amp; Parle</strong
+                    ><small>Améliorez votre oral</small></span
+                  >
+                </li>
+                <li>
+                  <span class="feature-icon"
+                    ><i class="fa-solid fa-file-lines"></i
+                  ></span>
+                  <span
+                    ><strong>Examens</strong
+                    ><small>Tests &amp; évaluations</small></span
+                  >
+                </li>
+              </ul>
+
+              <div class="lang-card__stats">
+                <span
+                  ><i class="fa-solid fa-star"></i> <strong>4.8</strong
+                  ><small>Note moyenne</small></span
+                >
+                <span
+                  ><i class="fa-solid fa-user-group"></i> <strong>2,145</strong
+                  ><small>Étudiants</small></span
+                >
+                <span
+                  ><i class="fa-regular fa-clock"></i> <strong>28 h</strong
+                  ><small>Contenu total</small></span
+                >
+                <span
+                  ><i class="fa-solid fa-chart-simple"></i> <strong>120+</strong
+                  ><small>Leçons</small></span
+                >
+              </div>
+
+              <div class="lang-card__footer">
+                <button type="button" class="btn-info-outline">
+                  <i class="fa-regular fa-circle-info"></i>
+                  Voir le programme
+                </button>
+
+                <a href="english.html" class="btn-cta">
+                  Commencer maintenant
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ============================================= -->
+          <!-- COMPONENT INSTANCE 2 — Français (red theme)    -->
+          <!-- ============================================= -->
+          <article class="lang-card lang-card--fr">
+            <div class="lang-card__banner">
+              <!-- Decorative line-art skyline (Eiffel tower) -->
+              <svg
+                class="lang-card__scenery"
+                viewBox="0 0 520 260"
+                preserveAspectRatio="xMidYMid slice"
+                aria-hidden="true"
+              >
+                <path
+                  d="M70 45q-9-13 5-16q4-11 17-7q9-9 18 0q13-2 11 11q9 3 4 13z"
+                  fill="none"
+                  stroke="#ffffff"
+                  stroke-opacity="0.16"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M170 90q-8-11 5-14q3-10 15-6q8-8 16 0q11-2 10 10q8 3 3 11z"
+                  fill="none"
+                  stroke="#ffffff"
+                  stroke-opacity="0.12"
+                  stroke-width="1.5"
+                />
+                <g
+                  stroke="#ffffff"
+                  stroke-opacity="0.24"
+                  stroke-width="1.6"
+                  fill="none"
+                  stroke-linejoin="round"
+                >
+                  <path d="M400 40 L370 232 M400 40 L430 232" />
+                  <path d="M382 130 L418 130" />
+                  <path d="M374 168 L426 168" />
+                  <path d="M366 206 L434 206" />
+                  <path d="M400 40 L382 130 M400 40 L418 130" />
+                  <path d="M394 232 L406 232 L406 244 L394 244 Z" />
+                  <line x1="400" y1="12" x2="400" y2="40" />
+                </g>
+              </svg>
+
+              <span class="lang-card__badge"
+                ><i class="fa-solid fa-star"></i> Populaire</span
+              >
+
+              <div class="lang-card__banner-grid">
+                <div class="lang-card__copy">
+                  <h2 class="lang-card__title">Français</h2>
+                  <p class="lang-card__tagline">Parlez avec confiance</p>
+                  <p class="lang-card__desc">
+                    Apprenez le français et exprimez-vous avec aisance.
+                  </p>
+                  <span class="lang-card__level">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <span>Tous niveaux<small>Débutant à avancé</small></span>
+                  </span>
+                </div>
+
+                <!-- Mascot mockup: tricolor book + beret + speech bubble -->
+                <div class="lang-card__mock" aria-hidden="true">
+                  <div class="mock-book mock-book--tricolor">
+                    <span class="mock-book__label">FRANÇAIS</span>
+                  </div>
+
+                  <svg class="mock-beret" viewBox="0 0 70 46">
+                    <ellipse cx="35" cy="30" rx="32" ry="14" fill="#c8102e" />
+                    <ellipse cx="35" cy="24" rx="26" ry="12" fill="#c8102e" />
+                    <rect
+                      x="31"
+                      y="4"
+                      width="5"
+                      height="8"
+                      rx="2"
+                      fill="#8f0c22"
+                    />
+                  </svg>
+
+                  <div class="mock-bubble mock-bubble--text">
+                    Bonjour&nbsp;!
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="lang-card__body">
+              <ul class="lang-card__features">
+                <li>
+                  <span class="feature-icon"
+                    ><i class="fa-solid fa-book-open"></i
+                  ></span>
+                  <span
+                    ><strong>Cours complets</strong
+                    ><small>Leçons détaillées</small></span
+                  >
+                </li>
+                <li>
+                  <span class="feature-icon"
+                    ><i class="fa-solid fa-pen"></i
+                  ></span>
+                  <span
+                    ><strong>Exercices &amp; Quiz</strong
+                    ><small>Pratique interactive</small></span
+                  >
+                </li>
+                <li>
+                  <span class="feature-icon"
+                    ><i class="fa-solid fa-headphones"></i
+                  ></span>
+                  <span
+                    ><strong>Écoute &amp; Parle</strong
+                    ><small>Améliorez votre oral</small></span
+                  >
+                </li>
+                <li>
+                  <span class="feature-icon"
+                    ><i class="fa-solid fa-file-lines"></i
+                  ></span>
+                  <span
+                    ><strong>Examens</strong
+                    ><small>Tests &amp; évaluations</small></span
+                  >
+                </li>
+              </ul>
+
+              <div class="lang-card__stats">
+                <span
+                  ><i class="fa-solid fa-star"></i> <strong>4.7</strong
+                  ><small>Note moyenne</small></span
+                >
+                <span
+                  ><i class="fa-solid fa-user-group"></i> <strong>1,892</strong
+                  ><small>Étudiants</small></span
+                >
+                <span
+                  ><i class="fa-regular fa-clock"></i> <strong>26 h</strong
+                  ><small>Contenu total</small></span
+                >
+                <span
+                  ><i class="fa-solid fa-chart-simple"></i> <strong>110+</strong
+                  ><small>Leçons</small></span
+                >
+              </div>
+
+              <div class="lang-card__footer">
+                <button type="button" class="btn-info-outline">
+                  <i class="fa-regular fa-circle-info"></i> Voir le programme
+                </button>
+                <button type="button" class="btn-cta">
+                  Commencer maintenant <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+
+ <!-- =============================================
+     OUR SERVICES SECTION COMPONENT
+     Zig-zag layout: image + icon badge alternates
+     sides, each service has a description + feature list.
+     ============================================= -->
+
+    <section class="hero">
+      <span class="hero-blob hero-blob--one" aria-hidden="true"></span>
+      <span class="hero-blob hero-blob--two" aria-hidden="true"></span>
+
+      <div class="hero__inner">
+        <div class="hero__copy reveal">
+          <span class="section-badge">
+            <i class="fa-solid fa-sparkles"></i>
+            Services pédagogiques
+          </span>
+
+          <h1>Une nouvelle façon d'apprendre, pensée pour votre réussite.</h1>
+          <p>
+            SKOOL combine contenus interactifs, intelligence artificielle, langues,
+            défis quotidiens et suivi personnalisé pour transformer chaque leçon en progression réelle.
+          </p>
+
+          <div class="hero__actions">
+            <a class="btn btn--primary btn--large" href="#services-list">
+              Découvrir nos services
+              <i class="fa-solid fa-arrow-down"></i>
+            </a>
+            <a class="btn btn--soft btn--large" href="courses.html">
+              <i class="fa-solid fa-circle-play"></i>
+              Explorer les cours
+            </a>
+          </div>
+
+          <div class="hero__trust">
+            <div class="avatar-stack" aria-hidden="true">
+              <span>AM</span><span>SK</span><span>YN</span><span>+</span>
+            </div>
+            <p><strong>20 000+ apprenants</strong><br />progressent déjà avec SKOOL</p>
+          </div>
+        </div>
+
+        <div class="hero-dashboard reveal" aria-label="Aperçu du tableau de bord SKOOL">
+          <div class="dashboard-topbar">
+            <div>
+              <small>Bonjour, Sara 👋</small>
+              <strong>Continue ton parcours</strong>
+            </div>
+            <span class="dashboard-avatar">S</span>
+          </div>
+
+          <div class="progress-card">
+            <div class="progress-card__head">
+              <span><i class="fa-solid fa-bolt"></i> Série actuelle</span>
+              <strong>12 jours</strong>
+            </div>
+            <div class="progress-line"><span></span></div>
+            <small>Encore 3 leçons pour atteindre le niveau 8</small>
+          </div>
+
+          <div class="dashboard-grid">
+            <article class="mini-card mini-card--orange">
+              <i class="fa-solid fa-book-open"></i>
+              <div><strong>24</strong><span>Leçons</span></div>
+            </article>
+            <article class="mini-card mini-card--purple">
+              <i class="fa-solid fa-star"></i>
+              <div><strong>1 840</strong><span>XP gagnés</span></div>
+            </article>
+            <article class="mini-card mini-card--blue">
+              <i class="fa-solid fa-chart-line"></i>
+              <div><strong>86%</strong><span>Progression</span></div>
+            </article>
+            <article class="mini-card mini-card--green">
+              <i class="fa-solid fa-medal"></i>
+              <div><strong>7</strong><span>Badges</span></div>
+            </article>
+          </div>
+
+          <div class="next-lesson">
+            <span class="next-lesson__icon"><i class="fa-solid fa-language"></i></span>
+            <div>
+              <small>Prochaine leçon</small>
+              <strong>English Reading Practice</strong>
+            </div>
+            <button type="button" aria-label="Commencer la prochaine leçon"><i class="fa-solid fa-play"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="services-list">
+      <div class="services__head reveal">
+        <span class="services__eyebrow">Tout ce qu'il vous faut</span>
+        <h2>Des services conçus pour apprendre mieux</h2>
+        <p>
+          Un écosystème complet qui accompagne chaque étudiant, du premier cours jusqu'à la réussite.
+        </p>
+      </div>
+
+      <article class="service-row reveal">
+        <div class="service-media service-media--ai">
+          <div class="service-visual service-visual--ai">
+            <span class="floating-chip floating-chip--top"><i class="fa-solid fa-wand-magic-sparkles"></i> Analyse IA</span>
+            <div class="ai-orb"><i class="fa-solid fa-brain"></i></div>
+            <div class="chat-bubble chat-bubble--left">Explique-moi cette leçon</div>
+            <div class="chat-bubble chat-bubble--right">Bien sûr ! Voici une explication simple…</div>
+          </div>
+          <span class="service-icon"><i class="fa-solid fa-robot"></i></span>
+        </div>
+
+        <div class="service-copy">
+          <span class="service-number">SERVICE 01</span>
+          <h3>Apprentissage personnalisé avec l'IA</h3>
+          <p>
+            Un assistant pédagogique intelligent adapte les explications, exercices et recommandations au niveau et au rythme de chaque apprenant.
+          </p>
+          <span class="features-label">Ce service inclut</span>
+          <ul>
+            <li><i class="fa-solid fa-check"></i><span>Tuteur IA disponible 24/7</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Explications personnalisées</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Exercices adaptés au niveau</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Recommandations intelligentes</span></li>
+          </ul>
+          <a class="service-link" href="ai-learning.html">Découvrir l'assistant IA <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="service-row service-row--reverse reveal">
+        <div class="service-media service-media--language">
+          <div class="service-visual service-visual--language">
+            <span class="sound-wave" aria-hidden="true"><b></b><b></b><b></b><b></b><b></b><b></b><b></b></span>
+            <div class="language-card">
+              <span class="language-card__label">Reading practice</span>
+              <p>
+                Learning English becomes <mark>easier</mark> when you practice every day.
+              </p>
+              <div class="audio-player">
+                <button type="button" aria-label="Lire l'audio"><i class="fa-solid fa-play"></i></button>
+                <span class="audio-track"><i></i></span>
+                <small>00:18</small>
+              </div>
+            </div>
+            <span class="floating-chip floating-chip--bottom"><i class="fa-solid fa-microphone"></i> Pronunciation +12%</span>
+          </div>
+          <span class="service-icon"><i class="fa-solid fa-language"></i></span>
+        </div>
+
+        <div class="service-copy">
+          <span class="service-number">SERVICE 02</span>
+          <h3>Apprentissage interactif des langues</h3>
+          <p>
+            Développez votre compréhension, votre vocabulaire et votre prononciation grâce à la lecture audio, au suivi mot par mot et aux exercices pratiques.
+          </p>
+          <span class="features-label">Ce service inclut</span>
+          <ul>
+            <li><i class="fa-solid fa-check"></i><span>Lecture audio synchronisée</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Suivi mot par mot</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Exercices de prononciation</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Vocabulaire et traductions</span></li>
+          </ul>
+          <a class="service-link" href="english.html">Commencer l'anglais <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="service-row reveal">
+        <div class="service-media service-media--exam">
+          <div class="service-visual service-visual--exam">
+            <div class="exam-sheet">
+              <div class="exam-sheet__top"><span>Examen blanc</span><strong>2BAC</strong></div>
+              <div class="exam-question"><span>01</span><i></i><i></i></div>
+              <div class="exam-question"><span>02</span><i></i><i></i></div>
+              <div class="exam-question"><span>03</span><i></i><i></i></div>
+              <div class="exam-result"><i class="fa-solid fa-trophy"></i><strong>18/20</strong><small>Excellent résultat</small></div>
+            </div>
+          </div>
+          <span class="service-icon"><i class="fa-solid fa-graduation-cap"></i></span>
+        </div>
+
+        <div class="service-copy">
+          <span class="service-number">SERVICE 03</span>
+          <h3>Préparation aux examens et concours</h3>
+          <p>
+            Révisez efficacement avec des parcours structurés, des exercices corrigés, des examens blancs et des contenus alignés sur le programme marocain.
+          </p>
+          <span class="features-label">Ce service inclut</span>
+          <ul>
+            <li><i class="fa-solid fa-check"></i><span>Cours et résumés structurés</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Exercices avec corrections</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Examens nationaux</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Simulations chronométrées</span></li>
+          </ul>
+          <a class="service-link" href="courses.html">Voir les préparations <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="service-row service-row--reverse reveal">
+        <div class="service-media service-media--progress">
+          <div class="service-visual service-visual--progress">
+            <div class="chart-card">
+              <div class="chart-card__head"><span>Progression mensuelle</span><strong>+24%</strong></div>
+              <div class="chart-bars" aria-hidden="true">
+                <i style="--h: 32%"></i><i style="--h: 48%"></i><i style="--h: 42%"></i><i style="--h: 66%"></i><i style="--h: 74%"></i><i style="--h: 92%"></i>
+              </div>
+              <div class="chart-days"><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span></div>
+            </div>
+            <span class="floating-chip floating-chip--score"><i class="fa-solid fa-bolt"></i> +250 XP cette semaine</span>
+          </div>
+          <span class="service-icon"><i class="fa-solid fa-chart-simple"></i></span>
+        </div>
+
+        <div class="service-copy">
+          <span class="service-number">SERVICE 04</span>
+          <h3>Progression, motivation et gamification</h3>
+          <p>
+            Visualisez vos résultats, gagnez de l'XP, débloquez des niveaux et maintenez votre motivation grâce à des objectifs clairs et des défis réguliers.
+          </p>
+          <span class="features-label">Ce service inclut</span>
+          <ul>
+            <li><i class="fa-solid fa-check"></i><span>Tableau de bord personnel</span></li>
+            <li><i class="fa-solid fa-check"></i><span>XP, niveaux et badges</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Défis quotidiens</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Classement des apprenants</span></li>
+          </ul>
+          <a class="service-link" href="profile.html">Voir le tableau de bord <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </article>
+    </section>
+
+    <section class="stats-section">
+      <div class="stats-shell reveal">
+        <div class="stat-card"><strong data-count="20000">0</strong><span>Apprenants actifs</span></div>
+        <div class="stat-card"><strong data-count="350">0</strong><span>Cours disponibles</span></div>
+        <div class="stat-card"><strong data-count="120000">0</strong><span>Leçons terminées</span></div>
+        <div class="stat-card"><strong data-count="98">0</strong><span>% de satisfaction</span></div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="cta-card reveal">
+        <div class="cta-card__icon"><i class="fa-solid fa-rocket"></i></div>
+        <div>
+          <span>Votre progression commence aujourd'hui</span>
+          <h2>Prêt à construire votre réussite avec SKOOL ?</h2>
+          <p>Créez votre compte et accédez à un environnement d'apprentissage moderne, motivant et personnalisé.</p>
+        </div>
+        <a class="btn btn--white btn--large" href="register.html">Créer mon compte <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </section>
+  </main>
+
+
+  <script src="servicesservices.js"></script>
+
+
+  <!-- ================================Footer -->
+  <!-- ================================Footer -->
+  <!-- ================================Footer -->
+  <!-- ================================Footer -->
+
+
+        <footer class="skool-footer">
+          <div class="footer-top">
+            <div class="logo-box">
+              <img style="height: 40px" src="logo001.png" alt="" />
+            </div>
+            <p class="footer-tagline">
+              Empowering students and educators through intelligent learning,
+              AI-powered education, and personalized learning experiences.
+              Building the future of digital education in Morocco.
+            </p>
+          </div>
+
+          <div class="footer-columns">
+            <div class="footer-col">
+              <h4>Legal</h4>
+              <ul>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Cookie Policy</a></li>
+                <li><a href="#">Disclaimer</a></li>
+                <li><a href="#">Accessibility</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="#">About SKOOL</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Partners</a></li>
+                <li><a href="#">Teachers</a></li>
+                <li><a href="#">Press</a></li>
+                <li><a href="#">Roadmap</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-col">
+              <h4>Resources</h4>
+              <ul>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Help Center</a></li>
+                <li><a href="#">Documentation</a></li>
+                <li><a href="#">Learning Guides</a></li>
+                <li><a href="#">Community</a></li>
+                <li><a href="#">Success Stories</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-col">
+              <h4>Learning</h4>
+              <ul>
+                <li><a href="#">90-Day Challenges</a></li>
+                <li><a href="#">Exam Preparation</a></li>
+                <li><a href="#">Language Learning</a></li>
+                <li><a href="#">AI Tutor</a></li>
+                <li><a href="#">Live Classes</a></li>
+                <li><a href="#">Certificates</a></li>
+                <li><a href="#">Student Dashboard</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-col">
+              <h4>Quick Links</h4>
+              <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li><a href="#">FAQ</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-col">
+              <h4>Social Media</h4>
+              <ul>
+                <li><a href="#" target="_blank" rel="noopener">Facebook</a></li>
+                <li>
+                  <a href="#" target="_blank" rel="noopener">Instagram</a>
+                </li>
+                <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
+                <li><a href="#" target="_blank" rel="noopener">YouTube</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-col">
+              <h4>Contact Us</h4>
+              <ul class="contact-col">
+                <li><span class="icon">📍</span><span>Morocco</span></li>
+                <li>
+                  <span class="icon">✉️</span
+                  ><a href="mailto:contact@skool.ma">contact@skool.ma</a>
+                </li>
+                <li>
+                  <span class="icon">🌐</span
+                  ><a href="https://www.skool.ma" target="_blank" rel="noopener"
+                    >www.skool.ma</a
+                  >
+                </li>
+                <li>
+                  <span class="icon">📞</span
+                  ><a href="tel:+212600000000">+212 6 00 00 00 00</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <p id="copyright-year">© 2026 SKOOL. All Rights Reserved.</p>
+            <p class="sub">
+              Designed to transform education through innovation, technology,
+              and artificial intelligence.
+            </p>
+            <p class="footer-tagline-final">
+              Learn Smarter. Progress Faster. Build Your Future.
+            </p>
+          </div>
+        </footer>
+
+        <script>
+          // Auto-update the copyright year
+          document.getElementById("copyright-year").textContent =
+            `© ${new Date().getFullYear()} SKOOL. All Rights Reserved.`;
+        </script>
+      </main>
+    </div>
+    <!-- /page -->
+
+    <script src="script.js"></script>
+    <script src="lang-card.js"></script>
+  </body>
+</html>

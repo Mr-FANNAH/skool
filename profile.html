@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skool Profile</title>
+  <link rel="stylesheet" href="style_profile.css">
+</head>
+<body>
+  <header class="topbar">
+    <!-- <div class="logo" aria-label="SKOOL">
+        
+      <span>S</span><span>K</span><span>O</span><span>O</span><span>L</span>
+    </div> -->
+    <a href="index.html" class="logo" aria-label="SKOOL Home">
+    <span>S</span>
+    <span>K</span>
+    <span>O</span>
+    <span>O</span>
+    <span>L</span>
+</a>
+
+    <div class="header-actions">
+      <button class="top-icon message-btn" aria-label="Messages">
+        <span class="chat-shape"></span>
+        <b class="notif-badge">1</b>
+      </button>
+
+      <button class="top-icon bell-btn" aria-label="Notifications">
+        <!-- <span class="bell-shape"></span> -->
+        <img style="height: 40px;" src="noti.png" alt="">
+        <b class="notif-badge wide">99+</b>
+      </button>
+
+      <button class="mini-profile" aria-label="Profile">
+        <span class="mini-avatar"></span>
+        <i></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <section class="profile-head">
+        <div class="avatar-wrap">
+          <div class="avatar"></div>
+          <span class="level-badge">2</span>
+        </div>
+
+        <h2>Level 2 - Active <em>⚡</em></h2>
+        <p>10 EX to level up</p>
+        <h3>Student Name</h3>
+      </section>
+
+      <section class="profile-details">
+        <p><span>◷</span> Time spent studing 20H,20Min</p>
+        <p><span>▦</span> Joined Mar 20, 2025</p>
+        <p><span>●</span> Casablanca</p>
+      </section>
+
+      <section class="social-row">
+        <span>38 posts</span>
+        <span>3 Followers</span>
+        <span>97 following</span>
+      </section>
+
+      <nav class="profile-nav">
+        <button class="active"><span>🎓</span> My learning</button>
+        <button>Public profile</button>
+        <button>Account Security</button>
+        <button>Skool certificate</button>
+        <button>Close account</button>
+      </nav>
+    </aside>
+
+    <section class="content">
+      <h1>My learning</h1>
+
+      <article class="course-card">
+        <div class="course-picture">
+          <span class="in-progress">In progress</span>
+        </div>
+
+        <div class="course-info">
+          <div class="course-heading">
+            <h2>EPS – Éducation Physique et Sportive</h2>
+            <span class="main-course">☆ Main Course</span>
+          </div>
+
+          <p class="course-description">
+            Préparez-vous efficacement au concours de l’enseignement en EPS grâce à un
+            programme complet : pédagogie, didactique, sciences du sport, planification,
+            évaluation et pratiques sportives.
+          </p>
+
+          <div class="features">
+            <div><i>▥</i><span><small>Level</small>Débutant à avancé</span></div>
+            <div><i>▦</i><span><small>Duration</small>90 jours</span></div>
+            <div><i>⊕</i><span><small>Language</small>Français</span></div>
+            <div><i>♕</i><span><small>Certificate</small>Oui</span></div>
+          </div>
+
+          <div class="progress-zone">
+            <div class="progress-copy">
+              <small>Your progress</small>
+              <div class="progress-track"><span id="progressBar"></span></div>
+            </div>
+            <strong id="progressValue">42%</strong>
+            <button id="continueLearning">Continue learning <b>›</b></button>
+          </div>
+        </div>
+      </article>
+
+      <section class="stats">
+        <article><i class="red">▣</i><div><strong>45</strong><span>Lessons completed</span><small>/ 110</small></div></article>
+        <article><i class="green">✓</i><div><strong>62%</strong><span>Overall progress</span></div></article>
+        <article><i class="purple">?</i><div><strong>186</strong><span>Quizzes taken</span><small>/ 300</small></div></article>
+        <article><i class="orange">☆</i><div><strong>78%</strong><span>Average score</span></div></article>
+        <article><i class="blue">◷</i><div><strong>20h 20m</strong><span>Time spent</span><small>learning</small></div></article>
+      </section>
+
+      <section class="dashboard">
+        <article class="panel challenge-panel">
+          <header><i>🔥</i><div><h3>90-Day Challenge</h3><p>Stay consistent and achieve your goal!</p></div></header>
+
+          <div class="challenge-body">
+            <div class="donut">
+              <div><strong>42</strong><span>Days completed</span><small>/ 90</small></div>
+            </div>
+
+            <div class="legend">
+              <p><b class="dot green-dot"></b>Completed<br><span>42 days</span></p>
+              <p><b class="dot orange-dot"></b>In progress<br><span>3 days</span></p>
+              <p><b class="dot gray-dot"></b>Remaining<br><span>45 days</span></p>
+            </div>
+          </div>
+
+          <button class="light-button">View full challenge <span>›</span></button>
+        </article>
+
+        <article class="panel activity-panel">
+          <header><i>▥</i><div><h3>Weekly activity</h3><p>Your learning activity this week</p></div></header>
+
+          <div class="chart">
+            <div class="hours"><span>3h</span><span>2h</span><span>1h</span><span>0h</span></div>
+            <div class="bars">
+              <div><i style="height:31%"></i><span>Mon</span></div>
+              <div><i style="height:84%"></i><span>Tue</span></div>
+              <div><i style="height:62%"></i><span>Wed</span></div>
+              <div><i style="height:47%"></i><span>Thu</span></div>
+              <div><i style="height:58%"></i><span>Fri</span></div>
+              <div><i style="height:35%"></i><span>Sat</span></div>
+              <div><i style="height:14%"></i><span>Sun</span></div>
+            </div>
+          </div>
+
+          <footer>
+            <div><small>This week</small><strong>11h 20m</strong></div>
+            <div><small>Last week</small><strong>8h 45m</strong></div>
+            <b>+28% ↗</b>
+          </footer>
+        </article>
+
+        <article class="panel achievements-panel">
+          <header><i>♜</i><div><h3>Achievements</h3><p>Your recent achievements</p></div></header>
+
+          <div class="achievement-list">
+            <div class="achievement"><i class="a-green">◆</i><div><strong>Consistent Learner</strong><small>Completed 7 days in a row</small></div><time>May 12, 2025</time></div>
+            <div class="achievement"><i class="a-purple">⬢</i><div><strong>Quiz Master</strong><small>Scored 80% or more in 10 quizzes</small></div><time>May 10, 2025</time></div>
+            <div class="achievement"><i class="a-orange">◆</i><div><strong>Early Bird ⚡</strong><small>Completed a lesson before 9AM</small></div><time>May 8, 2025</time></div>
+            <div class="achievement"><i class="a-blue">♜</i><div><strong>Step by Step ◆</strong><small>Completed 40 days</small></div><time>May 6, 2025</time></div>
+          </div>
+
+          <button class="light-button">View all achievements <span>›</span></button>
+        </article>
+      </section>
+
+      <section class="next-lesson">
+        <i class="lesson-icon">▣</i>
+        <div><strong>Next lesson</strong><span>Continue your learning journey</span></div>
+        <div><strong>Lesson 43</strong><span>Les méthodes d’enseignement en EPS</span></div>
+        <p>◷ &nbsp;25 min</p>
+        <button>Start lesson <b>▷</b></button>
+      </section>
+    </section>
+  </main>
+
+  <script src="scripte_profile.js"></script>
+</body>
+</html>
