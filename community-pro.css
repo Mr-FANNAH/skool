@@ -411,7 +411,7 @@ img {
   padding: 14px 17px;
   border: 1px solid var(--border);
   border-radius: 18px;
-  background: white;
+  background: #47c10050;
   box-shadow: 0 8px 25px rgba(47, 22, 10, 0.045);
   transition: 0.3s ease;
 }
