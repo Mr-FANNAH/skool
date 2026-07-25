@@ -6,61 +6,115 @@
 
 const testimonials = [
   {
-    name: "Youssef El Amrani",
-    role: "Étudiant en développement web",
-    image: "https://i.pravatar.cc/320?img=11",
-    message:
-      "Grâce à SKOOL, j’ai développé des compétences pratiques et terminé plusieurs projets. La progression par niveaux me motive chaque jour.",
-    progress: "Progression : 92 %",
-    level: "Niveau 12"
-  },
-  {
-    name: "Fatima Zahra",
-    role: "Étudiante en biologie",
-    image: "https://i.pravatar.cc/320?img=47",
-    message:
-      "Les cours sont clairs et bien structurés. Les quiz et les défis quotidiens m’ont aidée à améliorer mes résultats et à rester régulière.",
-    progress: "Progression : 88 %",
-    level: "Niveau 10"
-  },
-  {
     name: "Prof. Karim Benali",
     role: "Professeur de mathématiques",
     image: "https://i.pravatar.cc/320?img=13",
     message:
-      "SKOOL me permet de publier mes cours, suivre la progression des étudiants et analyser leurs résultats depuis un seul espace.",
-    progress: "Impact : 120 étudiants",
+      "SKOOL me permet de publier mes cours, créer des exercices interactifs et suivre précisément la progression de mes étudiants.",
+    progress: "Impact : 320 étudiants",
     level: "23 cours"
-  },
-  {
-    name: "Sara Benali",
-    role: "Étudiante en sciences physiques",
-    image: "https://i.pravatar.cc/320?img=32",
-    message:
-      "Le défi de 90 jours m’a appris à travailler régulièrement. Chaque nouvelle étape débloquée me donne envie de continuer.",
-    progress: "Progression : 91 %",
-    level: "Niveau 9"
   },
   {
     name: "Prof. Nadia El Idrissi",
     role: "Professeure de physique-chimie",
     image: "https://i.pravatar.cc/320?img=38",
     message:
-      "La création des quiz, les statistiques et la gestion des devoirs rendent mon travail beaucoup plus simple et organisé.",
+      "La création des quiz, la gestion des devoirs et les statistiques détaillées rendent mon enseignement plus simple et plus efficace.",
     progress: "Impact : 240 étudiants",
     level: "18 cours"
   },
   {
-    name: "Mehdi Idrissi",
-    role: "Étudiant en intelligence artificielle",
+    name: "Prof. Amine El Mansouri",
+    role: "Professeur de développement web",
+    image: "https://i.pravatar.cc/320?img=11",
+    message:
+      "Grâce à SKOOL, je peux proposer des formations pratiques en HTML, CSS, JavaScript et accompagner mes étudiants dans leurs projets.",
+    progress: "Impact : 410 étudiants",
+    level: "27 cours"
+  },
+  {
+    name: "Prof. Salma Zahra",
+    role: "Professeure de biologie et SVT",
+    image: "https://i.pravatar.cc/320?img=47",
+    message:
+      "Les supports visuels, les évaluations et le suivi individualisé me permettent de mieux expliquer les notions scientifiques complexes.",
+    progress: "Impact : 285 étudiants",
+    level: "20 cours"
+  },
+  {
+    name: "Prof. Mehdi Idrissi",
+    role: "Professeur d’intelligence artificielle",
     image: "https://i.pravatar.cc/320?img=15",
     message:
-      "L’assistant IA et les recommandations personnalisées m’aident à comprendre les notions difficiles et à mieux planifier mes révisions.",
-    progress: "Progression : 86 %",
-    level: "Niveau 11"
+      "SKOOL me permet de construire des parcours modernes en intelligence artificielle, machine learning et analyse de données.",
+    progress: "Impact : 190 étudiants",
+    level: "16 cours"
+  },
+  {
+    name: "Prof. Sara Benali",
+    role: "Professeure de langue anglaise",
+    image: "https://i.pravatar.cc/320?img=32",
+    message:
+      "Les exercices de prononciation, la lecture audio et le suivi des compétences rendent l’apprentissage de l’anglais plus interactif.",
+    progress: "Impact : 360 étudiants",
+    level: "25 cours"
+  },
+  {
+    name: "Prof. Yassine El Khattabi",
+    role: "Professeur d’éducation physique et sportive",
+    image: "https://i.pravatar.cc/320?img=12",
+    message:
+      "J’utilise SKOOL pour organiser mes cours d’EPS, proposer des ressources pédagogiques et préparer les candidats aux concours.",
+    progress: "Impact : 275 étudiants",
+    level: "21 cours"
+  },
+  {
+    name: "Prof. Oumaima Zahraoui",
+    role: "Professeure de design UI/UX",
+    image: "https://i.pravatar.cc/320?img=49",
+    message:
+      "La plateforme me permet de présenter des projets de design, donner des feedbacks détaillés et suivre l’évolution créative des apprenants.",
+    progress: "Impact : 160 étudiants",
+    level: "14 cours"
+  },
+  {
+    name: "Prof. Khalid El Amrani",
+    role: "Professeur de géographie et géomatique",
+    image: "https://i.pravatar.cc/320?img=68",
+    message:
+      "SKOOL est idéale pour partager des cartes, des données géographiques, des exercices SIG et des études de terrain.",
+    progress: "Impact : 145 étudiants",
+    level: "13 cours"
+  },
+  {
+    name: "Prof. Imane Nadia",
+    role: "Professeure de marketing digital",
+    image: "https://i.pravatar.cc/320?img=44",
+    message:
+      "Je peux proposer des études de cas, des projets réels et des évaluations pour aider les étudiants à maîtriser le marketing numérique.",
+    progress: "Impact : 220 étudiants",
+    level: "19 cours"
+  },
+  {
+    name: "Prof. Ayoub Bennani",
+    role: "Professeur de programmation Python",
+    image: "https://i.pravatar.cc/320?img=5",
+    message:
+      "Les exercices de code, les quiz et les projets progressifs permettent à mes étudiants d’apprendre Python de manière pratique.",
+    progress: "Impact : 390 étudiants",
+    level: "29 cours"
+  },
+  {
+    name: "Prof. Lina El Fassi",
+    role: "Professeure de littérature française",
+    image: "https://i.pravatar.cc/320?img=45",
+    message:
+      "SKOOL facilite le partage de textes, l’analyse littéraire, les devoirs écrits et les échanges avec les étudiants.",
+    progress: "Impact : 205 étudiants",
+    level: "17 cours"
   }
+  
 ];
-
 /* ==================================================
    ELEMENTS
 ================================================== */
